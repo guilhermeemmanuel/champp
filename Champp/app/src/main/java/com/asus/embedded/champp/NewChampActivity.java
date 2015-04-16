@@ -6,14 +6,34 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import com.asus.embedded.champp.controller.ChampionshipController;
+import com.asus.embedded.champp.model.Championship;
+
+import java.lang.String;
 
 
 public class NewChampActivity extends ActionBarActivity {
+
+    private EditText nameEt, modalEt;
+    private RadioButton individualRb, cupRb;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_champ);
+
+        nameEt = (EditText) findViewById(R.id.name_et);
+        modalEt = (EditText) findViewById(R.id.modal_et);
+        individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
+        cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
+
+
     }
 
 
@@ -40,8 +60,18 @@ public class NewChampActivity extends ActionBarActivity {
     }
 
     public void createChamp(View view){
-        Intent intent = new Intent();
-        setResult(1,intent);
-        finish();
+        String nameCp = nameEt.getText().toString();
+        String modalCp = modalEt.getText().toString();
+        boolean indivCp = individualRb.isChecked();
+        boolean cupCp = cupRb.isChecked();
+        boolean ok = ChampionshipController.getInstance().createChampionship(nameCp, modalCp, indivCp, cupCp);
+        if(ok) {
+            Intent intent = new Intent();
+            setResult(1, intent);
+            finish();
+        }
+        else {
+            Toast.makeText(this,"Championship with same name already exists",Toast.LENGTH_SHORT).show();
+        }
     }
 }
