@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Champp</string>
+    <string name="welcome">Bem-vindo ao Champ App Manager!</string>
+    <string name="newChamp">Novo Campeonato</string>
+    <string name="action_settings">Configurações</string>
+    <string name="title_activity_new_champ">Novo Campeonato</string>
+    <string name="name">Nome</string>
+    <string name="modal">Modalidade</string>
+    <string name="champ_individual">Individual</string>
+    <string name="champ_group">Grupo</string>
+    <string name="champ_cup">Copa</string>
+    <string name="champ_league">Liga</string>
+    <string name="ok">Ok</string>
+    <string name="type_modality">Tipo da modalidade:</string>
+    <string name="type_of_competition">Tipo de competição:</string>
+</resources>
