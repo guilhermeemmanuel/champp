@@ -13,5 +13,19 @@
     <string name="ok">Ok</string>
     <string name="type_modality">Type of the Modality:</string>
     <string name="type_of_competition">Type of competition:</string>
+    <string name="title_activity_my_champs">MyChampsActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="bt_myChamps">My Championships</string>
+    <string name="title_activity_my_champ">MyChampActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
 
 </resources>

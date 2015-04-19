@@ -9,14 +9,24 @@
     <TextView
         android:id="@+id/welcome"
         android:text="@string/welcome"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/newChamp"
         android:text="@string/newChamp"
-        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="newChamp"/>
+
+    <Button
+        android:id="@+id/myChamps"
+        android:text="@string/bt_myChamps"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="myChamps"/>
 
 </LinearLayout>

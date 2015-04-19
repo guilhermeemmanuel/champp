@@ -45,4 +45,17 @@ public class ChampionshipController {
         return cp;
     }
 
+    public List<String> getChampsName() {
+        List<String> result = new ArrayList<>();
+        if(!champsIsEmpty()){
+            for (Championship champ : champs){
+                result.add(champ.getName());
+            }
+        }
+        return result;
+    }
+
+    public boolean champsIsEmpty(){
+        return champs.isEmpty();
+    }
 }
