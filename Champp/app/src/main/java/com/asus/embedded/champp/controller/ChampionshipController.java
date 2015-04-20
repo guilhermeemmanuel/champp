@@ -15,7 +15,9 @@ public class ChampionshipController {
 
     private static ChampionshipController cp;
 
-    private List<Championship> champs;
+
+
+    private static List<Championship> champs;
 
     private ChampionshipController() {
         //TODO pegar todos os campeonatos do banco.
@@ -43,6 +45,10 @@ public class ChampionshipController {
             cp = new ChampionshipController();
         }
         return cp;
+    }
+
+    public static List<Championship> getChamps() {
+        return champs;
     }
 
     public List<String> getChampsName() {
