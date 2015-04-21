@@ -71,7 +71,7 @@ public class NewChampActivity extends ActionBarActivity {
             finish();
         }
         else {
-            Toast.makeText(this,"Championship with same name already exists",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_SHORT).show();
         }
     }
 }

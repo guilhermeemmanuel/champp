@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void myChamps(View view){
         if(ChampionshipController.getInstance().champsIsEmpty()) {
-            Toast.makeText(this, "No championships", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.noChamps, Toast.LENGTH_SHORT).show();
         }
         else {
             Intent intent2 = new Intent(this, MyChampsActivity.class);

@@ -15,4 +15,7 @@
     <string name="type_modality">Tipo da modalidade:</string>
     <string name="type_of_competition">Tipo de competição:</string>
     <string name="bt_myChamps">Meus Campeonatos</string>
+    <string name="noChamps">Sem Campeonatos</string>
+    <string name="sameChamp">Campeonato com o mesmo nome já existe</string>
+    <string name="champDelete">Campeonato Deletado com Sucesso</string>
 </resources>

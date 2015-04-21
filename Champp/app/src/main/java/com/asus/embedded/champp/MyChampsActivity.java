@@ -37,7 +37,7 @@ public class MyChampsActivity extends ListActivity {
     public void deleteItem(View v) {
 
         adapter.removeItem((Integer) v.getTag());
-        Toast.makeText(this,"successfully deleted championship ",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,R.string.champDelete,Toast.LENGTH_LONG).show();
     }
 
     @Override

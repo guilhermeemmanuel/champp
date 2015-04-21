@@ -28,5 +28,8 @@
 
     <string name="action_example">Example action</string>
     <string name="title_activity_champ_characteristics">champCharacteristics</string>
+    <string name="noChamps">No championships</string>
+    <string name="sameChamp">Championship with same name already exists</string>
+    <string name="champDelete">successfully deleted championship</string>
 
 </resources>
