@@ -40,14 +40,17 @@ public class MyChampsActivity extends ListActivity {
             if (champ.getName().equals(clickedName)){
                 Log.v("TESTE", "ENTROU");
                 champList.remove(champ);
+                Toast.makeText(getApplicationContext(), champ.getName() + " has been removed", Toast.LENGTH_SHORT).show();
+
+                break;
                 //after removing the User , the app shows a msg success and returns to the main screen
                 // MainActivity
-                Toast.makeText(getApplicationContext(), champ.getName() + " has been removed", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
             }
 
         }
+
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
     }
 
     @Override

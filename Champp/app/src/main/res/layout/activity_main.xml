@@ -4,11 +4,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@mipmap/esporte"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/welcome"
         android:text="@string/welcome"
+        android:textColor="#FFFFFF"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
