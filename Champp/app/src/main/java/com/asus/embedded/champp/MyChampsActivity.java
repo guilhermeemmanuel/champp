@@ -15,42 +15,41 @@ import android.widget.Toast;
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.ListMyChampsAdapter;
 
 import java.util.List;
 
 public class MyChampsActivity extends ListActivity {
-    private ArrayAdapter adapter;
+
+    private ListView listView;
+    private ListMyChampsAdapter adapter;
+    private List<Championship> champs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_my_champs);
 
-        List<String> champs = ChampionshipController.getInstance().getChampsName();
-        adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, champs);
+        champs = ChampionshipController.getInstance().getChamps();
+        adapter = new ListMyChampsAdapter(this, (java.util.ArrayList<Championship>) champs);
         setListAdapter(adapter);
+    }
+
+    public void deletaItem(View v) {
+        adapter.removeItem((Integer) v.getTag());
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        String clickedName = adapter.getItem(position).toString();
-        Log.v("TESTE", clickedName.toString());
+         //Pega o item que foi selecionado.
+        Championship item = adapter.getItem(position);
+        //Demostração
+        Toast.makeText(this, "Você Clicou em: " + item.getName(), Toast.LENGTH_LONG).show();
 
-        List<Championship> champList = ChampionshipController.getChamps();
-        for(Championship champ : champList){
-            if (champ.getName().equals(clickedName)){
-                Log.v("TESTE", "ENTROU");
-                champList.remove(champ);
-                Toast.makeText(getApplicationContext(), champ.getName() + " has been removed", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, champCharacteristics.class);
+        startActivity(intent);
 
-                break;
-                //after removing the User , the app shows a msg success and returns to the main screen
-                // MainActivity
-            }
 
-        }
 
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
     }
 
     @Override
