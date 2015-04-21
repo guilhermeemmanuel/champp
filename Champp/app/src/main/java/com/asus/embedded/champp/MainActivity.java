@@ -6,20 +6,52 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
+import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.ListMyChampsAdapter;
 
 import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
 
+
+
+    private ListView champListView;
+    private ListMyChampsAdapter adapter;
+    private List<Championship> champs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        champListView = (ListView) findViewById(R.id.champ_list_view);
+        champListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Championship item = adapter.getItem(position);
+
+                Intent intent = new Intent(MainActivity.this, champCharacteristics.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        List<Championship> champs = ChampionshipController.getInstance().getChamps();
+        adapter = new ListMyChampsAdapter(this, champs);
+        champListView.setAdapter(adapter);
+
     }
 
     @Override
@@ -42,6 +74,13 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void deleteItem(View v) {
+
+        adapter.removeItem((Integer) v.getTag());
+        Toast.makeText(this,"successfully deleted championship ",Toast.LENGTH_LONG).show();
     }
 
     public void newChamp(View view) {

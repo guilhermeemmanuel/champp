@@ -11,15 +11,16 @@ import android.widget.TextView;
 import com.asus.embedded.champp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nicolas on 21/04/2015.
  */
 public class ListMyChampsAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private ArrayList<Championship> itens;
+    private List<Championship> itens;
 
-    public ListMyChampsAdapter(Context context, ArrayList<Championship> itens) {
+    public ListMyChampsAdapter(Context context, List<Championship> itens) {
         //Itens que preencheram o listview
         this.itens = itens;
         //responsavel por pegar o Layout do item.
