@@ -34,23 +34,17 @@ public class MyChampsActivity extends ListActivity {
         setListAdapter(adapter);
     }
 
-    public void deletaItem(View v) {
+    public void deleteItem(View v) {
+
         adapter.removeItem((Integer) v.getTag());
+        Toast.makeText(this,"successfully deleted championship ",Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
          //Pega o item que foi selecionado.
         Championship item = adapter.getItem(position);
-        //Demostração
-        Toast.makeText(this, "Você Clicou em: " + item.getName(), Toast.LENGTH_LONG).show();
-
-        Intent intent = new Intent(this, champCharacteristics.class);
-        startActivity(intent);
-
-
-
-    }
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

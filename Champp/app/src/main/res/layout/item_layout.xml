@@ -27,7 +27,7 @@
             android:focusableInTouchMode="false"
             android:text="Deletar"
             android:textColor="#FFFFFF"
-            android:onClick="deletaItem"/>
+            android:onClick="deleteItem"/>
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"
