@@ -11,17 +11,15 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
-import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.InvalidChampException;
 
 import java.lang.String;
 
 
 public class NewChampActivity extends ActionBarActivity {
-
     private EditText nameEt, modalEt;
     private RadioButton individualRb, cupRb;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +30,6 @@ public class NewChampActivity extends ActionBarActivity {
         modalEt = (EditText) findViewById(R.id.modal_et);
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
-
-
     }
 
 
@@ -64,13 +60,15 @@ public class NewChampActivity extends ActionBarActivity {
         String modalCp = modalEt.getText().toString();
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
-        boolean ok = ChampionshipController.getInstance().createChampionship(nameCp, modalCp, indivCp, cupCp);
-        if(ok) {
+
+        try {
+            ChampionshipController.getInstance().createChampionship(nameCp, modalCp, indivCp, cupCp);
             Intent intent = new Intent();
             setResult(1, intent);
             finish();
-        }
-        else {
+        } catch (EmptyFieldException e) {
+            Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
+        } catch (InvalidChampException e) {
             Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_SHORT).show();
         }
     }

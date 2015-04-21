@@ -1,16 +1,13 @@
 package com.asus.embedded.champp.model;
 
-/**
- * Created by Guilherme-PC on 16/04/2015.
- */
 public class Championship {
-
     private String name;
     private String modal;
     private boolean isIndividual;
     private boolean isCup;
 
-    public Championship(String name, String modal, boolean isIndividual, boolean isCup){
+    public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException {
+        if(name.isEmpty() || modal.isEmpty()){ throw new EmptyFieldException();}
         this.name = name;
         this.modal = modal;
         this.isIndividual = isIndividual;

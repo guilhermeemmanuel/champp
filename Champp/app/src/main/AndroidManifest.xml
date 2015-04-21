@@ -29,7 +29,7 @@
             android:label="@string/title_activity_my_champ" >
         </activity>
         <activity
-            android:name=".champCharacteristics"
+            android:name=".ChampCharacteristics"
             android:label="@string/title_activity_champ_characteristics" >
         </activity>
     </application>

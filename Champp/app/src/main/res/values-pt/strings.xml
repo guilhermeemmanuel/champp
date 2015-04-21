@@ -18,4 +18,6 @@
     <string name="noChamps">Sem Campeonatos</string>
     <string name="sameChamp">Campeonato com o mesmo nome já existe</string>
     <string name="champDelete">Campeonato Deletado com Sucesso</string>
+    <string name="champDeleted">Campeonato Deletado com Sucesso</string>
+    <string name="fieldEmpty">Preencha todos os campos</string>
 </resources>

@@ -3,20 +3,14 @@ package com.asus.embedded.champp.controller;
 import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.InvalidChampException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Guilherme-PC on 16/04/2015.
- */
 public class ChampionshipController {
-
-
     private static ChampionshipController cp;
-
-
-
     private static List<Championship> champs;
 
     private ChampionshipController() {
@@ -24,20 +18,16 @@ public class ChampionshipController {
         champs = new ArrayList<Championship>();
     }
 
-    public boolean createChampionship(String name, String modal, boolean isIndividual, boolean isCup) {
+    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, InvalidChampException {
         Championship c = new Championship(name, modal, isIndividual, isCup);
-        if(!champs.contains(c)){
-            champs.add(c);
-            Log.i("champ",name);
-            Log.i("champ",modal);
-            Log.i("champ","" + isIndividual);
-            Log.i("champ","" + isCup);
 
-            return true;
-        }
-        else{
-            return false;
-        }
+        if(champs.contains(c)){ throw new InvalidChampException();}
+
+        champs.add(c);
+        Log.i("champ",name);
+        Log.i("champ",modal);
+        Log.i("champ","" + isIndividual);
+        Log.i("champ","" + isCup);
     }
 
     public static ChampionshipController getInstance() {
@@ -51,6 +41,7 @@ public class ChampionshipController {
         return champs;
     }
 
+/*
     public List<String> getChampsName() {
         List<String> result = new ArrayList<>();
         if(!champsIsEmpty()){
@@ -60,6 +51,7 @@ public class ChampionshipController {
         }
         return result;
     }
+*/
 
     public boolean champsIsEmpty(){
         return champs.isEmpty();

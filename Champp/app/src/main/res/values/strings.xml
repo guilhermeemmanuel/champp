@@ -30,6 +30,7 @@
     <string name="title_activity_champ_characteristics">champCharacteristics</string>
     <string name="noChamps">No championships</string>
     <string name="sameChamp">Championship with same name already exists</string>
-    <string name="champDelete">successfully deleted championship</string>
+    <string name="champDeleted">Successfully Deleted Championship</string>
+    <string name="fieldEmpty">Complete all fields</string>
 
 </resources>

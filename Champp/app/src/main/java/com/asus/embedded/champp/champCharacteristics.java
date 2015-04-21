@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class champCharacteristics extends ActionBarActivity {
+public class ChampCharacteristics extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

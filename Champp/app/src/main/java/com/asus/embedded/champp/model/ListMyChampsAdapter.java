@@ -13,9 +13,6 @@ import com.asus.embedded.champp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Nicolas on 21/04/2015.
- */
 public class ListMyChampsAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<Championship> itens;

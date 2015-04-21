@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,12 +18,8 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-
-
-
     private ListView champListView;
     private ListMyChampsAdapter adapter;
-    private List<Championship> champs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Championship item = adapter.getItem(position);
 
-                Intent intent = new Intent(MainActivity.this, champCharacteristics.class);
+                Intent intent = new Intent(MainActivity.this, ChampCharacteristics.class);
                 startActivity(intent);
             }
         });
@@ -47,11 +42,9 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         List<Championship> champs = ChampionshipController.getInstance().getChamps();
         adapter = new ListMyChampsAdapter(this, champs);
         champListView.setAdapter(adapter);
-
     }
 
     @Override
@@ -78,25 +71,14 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void deleteItem(View v) {
-
         adapter.removeItem((Integer) v.getTag());
-        Toast.makeText(this,"successfully deleted championship ",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,R.string.champDeleted,Toast.LENGTH_LONG).show();
     }
 
     public void newChamp(View view) {
         Intent intent = new Intent(this, NewChampActivity.class);
         startActivityForResult(intent, 1);
 
-    }
-
-    public void myChamps(View view){
-        if(ChampionshipController.getInstance().champsIsEmpty()) {
-            Toast.makeText(this, R.string.noChamps, Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Intent intent2 = new Intent(this, MyChampsActivity.class);
-            startActivity(intent2);
-        }
     }
 
     @Override
