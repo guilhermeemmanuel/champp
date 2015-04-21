@@ -23,14 +23,6 @@
         android:layout_height="wrap_content"
         android:onClick="newChamp"/>
 
-    <Button
-        android:id="@+id/myChamps"
-        android:text="@string/bt_myChamps"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="myChamps"/>
-
     <ListView
         android:id="@+id/champ_list_view"
         android:layout_width="wrap_content"

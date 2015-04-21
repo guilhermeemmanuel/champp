@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,6 +32,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         champListView = (ListView) findViewById(R.id.champ_list_view);
+        champListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Championship item = adapter.getItem(position);
+
+                Intent intent = new Intent(MainActivity.this, champCharacteristics.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
