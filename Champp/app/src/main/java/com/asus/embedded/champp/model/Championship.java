@@ -1,6 +1,8 @@
 package com.asus.embedded.champp.model;
 
-public class Championship {
+import java.io.Serializable;
+
+public class Championship implements Serializable{
     private String name;
     private String modal;
     private boolean isIndividual;

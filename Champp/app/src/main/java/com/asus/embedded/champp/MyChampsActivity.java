@@ -1,6 +1,7 @@
 package com.asus.embedded.champp;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ public class MyChampsActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
          //Pega o item que foi selecionado.
         Championship item = adapter.getItem(position);
+
 }
 
     @Override

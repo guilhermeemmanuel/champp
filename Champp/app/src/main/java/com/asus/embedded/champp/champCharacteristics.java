@@ -1,17 +1,38 @@
 package com.asus.embedded.champp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.asus.embedded.champp.model.Championship;
 
 
 public class ChampCharacteristics extends ActionBarActivity {
+
+    private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champ_characteristics);
+
+        nameTv = (TextView) findViewById(R.id.name_tv);
+        modalTv = (TextView) findViewById(R.id.modal_tv);
+        typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
+        typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);
+
+        Intent i = getIntent();
+
+        Championship c = (Championship) i.getSerializableExtra("CHAMP");
+        nameTv.setText(c.getName());
+        modalTv.setText(c.getModal());
+        typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
+        typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");
+
     }
 
 
