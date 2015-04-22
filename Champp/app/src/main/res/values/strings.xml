@@ -32,5 +32,6 @@
     <string name="sameChamp">Championship with same name already exists</string>
     <string name="champDeleted">Successfully Deleted Championship</string>
     <string name="fieldEmpty">Complete all fields</string>
+    <string name="btnDelete">Delete</string>
 
 </resources>

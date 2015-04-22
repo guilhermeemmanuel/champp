@@ -20,4 +20,5 @@
     <string name="champDelete">Campeonato Deletado com Sucesso</string>
     <string name="champDeleted">Campeonato Deletado com Sucesso</string>
     <string name="fieldEmpty">Preencha todos os campos</string>
+    <string name="btnDelete">Deletar</string>
 </resources>
