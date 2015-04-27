@@ -3,43 +3,39 @@ package com.asus.embedded.champp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.InvalidChampException;
 
 
-public class ChampCharacteristics extends ActionBarActivity {
+public class AddParticipantActivity extends ActionBarActivity {
 
-    private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
+    EditText namePartipant;
+    Championship c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_champ_characteristics);
+        setContentView(R.layout.activity_add_participant);
 
-        nameTv = (TextView) findViewById(R.id.name_tv);
-        modalTv = (TextView) findViewById(R.id.modal_tv);
-        typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
-        typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);
+        Intent intent = getIntent();
+        c = (Championship) intent.getSerializableExtra("CHAMP");
 
-        Intent i = getIntent();
-
-        Championship c = (Championship) i.getSerializableExtra("CHAMP");
-        nameTv.setText(c.getName());
-        modalTv.setText(c.getModal());
-        typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
-        typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");
-
+        namePartipant = (EditText) findViewById(R.id.name_participant);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_champ_characteristics, menu);
+        getMenuInflater().inflate(R.menu.menu_add_participant, menu);
         return true;
     }
 
@@ -57,4 +53,18 @@ public class ChampCharacteristics extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void createParticipant(View view){
+         String name = namePartipant.getText().toString();
+
+
+            Intent intent = new Intent();
+
+            c.addParticipant(name);
+
+            setResult(2, intent);
+            finish();
+        Toast.makeText(this,"Participante Criado", Toast.LENGTH_SHORT).show();
+
+}
 }

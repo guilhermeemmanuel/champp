@@ -32,6 +32,10 @@
             android:name=".ChampCharacteristicsActivity"
             android:label="@string/title_activity_champ_characteristics" >
         </activity>
+        <activity
+            android:name=".AddParticipantActivity"
+            android:label="@string/title_activity_add_participant" >
+        </activity>
     </application>
 
 </manifest>

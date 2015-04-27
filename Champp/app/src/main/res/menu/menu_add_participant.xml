@@ -1,12 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.asus.embedded.champp.ChampCharacteristicsActivity">
+    tools:context="com.asus.embedded.champp.AddParticipantActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-
-    <item android:id="@+id/action_add_participante"
-        android:icon="@mipmap/ic_action_add_person"
-        android:title="Adicionar Participante"
-        app:showAsAction ="ifRoom"/>
 </menu>

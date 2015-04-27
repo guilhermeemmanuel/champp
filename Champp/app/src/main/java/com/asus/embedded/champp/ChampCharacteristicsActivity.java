@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.asus.embedded.champp.model.Championship;
 public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
+    private Championship c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         Intent i = getIntent();
 
-        Championship c = (Championship) i.getSerializableExtra("CHAMP");
+        c = (Championship) i.getSerializableExtra("CHAMP");
         nameTv.setText(c.getName());
         modalTv.setText(c.getModal());
         typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
@@ -38,7 +40,8 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_champ_characteristics, menu);
         return true;
     }
@@ -48,13 +51,17 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_add_participante:
+                Intent intent = new Intent(ChampCharacteristicsActivity.this, AddParticipantActivity.class);
+                intent.putExtra("CHAMP", c);
+                startActivityForResult(intent, 2);
+                return true;
+            case R.id.action_settings:
+                  return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
