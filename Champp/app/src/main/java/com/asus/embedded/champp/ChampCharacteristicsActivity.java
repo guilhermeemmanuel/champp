@@ -7,15 +7,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.Participant;
+
+import java.util.List;
 
 
 public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
     private Championship c;
+    private ListView participantsLv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         modalTv = (TextView) findViewById(R.id.modal_tv);
         typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
         typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);
+        participantsLv = (ListView) findViewById(R.id.participants_list_view);
 
         Intent i = getIntent();
 
@@ -37,6 +44,14 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        List<Participant> participants = c.getParticipants();
+        ParticipantsAdapter adapter = new ParticipantsAdapter(this,participants);
+        participantsLv.setAdapter(adapter);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,12 +71,23 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             case R.id.action_add_participante:
                 Intent intent = new Intent(ChampCharacteristicsActivity.this, AddParticipantActivity.class);
                 intent.putExtra("CHAMP", c);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, 1);
                 return true;
             case R.id.action_settings:
                   return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1){
+            if(resultCode == 1) {
+                String name = data.getStringExtra("NEW_PART");
+                c.addParticipant(name);
+            }
+        }
+
     }
 }

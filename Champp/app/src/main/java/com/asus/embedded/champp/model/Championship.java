@@ -51,4 +51,8 @@ public class Championship implements Serializable{
         participants.add(new Participant(name)
         );
     }
+
+    public ArrayList<Participant> getParticipants() {
+        return participants;
+    }
 }

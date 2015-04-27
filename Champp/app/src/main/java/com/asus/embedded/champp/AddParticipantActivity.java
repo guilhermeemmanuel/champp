@@ -59,10 +59,9 @@ public class AddParticipantActivity extends ActionBarActivity {
 
 
             Intent intent = new Intent();
+            intent.putExtra("NEW_PART", name);
 
-            c.addParticipant(name);
-
-            setResult(2, intent);
+            setResult(1, intent);
             finish();
         Toast.makeText(this,"Participante Criado", Toast.LENGTH_SHORT).show();
 
