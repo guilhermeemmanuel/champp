@@ -1,7 +1,6 @@
 package com.asus.embedded.champp;
 
 import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
-import com.asus.embedded.champp.model.ListMyChampsAdapter;
+import com.asus.embedded.champp.adapters.ListMyChampsAdapter;
 
 import java.util.List;
 
