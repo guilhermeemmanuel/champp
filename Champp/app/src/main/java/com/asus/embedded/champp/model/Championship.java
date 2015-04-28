@@ -20,6 +20,11 @@ public class Championship implements Serializable{
 
     }
 
+    public Championship(String name) {
+        this.name = name;
+        this.participants = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }

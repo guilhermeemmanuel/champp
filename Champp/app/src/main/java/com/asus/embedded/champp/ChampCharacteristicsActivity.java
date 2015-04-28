@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.asus.embedded.champp.adapters.ParticipantsAdapter;
+import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Participant;
 
@@ -85,7 +86,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         if(requestCode == 1){
             if(resultCode == 1) {
                 String name = data.getStringExtra("NEW_PART");
-                c.addParticipant(name);
+                this.c = ChampionshipController.getInstance().addParticipant(c.getName(),name);
             }
         }
 

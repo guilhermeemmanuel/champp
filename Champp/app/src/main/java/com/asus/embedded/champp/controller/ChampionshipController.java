@@ -5,6 +5,7 @@ import android.util.Log;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.InvalidChampException;
+import com.asus.embedded.champp.model.Participant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,16 @@ public class ChampionshipController {
         Log.i("champ",modal);
         Log.i("champ","" + isIndividual);
         Log.i("champ","" + isCup);
+    }
+
+    public Championship addParticipant(String nameChamp, String participant) {
+        for (Championship champ : champs) {
+            if(champ.equals(new Championship(nameChamp))){
+                champ.addParticipant(participant);
+                return champ;
+            }
+        }
+        return null;
     }
 
     public static ChampionshipController getInstance() {
