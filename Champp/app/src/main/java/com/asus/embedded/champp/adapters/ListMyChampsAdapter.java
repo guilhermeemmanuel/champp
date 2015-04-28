@@ -1,4 +1,4 @@
-package com.asus.embedded.champp.model;
+package com.asus.embedded.champp.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.asus.embedded.champp.R;
+import com.asus.embedded.champp.model.Championship;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
 package com.asus.embedded.champp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,7 +14,7 @@ import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
-import com.asus.embedded.champp.model.ListMyChampsAdapter;
+import com.asus.embedded.champp.adapters.ListMyChampsAdapter;
 
 import java.util.List;
 
@@ -71,7 +73,31 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    public void deleteItem(View v) {
+    public void deleteItem(final View v) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.deleteChampsDialog)
+                .setTitle(R.string.btnDelete);
+        // 3. Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+               sureDeleteItem(v);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        builder.show();
+
+
+    }
+
+    public void sureDeleteItem(View v){
         adapter.removeItem((Integer) v.getTag());
         Toast.makeText(this,R.string.champDeleted,Toast.LENGTH_LONG).show();
     }
