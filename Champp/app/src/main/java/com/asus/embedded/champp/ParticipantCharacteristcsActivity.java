@@ -5,37 +5,36 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
-import com.asus.embedded.champp.model.EmptyFieldException;
-import com.asus.embedded.champp.model.InvalidChampException;
+import com.asus.embedded.champp.model.Participant;
 
 
-public class AddParticipantActivity extends ActionBarActivity {
+public class ParticipantCharacteristcsActivity extends ActionBarActivity {
 
-    EditText nameParticipant;
-    Championship c;
+    private TextView name_participant;
+    private Participant pt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_participant);
+        setContentView(R.layout.activity_participant_characteristcs);
+/*
+        name_participant = (TextView) findViewById(R.id.name_participant);
 
-        Intent intent = getIntent();
-        c = (Championship) intent.getSerializableExtra("CHAMP");
+        Intent i = getIntent();
 
-        nameParticipant = (EditText) findViewById(R.id.name_participant);
+        pt = (Participant) i.getSerializableExtra("PARTICIPANT");
+        name_participant.setText(pt.getName());*/
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_participant, menu);
+        getMenuInflater().inflate(R.menu.menu_participant_characteristcs, menu);
         return true;
     }
 
@@ -53,17 +52,4 @@ public class AddParticipantActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void createParticipant(View view){
-         String name = nameParticipant.getText().toString();
-
-
-            Intent intent = new Intent();
-            intent.putExtra("NEW_PART", name);
-
-            setResult(1, intent);
-            finish();
-        Toast.makeText(this,"Participante Criado", Toast.LENGTH_SHORT).show();
-
-}
 }

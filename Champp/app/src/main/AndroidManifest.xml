@@ -36,6 +36,10 @@
             android:name=".AddParticipantActivity"
             android:label="@string/title_activity_add_participant" >
         </activity>
+        <activity
+            android:name=".ParticipantCharacteristcsActivity"
+            android:label="@string/title_activity_participant_characteristcs" >
+        </activity>
     </application>
 
 </manifest>

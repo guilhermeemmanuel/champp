@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -23,6 +26,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
     private Championship c;
     private ListView participantsLv;
+    private ParticipantsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,18 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         modalTv = (TextView) findViewById(R.id.modal_tv);
         typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
         typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);
+
         participantsLv = (ListView) findViewById(R.id.participants_list_view);
+        participantsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Participant item = adapter.getItem(position);
+
+                Intent intent = new Intent(ChampCharacteristicsActivity.this, ParticipantCharacteristcsActivity.class);
+                intent.putExtra("PARTICIPANT", item);
+                startActivity(intent);
+            }
+        });
 
         Intent i = getIntent();
 
@@ -43,13 +58,15 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
         typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");
 
+
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         List<Participant> participants = c.getParticipants();
-        ParticipantsAdapter adapter = new ParticipantsAdapter(this,participants);
+        adapter = new ParticipantsAdapter(this, participants);
         participantsLv.setAdapter(adapter);
 
     }
