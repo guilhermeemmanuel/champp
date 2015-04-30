@@ -24,5 +24,9 @@
     <string name="btnDelete">Deletar</string>
     <string name="cancel">Cancelar</string>
     <string name="deleteChampsDialog">Você tem certeza que deseja deletar esse campeonato ?</string>
+
     <string name="deleteParticipanteDialog">Você tem certeza que deseja deletar o participante ?</string>
+
+    <string name="name_participant" />
+
 </resources>
