@@ -19,8 +19,10 @@
     <string name="sameChamp">Campeonato com o mesmo nome já existe</string>
     <string name="champDelete">Campeonato Deletado com Sucesso</string>
     <string name="champDeleted">Campeonato Deletado com Sucesso</string>
+    <string name="participantDeleted">Participante deletado com Sucesso</string>
     <string name="fieldEmpty">Preencha todos os campos</string>
     <string name="btnDelete">Deletar</string>
     <string name="cancel">Cancelar</string>
     <string name="deleteChampsDialog">Você tem certeza que deseja deletar esse campeonato ?</string>
+    <string name="deleteParticipanteDialog">Você tem certeza que deseja deletar o participante ?</string>
 </resources>

@@ -1,14 +1,20 @@
 package com.asus.embedded.champp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -23,7 +29,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
     private Championship c;
     private ListView participantsLv;
-
+    private ParticipantsAdapter partipantsAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,21 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
         typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");
 
+        //Vinicius
+        participantsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //pegando a posicao do participante
+                Participant item = partipantsAdapter.getItem(position);
+                Intent intent = new Intent(ChampCharacteristicsActivity.this, ChampCharacteristicsActivity.class);
+                intent.putExtra("CHAMP", item);
+                startActivity(intent);
+
+
+            }
+        });
+
+
     }
 
     @Override
@@ -53,6 +74,37 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         participantsLv.setAdapter(adapter);
 
     }
+
+    //Vinicius
+    public void deleteItem(final View v) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.deleteParticipanteDialog)
+                .setTitle(R.string.btnDelete);
+        // 3. Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                sureDeleteItem(v);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        builder.show();
+
+
+    }
+    //Vinicius
+    public void sureDeleteItem(View v){
+        partipantsAdapter.removeItem((Integer) v.getTag());
+        Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

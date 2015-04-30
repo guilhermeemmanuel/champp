@@ -31,11 +31,13 @@
     <string name="noChamps">No championships</string>
     <string name="sameChamp">Championship with same name already exists</string>
     <string name="champDeleted">Successfully Deleted Championship</string>
+    <string name="participantDeleted">Successfully Deleted Participant</string>
     <string name="fieldEmpty">Complete all fields</string>
     <string name="btnDelete">Delete</string>
     <string name="title_activity_add_participant">AddParticipantActivity</string>
     <string name="cancel">Cancel</string>
     <string name="deleteChampsDialog">Are you sure you want to delete this league?</string>
+    <string name="deleteParticipanteDialog">Are you sure you want to delete the participant ?</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
