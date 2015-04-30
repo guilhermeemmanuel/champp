@@ -34,9 +34,6 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
     private Championship c;
     private ListView participantsLv;
-
-    private ParticipantsAdapter partipantsAdapter;
-
     private ParticipantsAdapter adapter;
 
 
@@ -69,23 +66,6 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         modalTv.setText(c.getModal());
         typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
         typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");
-
-
-        //Vinicius
-        participantsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //pegando a posicao do participante
-                Participant item = partipantsAdapter.getItem(position);
-                Intent intent = new Intent(ChampCharacteristicsActivity.this, ChampCharacteristicsActivity.class);
-                intent.putExtra("CHAMP", item);
-                startActivity(intent);
-
-
-            }
-        });
-
-
 
     }
 
@@ -122,9 +102,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
 
     }
-    //Vinicius
+
     public void sureDeleteItem(View v){
-        partipantsAdapter.removeItem((Integer) v.getTag());
+        adapter.removeItem((Integer) v.getTag());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 
