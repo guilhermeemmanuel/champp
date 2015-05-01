@@ -9,6 +9,7 @@ public class Championship implements Serializable{
     private boolean isIndividual;
     private boolean isCup;
     private ArrayList<Participant> participants;
+    private boolean isStarted = false;
 
     public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException {
         if(name.isEmpty() || modal.isEmpty()){ throw new EmptyFieldException();}
@@ -41,6 +42,7 @@ public class Championship implements Serializable{
         return isIndividual;
     }
 
+    public boolean isStarted(){ return isStarted;}
     @Override
     public boolean equals(Object o) {
         if(o != null && o instanceof Championship){
@@ -51,13 +53,18 @@ public class Championship implements Serializable{
         return false;
     }
 
-    public void addParticipant(String name){
-
-        participants.add(new Participant(name)
-        );
+    public void addParticipant(String name) throws EmptyFieldException, SameNameException {
+        for (Participant p : participants) {
+            if(p.getName().equals(name)){throw new SameNameException();}
+        }
+        participants.add(new Participant(name));
     }
 
     public ArrayList<Participant> getParticipants() {
         return participants;
+    }
+
+    public void startedChamp() {
+        isStarted = true;
     }
 }

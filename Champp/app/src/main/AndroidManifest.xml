@@ -21,10 +21,6 @@
             android:label="@string/title_activity_new_champ" >
         </activity>
         <activity
-            android:name=".MyChampsActivity"
-            android:label="@string/title_activity_my_champs" >
-        </activity>
-        <activity
             android:name=".MyChampActivity"
             android:label="@string/title_activity_my_champ" >
         </activity>
@@ -39,6 +35,18 @@
         <activity
             android:name=".ParticipantCharacteristcsActivity"
             android:label="@string/title_activity_participant_characteristcs" >
+        </activity>
+        <activity
+            android:name=".ChampionshipActivity"
+            android:label="@string/title_activity_championship" >
+        </activity>
+        <activity
+            android:name=".CupActivity"
+            android:label="@string/title_activity_cup" >
+        </activity>
+        <activity
+            android:name=".LeagueActivity"
+            android:label="@string/title_activity_league" >
         </activity>
     </application>
 

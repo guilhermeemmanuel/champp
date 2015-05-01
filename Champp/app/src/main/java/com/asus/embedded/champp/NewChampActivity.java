@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.EmptyFieldException;
-import com.asus.embedded.champp.model.InvalidChampException;
+import com.asus.embedded.champp.model.SameNameException;
 
 import java.lang.String;
 
@@ -68,7 +68,7 @@ public class NewChampActivity extends ActionBarActivity {
             finish();
         } catch (EmptyFieldException e) {
             Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
-        } catch (InvalidChampException e) {
+        } catch (SameNameException e) {
             Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_SHORT).show();
         }
     }

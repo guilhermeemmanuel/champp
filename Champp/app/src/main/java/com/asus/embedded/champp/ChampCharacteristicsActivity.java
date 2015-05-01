@@ -24,14 +24,16 @@ import android.widget.Toast;
 import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.Participant;
+import com.asus.embedded.champp.model.SameNameException;
 
 import java.util.List;
 
 
 public class ChampCharacteristicsActivity extends ActionBarActivity {
 
-    private TextView nameTv, modalTv, typeModalTv, typeCompetitionTv;
+    private TextView nameTv;
     private Championship c;
     private ListView participantsLv;
     private ParticipantsAdapter adapter;
@@ -43,9 +45,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_champ_characteristics);
 
         nameTv = (TextView) findViewById(R.id.name_tv);
-        modalTv = (TextView) findViewById(R.id.modal_tv);
+        /*modalTv = (TextView) findViewById(R.id.modal_tv);
         typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
-        typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);
+        typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);*/
 
         participantsLv = (ListView) findViewById(R.id.participants_list_view);
         participantsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,9 +65,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         c = (Championship) i.getSerializableExtra("CHAMP");
         nameTv.setText(c.getName());
-        modalTv.setText(c.getModal());
+        /*modalTv.setText(c.getModal());
         typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
-        typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");
+        typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");*/
 
     }
 
@@ -78,29 +80,33 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     }
 
-    //Vinicius
     public void deleteItem(final View v) {
-        // 1. Instantiate an AlertDialog.Builder with its constructor
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(!c.isStarted()){
+            // 1. Instantiate an AlertDialog.Builder with its constructor
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage(R.string.deleteParticipanteDialog)
-                .setTitle(R.string.btnDelete);
-        // 3. Add the buttons
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                sureDeleteItem(v);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-            }
-        });
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setMessage(R.string.deleteParticipanteDialog)
+                    .setTitle(R.string.btnDelete);
+            // 3. Add the buttons
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    sureDeleteItem(v);
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
 
-        builder.show();
+            builder.show();
 
-
+        }else {
+            Toast.makeText(this, R.string.champStarted, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(ChampCharacteristicsActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void sureDeleteItem(View v){
@@ -108,7 +114,23 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 
+    public void initChamp(View v){
+        if(!c.isStarted()){
+            if(c.getParticipants().size() < 2){
+                Toast.makeText(this,R.string.champUnstarted,Toast.LENGTH_LONG).show();
+            }else{
+                c.startedChamp();
+                Intent intent = new Intent(ChampCharacteristicsActivity.this, ChampionshipActivity.class);
+                intent.putExtra("CHAMP", c);
+                startActivity(intent);
+            }
+        }else{
+            Toast.makeText(this,R.string.champStarted,Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(ChampCharacteristicsActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -141,7 +163,14 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         if(requestCode == 1){
             if(resultCode == 1) {
                 String name = data.getStringExtra("NEW_PART");
-                this.c = ChampionshipController.getInstance().addParticipant(c.getName(),name);
+                try {
+                    this.c = ChampionshipController.getInstance().addParticipant(c.getName(),name);
+                    Toast.makeText(this,R.string.participantCreated, Toast.LENGTH_SHORT).show();
+                }  catch (EmptyFieldException e) {
+                    Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
+                } catch (SameNameException e) {
+                    Toast.makeText(this,R.string.sameName, Toast.LENGTH_SHORT).show();
+                }
             }
         }
 

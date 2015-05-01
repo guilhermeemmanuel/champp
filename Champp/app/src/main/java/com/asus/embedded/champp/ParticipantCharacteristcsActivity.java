@@ -21,13 +21,13 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_participant_characteristcs);
-/*
+
         name_participant = (TextView) findViewById(R.id.name_participant);
 
         Intent i = getIntent();
 
         pt = (Participant) i.getSerializableExtra("PARTICIPANT");
-        name_participant.setText(pt.getName());*/
+        name_participant.setText(pt.getName());
     }
 
 

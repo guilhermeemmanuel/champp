@@ -4,7 +4,7 @@
     <string name="newChamp">New Championship</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_new_champ">New Championship</string>
-    <string name="name">Name</string>
+    <string name="name">Name: </string>
     <string name="modal">Modal</string>
     <string name="champ_individual">Individual</string>
     <string name="champ_group">Group</string>
@@ -44,5 +44,14 @@
     <string name="title_activity_participant_characteristcs">ParticipantCharacteristcsActivity
     </string>
     <string name="name_participant" />
+    <string name="init_champ">Start Championship</string>
+    <string name="title_activity_championship">ChampionshipActivity</string>
+    <string name="btn_table">Table View</string>
+    <string name="title_activity_cup">CupActivity</string>
+    <string name="title_activity_league">LeagueActivity</string>
+    <string name="champStarted">The Championship has started</string>
+    <string name="participantCreated">Participant Created</string>
+    <string name="sameName">There is already a participant of the same name</string>
+    <string name="champUnstarted">Add at least 2 participants</string>
 
 </resources>

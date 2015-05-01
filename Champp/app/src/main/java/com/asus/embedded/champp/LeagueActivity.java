@@ -1,38 +1,24 @@
 package com.asus.embedded.champp;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.asus.embedded.champp.model.Championship;
 
 
-public class AddParticipantActivity extends ActionBarActivity {
-
-    EditText nameParticipant;
-    Championship c;
+public class LeagueActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_participant);
-
-        Intent intent = getIntent();
-        c = (Championship) intent.getSerializableExtra("CHAMP");
-
-        nameParticipant = (EditText) findViewById(R.id.name_participant);
+        setContentView(R.layout.activity_league);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_participant, menu);
+        getMenuInflater().inflate(R.menu.menu_league, menu);
         return true;
     }
 
@@ -50,14 +36,4 @@ public class AddParticipantActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void createParticipant(View view){
-        String name = nameParticipant.getText().toString();
-
-        Intent intent = new Intent();
-        intent.putExtra("NEW_PART", name);
-
-        setResult(1, intent);
-        finish();
-}
 }

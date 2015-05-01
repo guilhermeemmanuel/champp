@@ -30,18 +30,20 @@ public class MainActivity extends ActionBarActivity {
 
         champListView = (ListView) findViewById(R.id.champ_list_view);
 
-
         champListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Championship item = adapter.getItem(position);
-
-                Intent intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
+                Intent intent;
+                if(item.isStarted()){
+                    intent = new Intent(MainActivity.this, ChampionshipActivity.class);
+                }else{
+                    intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
+                }
                 intent.putExtra("CHAMP", item);
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -74,7 +76,6 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public void deleteItem(final View v) {
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -95,19 +96,16 @@ public class MainActivity extends ActionBarActivity {
         });
 
         builder.show();
-
-
     }
 
     public void sureDeleteItem(View v){
         adapter.removeItem((Integer) v.getTag());
         Toast.makeText(this,R.string.champDeleted,Toast.LENGTH_LONG).show();
-    }
+   }
 
     public void newChamp(View view) {
         Intent intent = new Intent(this, NewChampActivity.class);
         startActivityForResult(intent, 1);
-
     }
 
     @Override

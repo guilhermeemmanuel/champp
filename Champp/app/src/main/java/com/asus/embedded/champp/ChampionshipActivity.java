@@ -6,33 +6,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.asus.embedded.champp.model.Championship;
 
 
-public class AddParticipantActivity extends ActionBarActivity {
+public class ChampionshipActivity extends ActionBarActivity {
 
-    EditText nameParticipant;
-    Championship c;
+    private Championship c;
+    private TextView nameChamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_participant);
+        setContentView(R.layout.activity_championship);
 
-        Intent intent = getIntent();
-        c = (Championship) intent.getSerializableExtra("CHAMP");
+        nameChamp = (TextView) findViewById(R.id.name_champ);
 
-        nameParticipant = (EditText) findViewById(R.id.name_participant);
+        Intent i = getIntent();
+        c = (Championship) i.getSerializableExtra("CHAMP");
+
+        nameChamp.setText(c.getName());
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_participant, menu);
+        getMenuInflater().inflate(R.menu.menu_championship, menu);
         return true;
     }
 
@@ -51,13 +53,23 @@ public class AddParticipantActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createParticipant(View view){
-        String name = nameParticipant.getText().toString();
+    public void viewTable(View v){
+        Intent intent;
 
-        Intent intent = new Intent();
-        intent.putExtra("NEW_PART", name);
+        if (c.isCup()){
+            intent = new Intent(ChampionshipActivity.this, CupActivity.class);
+        }else{
+            intent = new Intent(ChampionshipActivity.this, LeagueActivity.class);
+        }
 
-        setResult(1, intent);
-        finish();
-}
+        intent.putExtra("CHAMP", c);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ChampionshipActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }

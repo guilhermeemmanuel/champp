@@ -4,8 +4,7 @@ import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
-import com.asus.embedded.champp.model.InvalidChampException;
-import com.asus.embedded.champp.model.Participant;
+import com.asus.embedded.champp.model.SameNameException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +18,10 @@ public class ChampionshipController {
         champs = new ArrayList<Championship>();
     }
 
-    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, InvalidChampException {
+    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException {
         Championship c = new Championship(name, modal, isIndividual, isCup);
 
-        if(champs.contains(c)){ throw new InvalidChampException();}
+        if(champs.contains(c)){ throw new SameNameException();}
 
         champs.add(c);
         Log.i("champ",name);
@@ -31,7 +30,7 @@ public class ChampionshipController {
         Log.i("champ","" + isCup);
     }
 
-    public Championship addParticipant(String nameChamp, String participant) {
+    public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException {
         for (Championship champ : champs) {
             if(champ.equals(new Championship(nameChamp))){
                 champ.addParticipant(participant);
