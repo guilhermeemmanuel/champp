@@ -66,4 +66,15 @@ public class ChampionshipController {
     public boolean champsIsEmpty(){
         return champs.isEmpty();
     }
+
+
+    public Championship startChamp(String name){
+        for (Championship championship : champs) {
+            if (championship.equals(new Championship(name))){
+                championship.startedChamp();
+                return championship;
+            }
+        }
+        return null;
+    }
 }

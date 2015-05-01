@@ -37,6 +37,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private Championship c;
     private ListView participantsLv;
     private ParticipantsAdapter adapter;
+    private Button startBt;
 
 
     @Override
@@ -48,6 +49,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         /*modalTv = (TextView) findViewById(R.id.modal_tv);
         typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
         typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);*/
+
+        startBt = (Button) findViewById(R.id.buttonInitChamp);
+
 
         participantsLv = (ListView) findViewById(R.id.participants_list_view);
         participantsLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -74,6 +78,13 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        invalidateOptionsMenu();
+        if(c.isStarted()){
+            startBt.setVisibility(View.GONE);
+        }
+        else {
+            startBt.setVisibility(View.VISIBLE);
+        }
         List<Participant> participants = c.getParticipants();
         adapter = new ParticipantsAdapter(this, participants);
         participantsLv.setAdapter(adapter);
@@ -119,9 +130,13 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             if(c.getParticipants().size() < 2){
                 Toast.makeText(this,R.string.champUnstarted,Toast.LENGTH_LONG).show();
             }else{
-                c.startedChamp();
-                Intent intent = new Intent(ChampCharacteristicsActivity.this, ChampionshipActivity.class);
-                intent.putExtra("CHAMP", c);
+                c = ChampionshipController.getInstance().startChamp(c.getName());
+                Intent intent;
+                if (c.isCup()){
+                    intent = new Intent(this, CupActivity.class);
+                }else{
+                    intent = new Intent(this, LeagueActivity.class);
+                }
                 startActivity(intent);
             }
         }else{
@@ -137,6 +152,21 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_champ_characteristics, menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem register = menu.findItem(R.id.action_add_participante);
+        if(c.isStarted())
+        {
+            register.setVisible(false);
+        }
+        else
+        {
+            register.setVisible(true);
+        }
+        return true;
+
     }
 
     @Override
