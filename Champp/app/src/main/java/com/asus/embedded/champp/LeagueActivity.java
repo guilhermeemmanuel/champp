@@ -1,19 +1,48 @@
 package com.asus.embedded.champp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.asus.embedded.champp.adapters.MatchesAdapter;
+import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.Match;
+
+import java.util.List;
 
 
 public class LeagueActivity extends ActionBarActivity {
+
+    private ListView matchesLv;
+    private Championship c;
+    private MatchesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_league);
+
+
+
+        matchesLv = (ListView) findViewById(R.id.matches_League_Lv);
+
+        Intent i = getIntent();
+
+        c = (Championship) i.getSerializableExtra("CHAMP");
+
+        //champNameTv.setText(c.getName());
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        List<Match> participants = c.getMatches();
+        adapter = new MatchesAdapter(this, participants);
+        matchesLv.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
