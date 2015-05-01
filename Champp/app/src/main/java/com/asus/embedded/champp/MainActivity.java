@@ -35,11 +35,7 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Championship item = adapter.getItem(position);
                 Intent intent;
-                if(item.isStarted()){
-                    intent = new Intent(MainActivity.this, ChampionshipActivity.class);
-                }else{
-                    intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
-                }
+                intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
                 intent.putExtra("CHAMP", item);
                 startActivity(intent);
             }

@@ -66,5 +66,14 @@ public class Championship implements Serializable{
 
     public void startedChamp() {
         isStarted = true;
+        if(!isCup()) {
+            int rounds = 0;
+            if (participants.size() % 2 == 0) {
+                rounds = participants.size()/2;
+            } else {
+                rounds = (participants.size()/2) + 1;
+            }
+            
+        }
     }
 }
