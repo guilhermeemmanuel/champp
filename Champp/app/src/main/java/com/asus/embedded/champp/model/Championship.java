@@ -1,5 +1,7 @@
 package com.asus.embedded.champp.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,22 +72,43 @@ public class Championship implements Serializable{
 
     public void startedChamp() {
         isStarted = true;
-        if(!isCup()) {
-            int rounds = 0;
-            if (participants.size() % 2 == 0) {
-                rounds = participants.size()/2;
-            } else {
-                rounds = (participants.size()/2) + 1;
-            }
-            int numberMatch = 0;
-            for (int i = 0; i < rounds; i++) {
-                this.matches.add(new Match(participants.get(0),participants.get(0),"round " + i, numberMatch));
-                numberMatch++;
-            }
+        if(isCup()) {
+            //eh copa
+
         }
         else {
-            //nao eh copa
-            this.matches.add(new Match(participants.get(0),participants.get(0),"round " + 1, 1));
+            //eh liga
+            if (participants.size() % 2 == 1) {
+                try {
+                    Participant NIL = new Participant("NIL");
+                    NIL.turnNilParticipant();
+                    participants.add(0, NIL);
+                } catch (Exception ex) {
+                    //Nao deve entrar aqui nunca
+                }
+            }
+            Log.d("CHAMP","CREATE LEAGUE");
+
+            int t = participants.size();
+            int m = participants.size() / 2;
+            for (int i = 0; i < t - 1; i++) {
+                //System.out.print((i + 1) + "a rodada: ");
+                for (int j = 0; j < m; j++) {
+                    //Clube está de fora nessa rodada?
+                    if (participants.get(j).getName().isEmpty())
+                        continue;
+
+                    //Teste para ajustar o mando de campo
+                    if (j % 2 == 1 || i % 2 == 1 && j == 0)
+                        this.matches.add(new Match(participants.get(t - j - 1),participants.get(j),"round " + i, 0));
+                    else
+                        this.matches.add(new Match(participants.get(j),participants.get(t - j - 1),"round " + i, 0));
+                }
+                //System.out.println();
+                //Gira os clubes no sentido horário, mantendo o primeiro no lugar
+                participants.add(1, participants.remove(participants.size()-1));
+            }
+            //this.matches.add(new Match(participants.get(0),participants.get(0),"round " + 1, 0));
 
         }
     }

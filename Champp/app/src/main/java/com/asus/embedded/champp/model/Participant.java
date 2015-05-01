@@ -18,4 +18,8 @@ public class Participant implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    protected void turnNilParticipant() {
+        this.name = "";
+    }
 }
