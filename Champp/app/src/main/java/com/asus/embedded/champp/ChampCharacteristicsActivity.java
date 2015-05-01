@@ -137,6 +137,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 }else{
                     intent = new Intent(this, LeagueActivity.class);
                 }
+                intent.putExtra("CHAMP",c);
                 startActivity(intent);
             }
         }else{

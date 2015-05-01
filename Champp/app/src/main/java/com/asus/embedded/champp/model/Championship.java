@@ -2,6 +2,7 @@ package com.asus.embedded.champp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Championship implements Serializable{
     private String name;
@@ -10,6 +11,7 @@ public class Championship implements Serializable{
     private boolean isCup;
     private ArrayList<Participant> participants;
     private boolean isStarted = false;
+    private List<Match> matches;
 
     public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException {
         if(name.isEmpty() || modal.isEmpty()){ throw new EmptyFieldException();}
@@ -18,12 +20,14 @@ public class Championship implements Serializable{
         this.isIndividual = isIndividual;
         this.isCup = isCup;
         this.participants = new ArrayList<>();
+        this.matches = new ArrayList<>();
 
     }
 
     public Championship(String name) {
         this.name = name;
         this.participants = new ArrayList<>();
+        this.matches = new ArrayList<>();
     }
 
     public String getName() {
@@ -73,7 +77,20 @@ public class Championship implements Serializable{
             } else {
                 rounds = (participants.size()/2) + 1;
             }
-            
+            int numberMatch = 0;
+            for (int i = 0; i < rounds; i++) {
+                this.matches.add(new Match(participants.get(0),participants.get(0),"round " + i, numberMatch));
+                numberMatch++;
+            }
         }
+        else {
+            //nao eh copa
+            this.matches.add(new Match(participants.get(0),participants.get(0),"round " + 1, 1));
+
+        }
+    }
+
+    public List<Match> getMatches() {
+        return matches;
     }
 }

@@ -1,9 +1,11 @@
 package com.asus.embedded.champp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Guilherme-PC on 01/05/2015.
  */
-public class Match {
+public class Match implements Serializable {
 
     private Participant home;
     private Participant visitant;
@@ -15,5 +17,10 @@ public class Match {
         this.visitant = visitant;
         this.round = round;
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return home.getName() + " x " + visitant.getName();
     }
 }
