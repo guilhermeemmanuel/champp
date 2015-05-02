@@ -74,7 +74,28 @@ public class Championship implements Serializable{
         isStarted = true;
         if(isCup()) {
             //eh copa
+            int org = Util.getNearLowPotency(2,participants.size());
+            if(org == participants.size()){
+                //participantes eh potencia de 2
+                int games = org/2;
+                for (int i = 0; i < games; i++) {
+                    this.matches.add(new Match(participants.get(i*2),participants.get(i*2 + 1),"round of " + org, i));
+                }
 
+            }
+            else {
+                //sera necessario um round preliminar
+                int dif = participants.size() - org;
+
+                for (int i = 0; i < dif; i++) {
+                    this.matches.add(new Match(participants.get(i*2),participants.get(i*2 + 1),"preliminars ", i));
+                }
+
+
+            }
+
+
+            //this.matches.add(new Match(participants.get(0),participants.get(1),"round " + Util.getNearLowPotency(2,participants.size()), 0));
         }
         else {
             //eh liga
