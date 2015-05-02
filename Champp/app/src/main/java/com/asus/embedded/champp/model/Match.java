@@ -19,6 +19,14 @@ public class Match implements Serializable {
         this.number = number;
     }
 
+    public String getRound() {
+        return round;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
     @Override
     public String toString() {
         return home.getName() + " x " + visitant.getName();

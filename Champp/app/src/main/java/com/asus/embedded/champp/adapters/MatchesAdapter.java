@@ -64,6 +64,8 @@ public class MatchesAdapter extends BaseAdapter {
 
         //atraves do layout pego pelo LayoutInflater, pegamos cada id relacionado
         //ao item e definimos as informações.
+        ((TextView) view.findViewById(R.id.round_tv)).setText(item.getRound());
+        //((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
         ((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
 
         // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade

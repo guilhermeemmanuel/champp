@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.asus.embedded.champp.adapters.MatchesAdapter;
 import com.asus.embedded.champp.model.Championship;
@@ -33,7 +34,6 @@ public class LeagueActivity extends ActionBarActivity {
 
         c = (Championship) i.getSerializableExtra("CHAMP");
 
-        //champNameTv.setText(c.getName());
     }
 
     @Override

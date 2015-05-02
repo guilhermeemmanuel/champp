@@ -20,12 +20,18 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/init_champ"
         android:id="@+id/buttonInitChamp"
         android:onClick="initChamp"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Table"
+        android:id="@+id/buttonShowTable"
+        android:onClick="showTable"/>
 <!--
     <TextView
         android:text="@string/modal"

@@ -108,12 +108,21 @@ public class Championship implements Serializable{
                 //Gira os clubes no sentido horário, mantendo o primeiro no lugar
                 participants.add(1, participants.remove(participants.size()-1));
             }
-            //this.matches.add(new Match(participants.get(0),participants.get(0),"round " + 1, 0));
-
         }
+        deleteNilParticipant();
     }
 
     public List<Match> getMatches() {
         return matches;
+    }
+
+
+    private void deleteNilParticipant() {
+        for (int i = 0; i < participants.size(); i++) {
+            if (participants.get(i).getName().isEmpty()) {
+                participants.remove(i);
+                return;
+            }
+        }
     }
 }

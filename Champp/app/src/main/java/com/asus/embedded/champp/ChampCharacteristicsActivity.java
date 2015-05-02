@@ -38,6 +38,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private ListView participantsLv;
     private ParticipantsAdapter adapter;
     private Button startBt;
+    private Button showTableBt;
 
 
     @Override
@@ -51,6 +52,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);*/
 
         startBt = (Button) findViewById(R.id.buttonInitChamp);
+        showTableBt = (Button) findViewById(R.id.buttonShowTable);
 
 
         participantsLv = (ListView) findViewById(R.id.participants_list_view);
@@ -81,9 +83,11 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         invalidateOptionsMenu();
         if(c.isStarted()){
             startBt.setVisibility(View.GONE);
+            showTableBt.setVisibility(View.VISIBLE);
         }
         else {
             startBt.setVisibility(View.VISIBLE);
+            showTableBt.setVisibility(View.GONE);
         }
         List<Participant> participants = c.getParticipants();
         adapter = new ParticipantsAdapter(this, participants);
@@ -147,6 +151,19 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         }
 
     }
+
+    public void showTable(View v){
+        Intent intent;
+        if (c.isCup()){
+            intent = new Intent(this, CupActivity.class);
+        }else{
+            intent = new Intent(this, LeagueActivity.class);
+        }
+        intent.putExtra("CHAMP",c);
+        startActivity(intent);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
