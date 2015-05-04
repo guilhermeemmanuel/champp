@@ -46,12 +46,13 @@
     <string name="name_participant" />
     <string name="init_champ">Start Championship</string>
     <string name="title_activity_championship">ChampionshipActivity</string>
-    <string name="btn_table">Table View</string>
+    <string name="btn_table">Show Table</string>
     <string name="title_activity_cup">CupActivity</string>
     <string name="title_activity_league">LeagueActivity</string>
     <string name="champStarted">The Championship has started</string>
     <string name="participantCreated">Participant Created</string>
     <string name="sameName">There is already a participant of the same name</string>
     <string name="champUnstarted">Add at least 2 participants</string>
+    <string name="table">Table</string>
 
 </resources>

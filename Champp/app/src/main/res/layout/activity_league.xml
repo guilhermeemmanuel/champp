@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context="com.asus.embedded.champp.LeagueActivity">
 
-    <TextView android:text="Matches"
+    <TextView
+        android:id="@+id/league_matches"
+        android:text="Matches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

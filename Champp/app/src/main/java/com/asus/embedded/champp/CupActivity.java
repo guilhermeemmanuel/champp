@@ -32,13 +32,16 @@ public class CupActivity extends ActionBarActivity {
         champNameTv = (TextView) findViewById(R.id.champ_name);
 
 
+
+
         matchesLv = (ListView) findViewById(R.id.matchesLv);
 
         Intent i = getIntent();
 
         c = (Championship) i.getSerializableExtra("CHAMP");
 
-        champNameTv.setText(c.getName());
+
+        champNameTv.setText(c.getName() + " - " + getString(R.string.table));
 
 
     }
@@ -57,6 +60,7 @@ public class CupActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_cup, menu);
+
         return true;
     }
 

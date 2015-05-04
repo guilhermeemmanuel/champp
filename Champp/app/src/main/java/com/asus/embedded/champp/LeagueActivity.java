@@ -20,12 +20,14 @@ public class LeagueActivity extends ActionBarActivity {
     private ListView matchesLv;
     private Championship c;
     private MatchesAdapter adapter;
+    private TextView league_matches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_league);
 
+        league_matches = (TextView) findViewById(R.id.league_matches);
 
 
         matchesLv = (ListView) findViewById(R.id.matches_League_Lv);
@@ -33,6 +35,10 @@ public class LeagueActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         c = (Championship) i.getSerializableExtra("CHAMP");
+
+        league_matches.setText(c.getName() + " - " + getString(R.string.table));
+
+
 
     }
 

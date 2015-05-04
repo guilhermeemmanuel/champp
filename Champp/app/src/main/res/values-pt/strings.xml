@@ -28,11 +28,12 @@
     <string name="deleteParticipanteDialog">Você tem certeza que deseja deletar o participante ?</string>
 
     <string name="name_participant" />
-    <string name="init_champ">Start Championship</string>
+    <string name="init_champ">Iniciar Campeonato</string>
     <string name="btn_table">Visualizar Tabela</string>
-    <string name="champStarted">This Champ Already Started</string>
-    <string name="participantCreated">Participant Created</string>
-    <string name="sameName">There is already a participant of the same name</string>
-    <string name="champUnstarted">Add at least 2 participants</string>
+    <string name="champStarted">Esse campeonato já foi iniciado</string>
+    <string name="participantCreated">Participante criado</string>
+    <string name="sameName">Já existe um participante com mesmo nome</string>
+    <string name="champUnstarted">Adicione pelo menos 2 participantes</string>
+    <string name="table">Tabela</string>
 
 </resources>
