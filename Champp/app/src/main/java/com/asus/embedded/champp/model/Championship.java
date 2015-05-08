@@ -146,4 +146,13 @@ public class Championship implements Serializable{
             }
         }
     }
+
+    public void setMatchScore(int number, int home, int visitant) {
+        for (Match match : matches) {
+            if (match.equals(new Match(number))) {
+                match.setScore(home, visitant);
+            }
+        }
+    }
+
 }

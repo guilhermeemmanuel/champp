@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.asus.embedded.champp.R;
@@ -65,7 +66,7 @@ public class MatchesAdapter extends BaseAdapter {
         //atraves do layout pego pelo LayoutInflater, pegamos cada id relacionado
         //ao item e definimos as informações.
         ((TextView) view.findViewById(R.id.round_tv)).setText(item.getRound());
-        //((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
+        ((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
         ((TextView) view.findViewById(R.id.home_team_tv)).setText(item.getHome().getName());
 
         ((TextView) view.findViewById(R.id.visitant_team_tv)).setText(item.getVisitant().getName());
@@ -76,12 +77,15 @@ public class MatchesAdapter extends BaseAdapter {
         // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade
         //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());
 
-        //((Button) view.findViewById(R.id.participant_delete_bt)).setTag(position);
+        ((Button) view.findViewById(R.id.set_score_bt)).setTag(position);
 
         return view;
     }
 
 
+    public void setScore(View view) {
+
+    }
 
 
     public void updateItens(ArrayList<Match> itens) {

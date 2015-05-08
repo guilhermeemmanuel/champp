@@ -5,11 +5,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.MatchesAdapter;
 import com.asus.embedded.champp.adapters.ParticipantsAdapter;
+import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Match;
 import com.asus.embedded.champp.model.Participant;
@@ -78,4 +82,18 @@ public class CupActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void setScore(View view) {
+       // adapter.setScore(view);
+        View v = matchesLv.getChildAt((Integer) view.getTag());
+
+        //FIXME cuidado quando o usuario nao colocar nada no textview
+        int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
+        int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
+        int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
+        ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+
+        Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
+    }
+
 }

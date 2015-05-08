@@ -48,6 +48,8 @@ public class ChampionshipController {
                 cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
                 cp.addParticipant("Copa do Brasil", "Palmeiras");
                 cp.addParticipant("Copa do Brasil", "Santos");
+                cp.addParticipant("Campeonato Brasileiro", "Palmeiras");
+                cp.addParticipant("Campeonato Brasileiro", "Santos");
             } catch (Exception ex) {
 
             }
@@ -80,6 +82,18 @@ public class ChampionshipController {
         for (Championship championship : champs) {
             if (championship.equals(new Championship(name))){
                 championship.startedChamp();
+                return championship;
+            }
+        }
+        return null;
+    }
+
+    //TODO falta criar o metodo completo
+    //FIXME cuidado para nao permitir setar o resultado da mesma partida duas vezes
+    public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) {
+        for (Championship championship : champs) {
+            if(championship.equals(new Championship(champName))) {
+                championship.setMatchScore(matchNumber, home, visitant);
                 return championship;
             }
         }
