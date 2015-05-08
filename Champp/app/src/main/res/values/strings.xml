@@ -54,5 +54,6 @@
     <string name="sameName">There is already a participant of the same name</string>
     <string name="champUnstarted">Add at least 2 participants</string>
     <string name="table">Table</string>
+    <string name="title_activity_add_integrant">AddIntegrantActivity</string>
 
 </resources>

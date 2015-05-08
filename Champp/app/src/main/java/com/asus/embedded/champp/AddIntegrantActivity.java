@@ -1,41 +1,23 @@
 package com.asus.embedded.champp;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.asus.embedded.champp.model.Championship;
-import com.asus.embedded.champp.model.Participant;
 
 
-public class ParticipantCharacteristcsActivity extends ActionBarActivity {
-
-    private TextView name_participant;
-    private Participant pt;
+public class AddIntegrantActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_participant_characteristcs);
-
-        name_participant = (TextView) findViewById(R.id.name_participant);
-
-        Intent i = getIntent();
-
-        pt = (Participant) i.getSerializableExtra("PARTICIPANT");
-        name_participant.setText(pt.getName());
+        setContentView(R.layout.activity_add_integrant);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_participant_characteristcs, menu);
+        getMenuInflater().inflate(R.menu.menu_add_integrant, menu);
         return true;
     }
 
@@ -52,11 +34,5 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    public void addIntegrant(View view) {
-        Intent i = new Intent(this, AddIntegrantActivity.class);
-        startActivity(i);
     }
 }
