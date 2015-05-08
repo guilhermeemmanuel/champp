@@ -66,7 +66,12 @@ public class MatchesAdapter extends BaseAdapter {
         //ao item e definimos as informações.
         ((TextView) view.findViewById(R.id.round_tv)).setText(item.getRound());
         //((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
-        ((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
+        ((TextView) view.findViewById(R.id.home_team_tv)).setText(item.getHome().getName());
+
+        ((TextView) view.findViewById(R.id.visitant_team_tv)).setText(item.getVisitant().getName());
+
+
+        //((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
 
         // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade
         //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());

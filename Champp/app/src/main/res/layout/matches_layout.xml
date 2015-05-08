@@ -15,9 +15,38 @@
         android:layout_marginLeft="10sp"/>
 
     <TextView
-        android:id="@+id/match_tv"
+        android:id="@+id/home_team_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10sp"/>
+        android:text="team1"/>
+
+    <EditText
+        android:id="@+id/home_team_score_et"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:maxLength="3"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X"/>
+
+
+    <EditText
+        android:id="@+id/visitant_team_score_et"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:maxLength="3"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/visitant_team_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="team 2"/>
+
+
+
 
 </LinearLayout>

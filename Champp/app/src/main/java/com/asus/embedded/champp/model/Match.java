@@ -27,6 +27,14 @@ public class Match implements Serializable {
         return number;
     }
 
+    public Participant getHome() {
+        return home;
+    }
+
+    public Participant getVisitant() {
+        return visitant;
+    }
+
     @Override
     public String toString() {
         return home.getName() + " x " + visitant.getName();
