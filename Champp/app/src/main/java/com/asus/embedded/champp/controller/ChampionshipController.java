@@ -43,6 +43,14 @@ public class ChampionshipController {
     public static ChampionshipController getInstance() {
         if(cp == null){
             cp = new ChampionshipController();
+            try {
+                cp.createChampionship("Copa do Brasil", "Futebol", false, true);
+                cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
+                cp.addParticipant("Copa do Brasil", "Palmeiras");
+                cp.addParticipant("Copa do Brasil", "Santos");
+            } catch (Exception ex) {
+
+            }
         }
         return cp;
     }
