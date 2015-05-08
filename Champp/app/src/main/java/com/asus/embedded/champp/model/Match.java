@@ -71,4 +71,16 @@ public class Match implements Serializable {
             this.finished = true;
         }
     }
+
+    public int getHomeScore() {
+        return homeScore;
+    }
+
+    public int getVisitantScore() {
+        return visitantScore;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
 }

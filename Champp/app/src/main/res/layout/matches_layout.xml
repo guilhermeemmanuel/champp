@@ -16,11 +16,17 @@
         android:layout_marginLeft="10dp" />
 
     <TextView
-        android:id="@+id/home_team_tv"
+    android:id="@+id/home_team_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:text="team1"/>
+
+    <TextView
+        android:id="@+id/home_team_score_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="team1"/>
+        />
 
     <EditText
         android:id="@+id/home_team_score_et"
@@ -33,6 +39,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="X"/>
+
+    <TextView
+        android:id="@+id/visitant_team_score_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 
     <EditText

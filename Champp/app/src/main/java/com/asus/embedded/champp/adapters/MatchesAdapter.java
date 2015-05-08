@@ -68,9 +68,16 @@ public class MatchesAdapter extends BaseAdapter {
         ((TextView) view.findViewById(R.id.round_tv)).setText(item.getRound());
         ((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
         ((TextView) view.findViewById(R.id.home_team_tv)).setText(item.getHome().getName());
-
         ((TextView) view.findViewById(R.id.visitant_team_tv)).setText(item.getVisitant().getName());
 
+        if (item.isFinished()) {
+            ((TextView) view.findViewById(R.id.home_team_score_tv)).setText("" + item.getHomeScore());
+            ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText("" + item.getVisitantScore());
+
+            ((EditText) view.findViewById(R.id.home_team_score_et)).setVisibility(View.GONE);
+            ((EditText) view.findViewById(R.id.visitant_team_score_et)).setVisibility(View.GONE);
+
+        }
 
         //((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
 
