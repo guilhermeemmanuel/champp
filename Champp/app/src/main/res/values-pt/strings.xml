@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Champp</string>
+    <string name="app_name">Campeonato</string>
     <string name="welcome">Bem-vindo ao Champ App Manager!</string>
     <string name="newChamp">Novo Campeonato</string>
     <string name="action_settings">Configurações</string>
@@ -35,5 +35,25 @@
     <string name="sameName">Já existe um participante com mesmo nome</string>
     <string name="champUnstarted">Adicione pelo menos 2 participantes</string>
     <string name="table">Tabela</string>
+    <string name="action_example">Exemplo de ação</string>
+    <string name="hello_blank_fragment">Olá fragment blank</string>
+    <string name="hello_world">Olá Mundo</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="title_activity_add_integrant">AddIntegrantActivity</string>
+    <string name="title_activity_add_participant">AddParticipantActivity</string>
+    <string name="title_activity_champ_characteristics">champCharacteristics</string>
+    <string name="title_activity_championship">ChampionshipActivity</string>
+    <string name="title_activity_cup">CupActivity</string>
+    <string name="title_activity_league">LeagueActivity</string>
+    <string name="title_activity_my_champ">MyChampActivity</string>
+    <string name="title_activity_my_champs">MyChampsActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_participant_characteristcs">ParticipantCharacteristcsActivity</string>
+
+    <string name="setScoreDialog">Você tem certeza que deseja mudar o placar ? Você nao poderá mais alterar ele. </string>
+    <string name="setScoreDialogTitle">Modificar Placar</string>
 
 </resources>

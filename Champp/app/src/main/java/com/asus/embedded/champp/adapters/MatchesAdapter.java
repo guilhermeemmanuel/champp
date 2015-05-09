@@ -69,13 +69,15 @@ public class MatchesAdapter extends BaseAdapter {
         ((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
         ((TextView) view.findViewById(R.id.home_team_tv)).setText(item.getHome().getName());
         ((TextView) view.findViewById(R.id.visitant_team_tv)).setText(item.getVisitant().getName());
+        ((Button) view.findViewById(R.id.set_score_bt)).setTag(position);
 
         if (item.isFinished()) {
-            ((TextView) view.findViewById(R.id.home_team_score_tv)).setText("" + item.getHomeScore());
-            ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText("" + item.getVisitantScore());
+            ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
+            ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");
 
             ((EditText) view.findViewById(R.id.home_team_score_et)).setVisibility(View.GONE);
             ((EditText) view.findViewById(R.id.visitant_team_score_et)).setVisibility(View.GONE);
+            ((Button) view.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
 
         }
 
@@ -84,7 +86,6 @@ public class MatchesAdapter extends BaseAdapter {
         // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade
         //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());
 
-        ((Button) view.findViewById(R.id.set_score_bt)).setTag(position);
 
         return view;
     }

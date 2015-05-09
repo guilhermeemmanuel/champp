@@ -1,11 +1,14 @@
 package com.asus.embedded.champp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -83,8 +86,31 @@ public class CupActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setScore(View view) {
-       // adapter.setScore(view);
+    public void setScore(final View view) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage(R.string.setScoreDialog)
+                .setTitle(R.string.setScoreDialogTitle);
+        // 3. Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                setScoreSure(view);
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        builder.show();
+    }
+
+    public void setScoreSure(View view){
+
+        // adapter.setScore(view);
         View v = matchesLv.getChildAt((Integer) view.getTag());
 
         //FIXME cuidado quando o usuario nao colocar nada no textview
@@ -94,6 +120,11 @@ public class CupActivity extends ActionBarActivity {
         ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
 
         Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
+
+        ((EditText) v.findViewById(R.id.home_team_score_et)).setEnabled(false);
+        ((EditText) v.findViewById(R.id.visitant_team_score_et)).setEnabled(false);
+        ((Button) v.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
+
     }
 
 }

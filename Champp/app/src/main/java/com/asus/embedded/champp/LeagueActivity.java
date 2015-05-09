@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.MatchesAdapter;
+import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Match;
 
@@ -74,6 +78,19 @@ public class LeagueActivity extends ActionBarActivity {
     }
 
     public void setScore(View view) {
+        View v = matchesLv.getChildAt((Integer) view.getTag());
+
+        //FIXME cuidado quando o usuario nao colocar nada no textview
+        int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
+        int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
+        int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
+        ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+
+        Toast.makeText(this, homeScore + " x " + visitantScore, Toast.LENGTH_LONG).show();
+
+        ((EditText) v.findViewById(R.id.home_team_score_et)).setEnabled(false);
+        ((EditText) v.findViewById(R.id.visitant_team_score_et)).setEnabled(false);
+        ((Button) v.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
 
     }
 
