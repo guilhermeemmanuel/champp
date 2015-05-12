@@ -100,7 +100,7 @@ public class MatchesAdapter extends BaseAdapter {
     }
 
 
-    public void updateItens(ArrayList<Match> itens) {
+    public void updateItens(List<Match> itens) {
         this.itens = itens;
         notifyDataSetChanged();
     }

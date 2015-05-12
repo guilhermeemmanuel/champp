@@ -116,7 +116,6 @@ public class CupActivity extends ActionBarActivity {
         // adapter.setScore(view);
         View v = matchesLv.getChildAt((Integer) view.getTag());
 
-        //FIXME cuidado quando o usuario nao colocar nada no textview
         EditText home_score_et = ((EditText) v.findViewById(R.id.home_team_score_et));
         EditText visitant_score_et = ((EditText) v.findViewById(R.id.visitant_team_score_et));
 
@@ -126,13 +125,15 @@ public class CupActivity extends ActionBarActivity {
             Log.i("homeScore", homeScore + "");
             int visitantScore = Integer.parseInt(visitant_score_et.getText().toString());
             int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
-            ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+            c = ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+
+            adapter.updateItens(c.getMatches());
 
 
             Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
-            //TODO quando entrar aqui eh porque ele nao colocou nada no edittext
-
+            //quando entrar aqui eh porque ele nao colocou nada no edittext
+            Toast.makeText(this,"Insira valores validos nos campos de resultado",Toast.LENGTH_LONG).show();
         }
 
 
