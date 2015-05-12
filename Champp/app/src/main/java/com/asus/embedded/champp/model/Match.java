@@ -1,5 +1,7 @@
 package com.asus.embedded.champp.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 /**
@@ -69,6 +71,7 @@ public class Match implements Serializable {
             this.homeScore = home;
             this.visitantScore = visitant;
             this.finished = true;
+            Log.i("mudei", "" + getHome().getName() + " X " + getVisitant().getName() );
         }
     }
 
@@ -83,4 +86,19 @@ public class Match implements Serializable {
     public boolean isFinished() {
         return finished;
     }
+
+    public Participant winParticipant(){
+        if (isFinished()){
+            if (visitantScore > homeScore){
+                return visitant;
+            }else{
+                return home;
+            }
+
+        }
+        return null;
+    }
+
+
+
 }

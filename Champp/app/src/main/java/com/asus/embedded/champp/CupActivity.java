@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,6 +52,8 @@ public class CupActivity extends ActionBarActivity {
         champNameTv.setText(c.getName() + " - " + getString(R.string.table));
 
 
+
+
     }
 
 
@@ -71,8 +74,8 @@ public class CupActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -115,15 +118,16 @@ public class CupActivity extends ActionBarActivity {
 
         //FIXME cuidado quando o usuario nao colocar nada no textview
         int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
+        Log.i("homeScore",homeScore + "");
         int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
         int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
         ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
 
+
         Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
 
-        ((EditText) v.findViewById(R.id.home_team_score_et)).setEnabled(false);
-        ((EditText) v.findViewById(R.id.visitant_team_score_et)).setEnabled(false);
-        ((Button) v.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
+
+
 
     }
 

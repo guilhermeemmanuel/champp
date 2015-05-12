@@ -1,6 +1,7 @@
 package com.asus.embedded.champp.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.asus.embedded.champp.model.Match;
 import com.asus.embedded.champp.model.Participant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,6 +62,8 @@ public class MatchesAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         //Pega o item de acordo com a posção.
         Match item = itens.get(position);
+
+        Log.i("Array", Arrays.asList(itens).toString());
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.matches_layout, null);
 

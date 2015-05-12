@@ -45,9 +45,17 @@ public class ChampionshipController {
             cp = new ChampionshipController();
             try {
                 cp.createChampionship("Copa do Brasil", "Futebol", false, true);
-                cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
                 cp.addParticipant("Copa do Brasil", "Palmeiras");
                 cp.addParticipant("Copa do Brasil", "Santos");
+                cp.addParticipant("Copa do Brasil", "São Paulo");
+                cp.addParticipant("Copa do Brasil", "Flamengo");
+                cp.addParticipant("Copa do Brasil", "Vasco");
+                cp.addParticipant("Copa do Brasil", "Treze");
+                cp.addParticipant("Copa do Brasil", "Cruzeiro");
+                cp.addParticipant("Copa do Brasil", "Atletico");
+
+
+                cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
                 cp.addParticipant("Campeonato Brasileiro", "Palmeiras");
                 cp.addParticipant("Campeonato Brasileiro", "Santos");
             } catch (Exception ex) {
@@ -94,6 +102,11 @@ public class ChampionshipController {
         for (Championship championship : champs) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant);
+
+                if (championship.isProximosConfrontos()){
+                    championship.proximosConfrontos();
+                }
+
                 return championship;
             }
         }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Championship implements Serializable{
+public class Championship implements Serializable {
     private String name;
     private String modal;
     private boolean isIndividual;
@@ -16,7 +16,9 @@ public class Championship implements Serializable{
     private List<Match> matches;
 
     public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException {
-        if(name.isEmpty() || modal.isEmpty()){ throw new EmptyFieldException();}
+        if (name.isEmpty() || modal.isEmpty()) {
+            throw new EmptyFieldException();
+        }
         this.name = name;
         this.modal = modal;
         this.isIndividual = isIndividual;
@@ -48,11 +50,14 @@ public class Championship implements Serializable{
         return isIndividual;
     }
 
-    public boolean isStarted(){ return isStarted;}
+    public boolean isStarted() {
+        return isStarted;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if(o != null && o instanceof Championship){
-            if(name.equals(((Championship)o).getName())){
+        if (o != null && o instanceof Championship) {
+            if (name.equals(((Championship) o).getName())) {
                 return true;
             }
         }
@@ -61,7 +66,9 @@ public class Championship implements Serializable{
 
     public void addParticipant(String name) throws EmptyFieldException, SameNameException {
         for (Participant p : participants) {
-            if(p.getName().equals(name)){throw new SameNameException();}
+            if (p.getName().equals(name)) {
+                throw new SameNameException();
+            }
         }
         participants.add(new Participant(name));
     }
@@ -72,23 +79,22 @@ public class Championship implements Serializable{
 
     public void startedChamp() {
         isStarted = true;
-        if(isCup()) {
+        if (isCup()) {
             //eh copa
-            int org = Util.getNearLowPotency(2,participants.size());
-            if(org == participants.size()){
+            int org = Util.getNearLowPotency(2, participants.size());
+            if (org == participants.size()) {
                 //participantes eh potencia de 2
-                int games = org/2;
+                int games = org / 2;
                 for (int i = 0; i < games; i++) {
-                    this.matches.add(new Match(participants.get(i*2),participants.get(i*2 + 1),"round of " + org, i));
+                    this.matches.add(new Match(participants.get(i * 2), participants.get(i * 2 + 1), "round of " + org, i));
                 }
 
-            }
-            else {
+            } else {
                 //sera necessario um round preliminar
                 int dif = participants.size() - org;
 
                 for (int i = 0; i < dif; i++) {
-                    this.matches.add(new Match(participants.get(i*2),participants.get(i*2 + 1),"preliminars ", i));
+                    this.matches.add(new Match(participants.get(i * 2), participants.get(i * 2 + 1), "preliminars ", i));
                 }
 
 
@@ -96,8 +102,7 @@ public class Championship implements Serializable{
 
 
             //this.matches.add(new Match(participants.get(0),participants.get(1),"round " + Util.getNearLowPotency(2,participants.size()), 0));
-        }
-        else {
+        } else {
             //eh liga
             if (participants.size() % 2 == 1) {
                 try {
@@ -108,7 +113,7 @@ public class Championship implements Serializable{
                     //Nao deve entrar aqui nunca
                 }
             }
-            Log.d("CHAMP","CREATE LEAGUE");
+            Log.d("CHAMP", "CREATE LEAGUE");
 
             int t = participants.size();
             int m = participants.size() / 2;
@@ -121,13 +126,13 @@ public class Championship implements Serializable{
 
                     //Teste para ajustar o mando de campo
                     if (j % 2 == 1 || i % 2 == 1 && j == 0)
-                        this.matches.add(new Match(participants.get(t - j - 1),participants.get(j),"round " + i, 0));
+                        this.matches.add(new Match(participants.get(t - j - 1), participants.get(j), "round " + i, 0));
                     else
-                        this.matches.add(new Match(participants.get(j),participants.get(t - j - 1),"round " + i, 0));
+                        this.matches.add(new Match(participants.get(j), participants.get(t - j - 1), "round " + i, 0));
                 }
                 //System.out.println();
                 //Gira os clubes no sentido horário, mantendo o primeiro no lugar
-                participants.add(1, participants.remove(participants.size()-1));
+                participants.add(1, participants.remove(participants.size() - 1));
             }
         }
         deleteNilParticipant();
@@ -150,9 +155,55 @@ public class Championship implements Serializable{
     public void setMatchScore(int number, int home, int visitant) {
         for (Match match : matches) {
             if (match.equals(new Match(number))) {
+                Log.i("mudei", match.getHome().getName() +" "+ home +" X " + match.getVisitant().getName() + " " + visitant );
                 match.setScore(home, visitant);
+                Log.i("mudei", "" + home);
             }
         }
+    }
+
+    public boolean isProximosConfrontos() {
+        for (Match match : matches) {
+            if (!match.isFinished()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //copa
+    public void proximosConfrontos() {
+        ArrayList<Participant> wins = new ArrayList<>();
+        Log.i("gerar" , "proximox");
+
+        for (Match match : matches) {
+            wins.add(match.winParticipant());
+        }
+
+
+        if (isCup()) {
+            //eh copa
+            int jogosAnteriores = (Util.getNearLowPotency(2, participants.size()))/2;
+            int org = Util.getNearLowPotency(2, wins.size());
+            if (org == wins.size()) {
+                //participantes eh potencia de 2
+                int games = org / 2;
+                for (int i = 0; i < games; i++) {
+                    this.matches.add(new Match(wins.get(i * 2), wins.get(i * 2 + 1), "round of " + org, i + jogosAnteriores ));
+                }
+
+            } else {
+                //sera necessario um round preliminar
+                int dif = wins.size() - org;
+
+                for (int i = 0; i < dif; i++) {
+                    this.matches.add(new Match(wins.get(i * 2), wins.get(i * 2 + 1), "preliminars ", i));
+                }
+
+
+            }
+        }
+
     }
 
 }
