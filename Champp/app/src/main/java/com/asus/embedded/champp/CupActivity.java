@@ -117,14 +117,25 @@ public class CupActivity extends ActionBarActivity {
         View v = matchesLv.getChildAt((Integer) view.getTag());
 
         //FIXME cuidado quando o usuario nao colocar nada no textview
-        int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
-        Log.i("homeScore",homeScore + "");
-        int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
-        int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
-        ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+        EditText home_score_et = ((EditText) v.findViewById(R.id.home_team_score_et));
+        EditText visitant_score_et = ((EditText) v.findViewById(R.id.visitant_team_score_et));
 
 
-        Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
+        try {
+            int homeScore = Integer.parseInt(home_score_et.getText().toString());
+            Log.i("homeScore", homeScore + "");
+            int visitantScore = Integer.parseInt(visitant_score_et.getText().toString());
+            int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
+            ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+
+
+            Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
+        } catch (Exception ex) {
+            //TODO quando entrar aqui eh porque ele nao colocou nada no edittext
+
+        }
+
+
 
 
 
