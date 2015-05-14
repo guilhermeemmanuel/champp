@@ -129,7 +129,6 @@ public class CupActivity extends ActionBarActivity {
 
             adapter.updateItens(c.getMatches());
 
-
             Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
             //quando entrar aqui eh porque ele nao colocou nada no edittext

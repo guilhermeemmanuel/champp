@@ -80,17 +80,21 @@ public class LeagueActivity extends ActionBarActivity {
     public void setScore(View view) {
         View v = matchesLv.getChildAt((Integer) view.getTag());
 
-        //FIXME cuidado quando o usuario nao colocar nada no textview
-        int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
-        int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
-        int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
-        ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+        try {
 
-        Toast.makeText(this, homeScore + " x " + visitantScore, Toast.LENGTH_LONG).show();
+            //FIXME cuidado quando o usuario nao colocar nada no textview
+            int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
+            int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
+            int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
+            c = ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
 
-        ((EditText) v.findViewById(R.id.home_team_score_et)).setEnabled(false);
-        ((EditText) v.findViewById(R.id.visitant_team_score_et)).setEnabled(false);
-        ((Button) v.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
+            adapter.updateItens(c.getMatches());
+
+        } catch(Exception ex) {
+
+        }
+
+
 
     }
 
