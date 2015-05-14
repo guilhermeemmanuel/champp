@@ -82,7 +82,6 @@ public class LeagueActivity extends ActionBarActivity {
 
         try {
 
-            //FIXME cuidado quando o usuario nao colocar nada no textview
             int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
             int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
             int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();

@@ -157,6 +157,9 @@ public class Championship implements Serializable {
             if (match.equals(new Match(number))) {
                 Log.i("mudei", match.getHome().getName() +" "+ home +" X " + match.getVisitant().getName() + " " + visitant );
                 match.setScore(home, visitant);
+                if (isProximosConfrontos()){
+                    proximosConfrontos();
+                }
                 Log.i("mudei", "" + home);
             }
         }

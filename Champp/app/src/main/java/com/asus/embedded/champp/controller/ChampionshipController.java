@@ -102,11 +102,6 @@ public class ChampionshipController {
         for (Championship championship : champs) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant);
-
-                if (championship.isProximosConfrontos()){
-                    championship.proximosConfrontos();
-                }
-
                 return championship;
             }
         }
