@@ -9,10 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asus.embedded.champp.R;
+import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Match;
-import com.asus.embedded.champp.model.Participant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,11 +27,18 @@ public class MatchesAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<Match> itens;
 
+    private List<MatchListener> listeners;
+
     public MatchesAdapter(Context context, List<Match> itens) {
         //Itens que preencheram o listview
         this.itens = itens;
+        listeners = new ArrayList<>();
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
+    }
+
+    public void addListener(MatchListener listener) {
+        this.listeners.add(listener);
     }
 
     //Retorna a quantidade de Itens
@@ -70,17 +78,50 @@ public class MatchesAdapter extends BaseAdapter {
         //atraves do layout pego pelo LayoutInflater, pegamos cada id relacionado
         //ao item e definimos as informações.
         ((TextView) view.findViewById(R.id.round_tv)).setText(item.getRound());
-        ((TextView) view.findViewById(R.id.number_tv)).setText("#" + item.getNumber());
+
+
         ((TextView) view.findViewById(R.id.home_team_tv)).setText(item.getHome().getName());
         ((TextView) view.findViewById(R.id.visitant_team_tv)).setText(item.getVisitant().getName());
-        ((Button) view.findViewById(R.id.set_score_bt)).setTag(position);
+        final Holder holder = new Holder();
+
+        holder.number = (TextView) view.findViewById(R.id.number_tv);
+
+        holder.number.setText("" + item.getNumber());
+        holder.home = ((EditText) view.findViewById(R.id.home_team_score_et));
+        holder.vis = ((EditText) view.findViewById(R.id.visitant_team_score_et));
+
+        holder.set = ((Button) view.findViewById(R.id.set_score_bt));
+        //bt.setTag(position);
+        holder.set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String hScore = holder.home.getText().toString();
+                String vScore = holder.vis.getText().toString();
+                String num = holder.number.getText().toString();
+
+                try{
+                    int homeScore = Integer.parseInt(hScore);
+                    int visitantScore = Integer.parseInt(vScore);
+                    int matchNumber = Integer.parseInt(num);
+                    for (MatchListener listener : listeners) {
+                        listener.setScore(matchNumber, homeScore, visitantScore);
+                    }
+
+                } catch(Exception ex) {
+                    Toast.makeText(view.getContext(), holder.home.getText().toString(), Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+        });
 
         if (item.isFinished()) {
             ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
             ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");
 
-            ((EditText) view.findViewById(R.id.home_team_score_et)).setVisibility(View.GONE);
-            ((EditText) view.findViewById(R.id.visitant_team_score_et)).setVisibility(View.GONE);
+            holder.home.setVisibility(View.GONE);
+            holder.vis.setVisibility(View.GONE);
+
             ((Button) view.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
 
         }
@@ -92,6 +133,13 @@ public class MatchesAdapter extends BaseAdapter {
 
 
         return view;
+    }
+
+    static class Holder {
+        EditText home;
+        EditText vis;
+        Button set;
+        TextView number;
     }
 
 
