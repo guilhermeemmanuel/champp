@@ -40,8 +40,6 @@ public class CupActivity extends ActionBarActivity {
         champNameTv = (TextView) findViewById(R.id.champ_name);
 
 
-
-
         matchesLv = (ListView) findViewById(R.id.matchesLv);
 
         Intent i = getIntent();
@@ -51,6 +49,9 @@ public class CupActivity extends ActionBarActivity {
 
         champNameTv.setText(c.getName() + " - " + getString(R.string.table));
 
+        List<Match> participants = c.getMatches();
+        adapter = new MatchesAdapter(this, participants);
+        matchesLv.setAdapter(adapter);
 
 
 
@@ -61,9 +62,7 @@ public class CupActivity extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        List<Match> participants = c.getMatches();
-        adapter = new MatchesAdapter(this, participants);
-        matchesLv.setAdapter(adapter);
+
     }
 
     @Override
@@ -90,31 +89,41 @@ public class CupActivity extends ActionBarActivity {
     }
 
     public void setScore(final View view) {
+
+        setScoreSure(view);
+
         // 1. Instantiate an AlertDialog.Builder with its constructor
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage(R.string.setScoreDialog)
-                .setTitle(R.string.setScoreDialogTitle);
+        //builder.setMessage(R.string.setScoreDialog)
+        //        .setTitle(R.string.setScoreDialogTitle);
         // 3. Add the buttons
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                setScoreSure(view);
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        //builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+         //   public void onClick(DialogInterface dialog, int id) {
+        //        setScoreSure(view);
+        //    }
+        //});
+        //builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+         //   public void onClick(DialogInterface dialog, int id) {
                 // User cancelled the dialog
-            }
-        });
+           // }
+        //});
 
-        builder.show();
+        //builder.show();
     }
 
     public void setScoreSure(View view){
 
         // adapter.setScore(view);
-        View v = matchesLv.getChildAt((Integer) view.getTag());
+
+        int position = matchesLv.getPositionForView((View) view.getParent());
+        //matchesLv.getItemAtPosition(position);
+
+
+        View v = matchesLv.getChildAt(position);
+
+        //Log.d("test",matchesLv.getItemAtPosition((Integer) view.getTag()).getClass().toString());
 
         EditText home_score_et = ((EditText) v.findViewById(R.id.home_team_score_et));
         EditText visitant_score_et = ((EditText) v.findViewById(R.id.visitant_team_score_et));
