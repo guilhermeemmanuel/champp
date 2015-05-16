@@ -90,7 +90,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             showTableBt.setVisibility(View.GONE);
         }
         List<Participant> participants = c.getParticipants();
-        adapter = new ParticipantsAdapter(this, participants);
+        adapter = new ParticipantsAdapter(this, participants, c.isStarted());
         participantsLv.setAdapter(adapter);
 
     }

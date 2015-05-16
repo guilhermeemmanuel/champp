@@ -23,12 +23,14 @@ public class ParticipantsAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
     private List<Participant> itens;
+    private boolean isStarted;
 
-    public ParticipantsAdapter(Context context, List<Participant> itens) {
+    public ParticipantsAdapter(Context context, List<Participant> itens, boolean champStarted) {
         //Itens que preencheram o listview
         this.itens = itens;
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
+        this.isStarted = champStarted;
     }
 
     //Retorna a quantidade de Itens
@@ -71,6 +73,9 @@ public class ParticipantsAdapter extends BaseAdapter {
         //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());
 
         ((Button) view.findViewById(R.id.participant_delete_bt)).setTag(position);
+        if(isStarted) {
+            ((Button) view.findViewById(R.id.participant_delete_bt)).setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }
