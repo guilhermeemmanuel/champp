@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.MatchesAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
+import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Match;
 
@@ -52,6 +53,20 @@ public class LeagueActivity extends ActionBarActivity {
         super.onStart();
         List<Match> participants = c.getMatches();
         adapter = new MatchesAdapter(this, participants);
+        adapter.addListener(new MatchListener() {
+            @Override
+            public void setScore(int matchNumber, int home, int visitant) {
+                try {
+                    c = ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, home, visitant);
+
+                    adapter.updateItens(c.getMatches());
+
+                } catch (Exception ex) {
+                    //quando entrar aqui eh porque ele nao colocou nada no edittext
+                    Toast.makeText(LeagueActivity.this,"Insira valores validos nos campos de resultado",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
         matchesLv.setAdapter(adapter);
     }
 

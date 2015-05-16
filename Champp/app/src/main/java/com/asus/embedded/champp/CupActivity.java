@@ -59,8 +59,6 @@ public class CupActivity extends ActionBarActivity {
                     c = ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, home, visitant);
 
                     adapter.updateItens(c.getMatches());
-                    Toast.makeText(CupActivity.this,"aqui",Toast.LENGTH_LONG).show();
-
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
@@ -70,16 +68,12 @@ public class CupActivity extends ActionBarActivity {
         });
         matchesLv.setAdapter(adapter);
 
-
-
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-
-
     }
 
     @Override
