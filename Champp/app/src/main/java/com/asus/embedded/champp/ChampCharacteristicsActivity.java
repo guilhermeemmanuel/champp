@@ -63,7 +63,8 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
                 Intent intent = new Intent(ChampCharacteristicsActivity.this, ParticipantCharacteristcsActivity.class);
                 intent.putExtra("PARTICIPANT", item);
-                startActivity(intent);
+                intent.putExtra("CHAMP", c);
+                startActivityForResult(intent,1);
             }
         });
 

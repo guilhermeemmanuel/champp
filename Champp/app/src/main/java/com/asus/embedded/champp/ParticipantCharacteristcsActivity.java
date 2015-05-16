@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
 
     private TextView name_participant;
     private Participant pt;
+    private Championship c;
+    private Button addIntegrant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,14 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         pt = (Participant) i.getSerializableExtra("PARTICIPANT");
+        c = (Championship) i.getSerializableExtra("CHAMP");
         name_participant.setText(pt.getName());
+
+        addIntegrant = (Button) findViewById(R.id.add_integrant_bt);
+        if (c.isIndividual()) {
+            addIntegrant.setVisibility(View.INVISIBLE);
+        }
+
     }
 
 
