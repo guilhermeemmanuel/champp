@@ -32,6 +32,7 @@ public class ChampionshipController {
 
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException {
         for (Championship champ : champs) {
+
             if(champ.equals(new Championship(nameChamp))){
                 champ.addParticipant(participant);
                 return champ;
@@ -58,6 +59,9 @@ public class ChampionshipController {
                 cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
                 cp.addParticipant("Campeonato Brasileiro", "Palmeiras");
                 cp.addParticipant("Campeonato Brasileiro", "Santos");
+                cp.addParticipant("Campeonato Brasileiro", "Corinthians");
+                cp.addParticipant("Campeonato Brasileiro", "Joinvile");
+
             } catch (Exception ex) {
 
             }

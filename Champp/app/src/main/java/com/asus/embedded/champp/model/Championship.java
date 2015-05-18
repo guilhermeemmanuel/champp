@@ -120,6 +120,7 @@ public class Championship implements Serializable {
             }
             Log.d("CHAMP", "CREATE LEAGUE");
 
+            int number = 0;
             int t = participants.size();
             int m = participants.size() / 2;
             for (int i = 0; i < t - 1; i++) {
@@ -131,10 +132,13 @@ public class Championship implements Serializable {
                         continue;
 
                     //Teste para ajustar o mando de campo
-                    if (j % 2 == 1 || i % 2 == 1 && j == 0)
-                        r.getMatches().add(new Match(participants.get(t - j - 1), participants.get(j), "round " + i, 0));
-                    else
-                        r.getMatches().add(new Match(participants.get(j), participants.get(t - j - 1), "round " + i, 0));
+                    if (j % 2 == 1 || i % 2 == 1 && j == 0) {
+                        r.getMatches().add(new Match(participants.get(t - j - 1), participants.get(j), "round " + i, number));
+                    }
+                    else {
+                        r.getMatches().add(new Match(participants.get(j), participants.get(t - j - 1), "round " + i, number));
+                    }
+                    number++;
                 }
                 this.rounds.add(r);
                 //System.out.println();

@@ -53,14 +53,14 @@
             android:label="@string/title_activity_add_integrant" >
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".CampeaoActivity"
             android:label="@string/title_activity_campeao" >
-        </activity>
-     <activity
+=======
             android:name=".model.RankingActivity"
             android:label="@string/title_activity_ranking" >
+>>>>>>> origin/master
         </activity>
-
-</application>
+    </application>
 
 </manifest>

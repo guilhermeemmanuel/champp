@@ -60,7 +60,11 @@
 
     <string name="setScoreDialog">Are you sure want to change the score? You can no longer change it.</string>
     <string name="setScoreDialogTitle">Change Score</string>
+<<<<<<< HEAD
     <string name="title_activity_campeao">CampeaoActivity</string>
-     <string name="title_activity_ranking">RankingActivity</string>
+=======
+    <string name="title_activity_ranking">RankingActivity</string>
+>>>>>>> origin/master
+
 
 </resources>

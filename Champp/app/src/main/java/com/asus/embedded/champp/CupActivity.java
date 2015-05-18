@@ -24,6 +24,7 @@ import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Match;
 import com.asus.embedded.champp.model.Participant;
+import com.asus.embedded.champp.model.RankingActivity;
 
 import java.util.List;
 

@@ -88,6 +88,7 @@ public class Match implements Serializable {
     }
 
     public Participant winParticipant(){
+
         if (isFinished()){
             if (visitantScore > homeScore){
                 return visitant;
@@ -98,7 +99,33 @@ public class Match implements Serializable {
         }
         return null;
     }
+    //Criado VINICIUS
+    public void sumPoints(){
+
+            if (visitantScore > homeScore) {
+                visitant.winMatch();
+                Log.v("Visitante ganhoou", visitant.getPontuacao() + "" + visitant.getName());
+                Log.v("Home perdeuu", home.getPontuacao() + home.getName());
+
+
+            } else if (visitantScore < homeScore) {
+                home.winMatch();
+                Log.v("Visitante perdeu", visitant.getPontuacao() + "" + visitant.getName());
+                Log.v("Home ganhooouu", home.getPontuacao() + home.getName());
+
+
+            } else if (visitantScore == homeScore) {
+                visitant.empateMatch();
+                home.empateMatch();
+                Log.v("Visitante empatouu", visitant.getPontuacao() + "" + visitant.getName());
+                Log.v("Home empatoouu", home.getPontuacao() + home.getName());
+
+
+            }
+
+    }
+    }
 
 
 
-}
+
