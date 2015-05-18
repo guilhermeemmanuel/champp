@@ -69,9 +69,9 @@ public class MatchesAdapter extends BaseAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         //Pega o item de acordo com a posção.
-        Match item = itens.get(position);
+        final Match item = itens.get(position);
 
-        Log.i("Array", Arrays.asList(itens).toString());
+//        Log.i("Array", Arrays.asList(itens).toString());
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.matches_layout, null);
 
@@ -91,6 +91,7 @@ public class MatchesAdapter extends BaseAdapter {
         holder.vis = ((EditText) view.findViewById(R.id.visitant_team_score_et));
 
         holder.set = ((Button) view.findViewById(R.id.set_score_bt));
+
         //bt.setTag(position);
         holder.set.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +99,7 @@ public class MatchesAdapter extends BaseAdapter {
                 String hScore = holder.home.getText().toString();
                 String vScore = holder.vis.getText().toString();
                 String num = holder.number.getText().toString();
+
 
                 try{
                     int homeScore = Integer.parseInt(hScore);
@@ -114,7 +116,7 @@ public class MatchesAdapter extends BaseAdapter {
 
             }
         });
-
+        item.somaPontos();
         if (item.isFinished()) {
             ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
             ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");

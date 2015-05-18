@@ -32,6 +32,7 @@ public class ChampionshipController {
 
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException {
         for (Championship champ : champs) {
+
             if(champ.equals(new Championship(nameChamp))){
                 champ.addParticipant(participant);
                 return champ;

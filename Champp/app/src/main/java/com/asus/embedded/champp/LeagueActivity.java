@@ -17,6 +17,7 @@ import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Match;
+import com.asus.embedded.champp.model.RankingActivity;
 
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class LeagueActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_league, menu);
+        getMenuInflater().inflate(R.menu.menu_ranking, menu);
         return true;
     }
 
@@ -85,7 +86,9 @@ public class LeagueActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_ranking) {
+            Intent intent = new Intent(getApplicationContext(),RankingActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -93,7 +96,7 @@ public class LeagueActivity extends ActionBarActivity {
     }
 
     public void setScore(View view) {
-        View v = matchesLv.getChildAt((Integer) view.getTag());
+       View v = matchesLv.getChildAt((Integer) view.getTag());
 
         try {
 
@@ -106,7 +109,7 @@ public class LeagueActivity extends ActionBarActivity {
 
         } catch(Exception ex) {
 
-        }
+       }
 
 
 
