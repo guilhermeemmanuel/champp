@@ -27,6 +27,9 @@ public class RankingActivity extends Activity {
         setContentView(R.layout.ranking_adapter);
         lvRanking = (ListView) findViewById(R.id.lv_ranking);
 
+        //PEGA o CAMPEONATO DE INDICE 2 ou seja o terceiro a ser criado.....""
+        //NAO SEI COMO FAZER PARA PEGAR OS PROXIMOS CAMPEONATOS
+
         rankingAdapter = new RankingAdapter(this, ChampionshipController.getChamps().get(2).getParticipants());
         lvRanking.setAdapter(rankingAdapter);
 
