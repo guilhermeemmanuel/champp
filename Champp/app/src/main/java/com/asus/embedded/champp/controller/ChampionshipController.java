@@ -59,6 +59,9 @@ public class ChampionshipController {
                 cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
                 cp.addParticipant("Campeonato Brasileiro", "Palmeiras");
                 cp.addParticipant("Campeonato Brasileiro", "Santos");
+                cp.addParticipant("Campeonato Brasileiro", "Corinthians");
+                cp.addParticipant("Campeonato Brasileiro", "Joinvile");
+
             } catch (Exception ex) {
 
             }
