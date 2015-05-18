@@ -31,7 +31,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         pt = (Participant) i.getSerializableExtra("PARTICIPANT");
-        c = (Championship) i.getSerializableExtra("CHAMP");
+        c = (Championship) i.getSerializableExtra("CAMPEAO");
         name_participant.setText(pt.getName());
 
         addIntegrant = (Button) findViewById(R.id.add_integrant_bt);

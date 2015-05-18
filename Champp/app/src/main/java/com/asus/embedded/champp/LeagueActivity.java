@@ -41,7 +41,7 @@ public class LeagueActivity extends ActionBarActivity {
 
         Intent i = getIntent();
 
-        c = (Championship) i.getSerializableExtra("CHAMP");
+        c = (Championship) i.getSerializableExtra("CAMPEAO");
 
         league_matches.setText(c.getName() + " - " + getString(R.string.table));
 

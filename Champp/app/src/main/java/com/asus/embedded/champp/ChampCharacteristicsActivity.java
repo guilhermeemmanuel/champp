@@ -63,14 +63,14 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
                 Intent intent = new Intent(ChampCharacteristicsActivity.this, ParticipantCharacteristcsActivity.class);
                 intent.putExtra("PARTICIPANT", item);
-                intent.putExtra("CHAMP", c);
+                intent.putExtra("CAMPEAO", c);
                 startActivityForResult(intent,1);
             }
         });
 
         Intent i = getIntent();
 
-        c = (Championship) i.getSerializableExtra("CHAMP");
+        c = (Championship) i.getSerializableExtra("CAMPEAO");
         nameTv.setText(c.getName());
         /*modalTv.setText(c.getModal());
         typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
@@ -95,6 +95,8 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         participantsLv.setAdapter(adapter);
 
     }
+
+
 
     public void deleteItem(final View v) {
         if(!c.isStarted()){
@@ -142,7 +144,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 }else{
                     intent = new Intent(this, LeagueActivity.class);
                 }
-                intent.putExtra("CHAMP",c);
+                intent.putExtra("CAMPEAO",c);
                 startActivity(intent);
             }
         }else{
@@ -156,11 +158,11 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     public void showTable(View v){
         Intent intent;
         if (c.isCup()){
-            intent = new Intent(this, CupActivity.class);
+            intent = new Intent(ChampCharacteristicsActivity.this, CupActivity.class);
         }else{
             intent = new Intent(this, LeagueActivity.class);
         }
-        intent.putExtra("CHAMP",c);
+        intent.putExtra("CAMPEAO",c);
         startActivity(intent);
     }
 
@@ -197,7 +199,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.action_add_participante:
                 Intent intent = new Intent(ChampCharacteristicsActivity.this, AddParticipantActivity.class);
-                intent.putExtra("CHAMP", c);
+                intent.putExtra("CAMPEAO", c);
                 startActivityForResult(intent, 1);
                 return true;
             case R.id.action_settings:
