@@ -52,6 +52,10 @@
             android:name=".AddIntegrantActivity"
             android:label="@string/title_activity_add_integrant" >
         </activity>
+        <activity
+            android:name=".CampeaoActivity"
+            android:label="@string/title_activity_campeao" >
+        </activity>
     </application>
 
 </manifest>

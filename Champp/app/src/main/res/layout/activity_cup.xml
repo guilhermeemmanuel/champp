@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="com.asus.embedded.champp.CupActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mostrar Campeão"
+        android:id="@+id/btn_campeao"
+        android:layout_gravity="center_horizontal"
+        android:onClick="showCampeao"/>
+
     <TextView
         android:id="@+id/champ_name"
         android:text="@string/hello_world"

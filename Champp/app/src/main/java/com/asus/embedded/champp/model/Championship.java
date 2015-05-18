@@ -1,6 +1,7 @@
 package com.asus.embedded.champp.model;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ public class Championship implements Serializable {
     private ArrayList<Participant> participants;
     private boolean isStarted = false;
     private List<Round> rounds;
+    private boolean isCampeao = false;
+    private Participant campeao;
 
     public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException {
         if (name.isEmpty() || modal.isEmpty()) {
@@ -183,15 +186,31 @@ public class Championship implements Serializable {
         return true;
     }
 
+
+    public boolean isCampeao(){
+        return isCampeao;
+    }
+
+    public Participant campeao(){
+        return campeao;
+    }
+
     //copa
     public void proximosConfrontos() {
         ArrayList<Participant> wins = new ArrayList<>();
         Log.i("gerar" , "proximox");
 
+        int quantWins = 0;
+
         for (Match match : rounds.get(rounds.size() - 1).getMatches()) {
-            wins.add(match.winParticipant());
+                  wins.add(match.winParticipant());
+                   quantWins++;
         }
 
+        if(quantWins == 1){
+            isCampeao = true;
+            campeao = wins.get(wins.size() -1);
+        }
 
         if (isCup()) {
             //eh copa

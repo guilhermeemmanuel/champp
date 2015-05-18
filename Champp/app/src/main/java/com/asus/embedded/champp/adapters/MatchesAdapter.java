@@ -126,6 +126,9 @@ public class MatchesAdapter extends BaseAdapter {
 
         }
 
+
+
+
         //((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
 
         // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade

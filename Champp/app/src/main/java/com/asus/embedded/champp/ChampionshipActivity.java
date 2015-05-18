@@ -24,7 +24,7 @@ public class ChampionshipActivity extends ActionBarActivity {
         nameChamp = (TextView) findViewById(R.id.name_champ);
 
         Intent i = getIntent();
-        c = (Championship) i.getSerializableExtra("CHAMP");
+        c = (Championship) i.getSerializableExtra("CAMPEAO");
 
         nameChamp.setText(c.getName());
 
@@ -62,7 +62,7 @@ public class ChampionshipActivity extends ActionBarActivity {
             intent = new Intent(ChampionshipActivity.this, LeagueActivity.class);
         }
 
-        intent.putExtra("CHAMP", c);
+        intent.putExtra("CAMPEAO", c);
         startActivity(intent);
     }
 

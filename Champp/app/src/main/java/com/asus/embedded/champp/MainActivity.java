@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
                 Championship item = adapter.getItem(position);
                 Intent intent;
                 intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
-                intent.putExtra("CHAMP", item);
+                intent.putExtra("CAMPEAO", item);
                 startActivity(intent);
             }
         });

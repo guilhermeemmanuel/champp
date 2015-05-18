@@ -1,11 +1,13 @@
 package com.asus.embedded.champp;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,11 +34,14 @@ public class CupActivity extends ActionBarActivity {
     private TextView champNameTv;
     private Championship c;
     private MatchesAdapter adapter;
+    private Button btnCampeao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cup);
+
+        btnCampeao = (Button) findViewById(R.id.btn_campeao);
 
         champNameTv = (TextView) findViewById(R.id.champ_name);
 
@@ -45,20 +50,31 @@ public class CupActivity extends ActionBarActivity {
 
         Intent i = getIntent();
 
-        c = (Championship) i.getSerializableExtra("CHAMP");
+        c = (Championship) i.getSerializableExtra("CAMPEAO");
 
 
         champNameTv.setText(c.getName() + " - " + getString(R.string.table));
 
-        List<Match> participants = c.getMatches();
-        adapter = new MatchesAdapter(this, participants);
-        adapter.addListener(new MatchListener() {
-            @Override
-            public void setScore(int matchNumber, int home, int visitant) {
-                try {
-                    c = ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, home, visitant);
+                    List<Match> participants = c.getMatches();
+                    adapter = new MatchesAdapter(this, participants);
+                    adapter.addListener(new MatchListener() {
+                        @Override
+                        public void setScore(int matchNumber, int home, int visitant) {
+                            try {
+                                c = ChampionshipController.getInstance().setMatchScore(c.getName(), matchNumber, home, visitant);
 
-                    adapter.updateItens(c.getMatches());
+                                adapter.updateItens(c.getMatches());
+
+                                if (c.isCampeao()){
+                                    onCreateDialog();
+                                    //Descomenta aqui somente se quiser que chame a activity de ver campeao , mas comente a linha
+                                    // de cima
+                                    //Participant campeao = c.campeao();
+                                    //Intent intent = new Intent(CupActivity.this,CampeaoActivity.class);
+                                    //intent.putExtra("CAMPEAO",campeao.getName());
+                                    //intent.putExtra("CAMPEONATO",c.getName());
+                                    //startActivity(intent);
+                                }
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
@@ -68,13 +84,71 @@ public class CupActivity extends ActionBarActivity {
         });
         matchesLv.setAdapter(adapter);
 
+
+
     }
 
 
     @Override
     protected void onStart() {
+
+        if (c.isCampeao()){
+            onCreateDialog();
+        }
+
+        //if(c.isCampeao()){
+           // btnCampeao.setVisibility(View.VISIBLE);
+
+        //}
+        //else {
+            btnCampeao.setVisibility(View.GONE);
+        //}
+
         super.onStart();
     }
+
+
+
+   /* public void showCampeao(View v){
+
+        if (c.isCampeao()){
+            Participant campeao = c.campeao();
+            Intent intent = new Intent(CupActivity.this,CampeaoActivity.class);
+            intent.putExtra("CAMPEAO",campeao.getName());
+            intent.putExtra("CAMPEONATO",c.getName());
+            startActivity(intent);
+        }
+
+    }*/
+
+
+    public void onCreateDialog() {
+
+        Participant campeao = c.campeao();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.dialog_campeao_trofeu, null));
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage("Parabens " + campeao.getName() + " você é o novo campeao da " + c.getName() + "!!!")
+                .setIcon(R.mipmap.campeao)
+                .setTitle("CAMPEÃO");
+        // 3. Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+           public void onClick(DialogInterface dialog, int id) {
+
+
+           }
+        });
+
+
+        builder.show();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -150,10 +224,17 @@ public class CupActivity extends ActionBarActivity {
             adapter.updateItens(c.getMatches());
 
             Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
+
+
+
+
         } catch (Exception ex) {
             //quando entrar aqui eh porque ele nao colocou nada no edittext
             Toast.makeText(this,"Insira valores validos nos campos de resultado",Toast.LENGTH_LONG).show();
         }
+
+
+
 
 
 

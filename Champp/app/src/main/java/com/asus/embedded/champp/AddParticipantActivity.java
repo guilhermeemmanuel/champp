@@ -23,7 +23,7 @@ public class AddParticipantActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_participant);
 
         Intent intent = getIntent();
-        c = (Championship) intent.getSerializableExtra("CHAMP");
+        c = (Championship) intent.getSerializableExtra("CAMPEAO");
 
         nameParticipant = (EditText) findViewById(R.id.name_participant);
     }
