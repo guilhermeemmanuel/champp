@@ -26,15 +26,15 @@ public class Championship implements Serializable {
         this.modal = modal;
         this.isIndividual = isIndividual;
         this.isCup = isCup;
-        this.participants = new ArrayList<>();
-        this.rounds = new ArrayList<>();
+        this.participants = new ArrayList<Participant>();
+        this.rounds = new ArrayList<Round>();
 
     }
 
     public Championship(String name) {
         this.name = name;
-        this.participants = new ArrayList<>();
-        this.rounds = new ArrayList<>();
+        this.participants = new ArrayList<Participant>();
+        this.rounds = new ArrayList<Round>();
     }
 
     public String getName() {
@@ -150,7 +150,7 @@ public class Championship implements Serializable {
     }
 
     public List<Match> getMatches() {
-        List<Match> matches = new ArrayList<>();
+        List<Match> matches = new ArrayList<Match>();
         for (Round round : rounds) {
             matches.addAll(round.getMatches());
         }
@@ -201,7 +201,7 @@ public class Championship implements Serializable {
 
     //copa
     public void proximosConfrontos() {
-        ArrayList<Participant> wins = new ArrayList<>();
+        ArrayList<Participant> wins = new ArrayList<Participant>();
         Log.i("gerar" , "proximox");
 
         int quantWins = 0;
