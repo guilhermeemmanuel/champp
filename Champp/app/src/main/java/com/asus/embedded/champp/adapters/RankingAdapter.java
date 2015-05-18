@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Guilherme-PC on 27/04/2015.
+ * CREATED BY VINICIUS
  */
 public class RankingAdapter extends BaseAdapter {
 

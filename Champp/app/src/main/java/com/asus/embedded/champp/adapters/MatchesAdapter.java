@@ -1,7 +1,6 @@
 package com.asus.embedded.champp.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Match;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -116,7 +114,7 @@ public class MatchesAdapter extends BaseAdapter {
 
             }
         });
-        item.somaPontos();
+        item.sumPoints();
         if (item.isFinished()) {
             ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
             ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");

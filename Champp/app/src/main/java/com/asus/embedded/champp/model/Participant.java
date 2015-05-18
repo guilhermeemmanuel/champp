@@ -21,13 +21,15 @@ public class Participant implements Serializable {
         return name;
     }
 
+    //CRIADO VINICIUS
     public void winMatch(){
         this.counterPontos+=3;
     }
+    //CRIADO VINICIUS
     public void empateMatch(){
         this.counterPontos+=1;
     }
-
+    //CRIADO VINICIUS
     public int getPontuacao(){
         return counterPontos;
     }

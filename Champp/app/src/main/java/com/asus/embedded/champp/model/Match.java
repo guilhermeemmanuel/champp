@@ -99,7 +99,8 @@ public class Match implements Serializable {
         }
         return null;
     }
-    public void somaPontos(){
+    //Criado VINICIUS
+    public void sumPoints(){
 
             if (visitantScore > homeScore) {
                 visitant.winMatch();

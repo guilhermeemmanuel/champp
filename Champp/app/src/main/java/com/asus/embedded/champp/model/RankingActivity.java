@@ -9,6 +9,7 @@ import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.asus.embedded.champp.LeagueActivity;
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.adapters.RankingAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -40,17 +41,19 @@ public class RankingActivity extends Activity {
         String concatena = null;
 
         for(Championship c : ChampionshipController.getChamps()) {
-            if (c.getName().equals("liga")) {
-                aux = c.getParticipants();
-                concatena = c.getName() + "\n";
-                Log.v("kkkkkkkkkkkkk", concatena);
-                for (Participant p : aux) {
-                    concatena += p.getName() + " " + p.getPontuacao() + "\n";
-                    Log.v("ZZZZZZZZZZZ", concatena);
-                }
-                concatena = "\n";
-            }
+
+                if (c.getName().equals("liga")) {
+                    aux = c.getParticipants();
+                    concatena = c.getName() + "\n";
+                    Log.v("kkkkkkkkkkkkk", concatena);
+                    for (Participant p : aux) {
+                        concatena += p.getName() + " " + p.getPontuacao() + "\n";
+                        Log.v("ZZZZZZZZZZZ", concatena);
+                    }
+                    concatena = "\n";
+               }
         }
+
         return concatena;
     }
 
