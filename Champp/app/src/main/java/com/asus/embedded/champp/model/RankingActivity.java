@@ -27,7 +27,7 @@ public class RankingActivity extends Activity {
         setContentView(R.layout.ranking_adapter);
         lvRanking = (ListView) findViewById(R.id.lv_ranking);
 
-        rankingAdapter = new RankingAdapter(this, ChampionshipController.getChamps().get(0).getParticipants());
+        rankingAdapter = new RankingAdapter(this, ChampionshipController.getChamps().get(2).getParticipants());
         lvRanking.setAdapter(rankingAdapter);
 
     }
@@ -37,7 +37,7 @@ public class RankingActivity extends Activity {
         String concatena = null;
 
         for(Championship c : ChampionshipController.getChamps()) {
-            if (c.getName().equals("Copa do Brasil")) {
+            if (c.getName().equals("liga")) {
                 aux = c.getParticipants();
                 concatena = c.getName() + "\n";
                 Log.v("kkkkkkkkkkkkk", concatena);
