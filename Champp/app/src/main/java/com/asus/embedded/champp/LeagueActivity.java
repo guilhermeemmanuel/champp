@@ -88,6 +88,7 @@ public class LeagueActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_ranking) {
             Intent intent = new Intent(getApplicationContext(),RankingActivity.class);
+            intent.putExtra("CHAMP", c);
             startActivity(intent);
             return true;
         }
