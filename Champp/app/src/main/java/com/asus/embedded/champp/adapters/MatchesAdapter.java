@@ -114,7 +114,6 @@ public class MatchesAdapter extends BaseAdapter {
 
             }
         });
-        item.sumPoints();
         if (item.isFinished()) {
             ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
             ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");

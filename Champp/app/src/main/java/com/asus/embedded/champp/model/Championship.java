@@ -175,6 +175,7 @@ public class Championship implements Serializable {
                     if (isProximosConfrontos()){
                         proximosConfrontos();
                     }
+                    match.sumPoints();
                     Log.i("mudei", "" + home);
                 }
             }
