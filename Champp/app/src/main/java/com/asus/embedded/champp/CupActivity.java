@@ -80,7 +80,7 @@ public class CupActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ranking, menu);
+        getMenuInflater().inflate(R.menu.menu_cup, menu);
 
         return true;
     }
@@ -93,9 +93,7 @@ public class CupActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_ranking) {
-            Intent intent = new Intent(getApplicationContext(),RankingActivity.class);
-            startActivity(intent);
+        if (id == R.id.action_settings) {
             return true;
         }
 
