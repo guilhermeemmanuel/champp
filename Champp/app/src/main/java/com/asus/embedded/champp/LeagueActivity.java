@@ -1,8 +1,11 @@
 package com.asus.embedded.champp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Match;
+import com.asus.embedded.champp.model.Participant;
 import com.asus.embedded.champp.model.RankingActivity;
 
 import java.util.List;
@@ -49,9 +53,12 @@ public class LeagueActivity extends ActionBarActivity {
 
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
+
         List<Match> participants = c.getMatches();
         adapter = new MatchesAdapter(this, participants);
         adapter.addListener(new MatchListener() {

@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Championship implements Serializable {
@@ -170,7 +171,7 @@ public class Championship implements Serializable {
     public void setMatchScore(int number, int home, int visitant) {
             for (Match match : getMatches()) {
                 if (match.equals(new Match(number))) {
-                    Log.i("mudei", match.getHome().getName() +" "+ home +" X " + match.getVisitant().getName() + " " + visitant );
+                    Log.i("mudei", match.getHome().getName() + " " + home + " X " + match.getVisitant().getName() + " " + visitant);
                     match.setScore(home, visitant);
                     if (isProximosConfrontos()){
                         proximosConfrontos();
@@ -212,7 +213,7 @@ public class Championship implements Serializable {
                    quantWins++;
         }
 
-        if(quantWins == 1){
+        if(quantWins == 1 && isCup()){
             isCampeao = true;
             campeao = wins.get(wins.size() -1);
         }
