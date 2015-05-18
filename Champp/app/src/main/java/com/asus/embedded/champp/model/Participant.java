@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Participant implements Serializable {
+public class Participant implements Serializable, Comparable<Participant> {
 
     private String name;
     private List<Integrant> integrants;
@@ -49,6 +49,11 @@ public class Participant implements Serializable {
 
     protected void turnNilParticipant() {
         this.name = "";
+    }
+
+    @Override
+    public int compareTo(Participant participant) {
+        return (participant.getPontuacao() - getPontuacao());
     }
 }
 

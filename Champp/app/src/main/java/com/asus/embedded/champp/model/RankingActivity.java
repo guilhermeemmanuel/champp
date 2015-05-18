@@ -16,6 +16,7 @@ import com.asus.embedded.champp.adapters.RankingAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RankingActivity extends Activity {
@@ -35,8 +36,9 @@ public class RankingActivity extends Activity {
 
         Intent i = getIntent();
         c = (Championship) i.getSerializableExtra("CHAMP");
-
-        rankingAdapter = new RankingAdapter(this, c.getParticipants());
+        List<Participant> parts = c.getParticipants();
+        Collections.sort(parts);
+        rankingAdapter = new RankingAdapter(this, parts);
         lvRanking.setAdapter(rankingAdapter);
 
     }
