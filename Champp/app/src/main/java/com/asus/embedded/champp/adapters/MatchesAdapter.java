@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +18,6 @@ import com.asus.embedded.champp.model.Match;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Guilherme-PC on 01/05/2015.
- */
 public class MatchesAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
@@ -30,7 +28,7 @@ public class MatchesAdapter extends BaseAdapter {
     public MatchesAdapter(Context context, List<Match> itens) {
         //Itens que preencheram o listview
         this.itens = itens;
-        listeners = new ArrayList<>();
+        listeners = new ArrayList();
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
     }
@@ -88,7 +86,7 @@ public class MatchesAdapter extends BaseAdapter {
         holder.home = ((EditText) view.findViewById(R.id.home_team_score_et));
         holder.vis = ((EditText) view.findViewById(R.id.visitant_team_score_et));
 
-        holder.set = ((Button) view.findViewById(R.id.set_score_bt));
+        holder.set = ((ImageButton) view.findViewById(R.id.set_score_bt));
 
         //bt.setTag(position);
         holder.set.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +119,7 @@ public class MatchesAdapter extends BaseAdapter {
             holder.home.setVisibility(View.GONE);
             holder.vis.setVisibility(View.GONE);
 
-            ((Button) view.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
+            ((ImageButton) view.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
 
         }
 
@@ -140,7 +138,7 @@ public class MatchesAdapter extends BaseAdapter {
     static class Holder {
         EditText home;
         EditText vis;
-        Button set;
+        ImageButton set;
         TextView number;
     }
 

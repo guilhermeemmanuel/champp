@@ -1,8 +1,5 @@
 package com.asus.embedded.champp.model;
 
-/**
- * Created by Guilherme-PC on 02/05/2015.
- */
 public class Util {
 
     public static int getNearLowPotency(int number, int limit) {

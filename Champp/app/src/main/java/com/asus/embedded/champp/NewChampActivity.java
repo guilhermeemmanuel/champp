@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.ExceededCharacterException;
 import com.asus.embedded.champp.model.SameNameException;
 
 import java.lang.String;
@@ -70,6 +71,8 @@ public class NewChampActivity extends ActionBarActivity {
             Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
         } catch (SameNameException e) {
             Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_SHORT).show();
+        } catch (ExceededCharacterException e) {
+            Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
         }
     }
 }

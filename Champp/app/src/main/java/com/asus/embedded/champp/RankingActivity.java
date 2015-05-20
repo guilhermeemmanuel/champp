@@ -1,4 +1,4 @@
-package com.asus.embedded.champp.model;
+package com.asus.embedded.champp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +17,8 @@ import com.asus.embedded.champp.LeagueActivity;
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.adapters.RankingAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
+import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.Participant;
 
 import java.util.ArrayList;
 import java.util.Collections;

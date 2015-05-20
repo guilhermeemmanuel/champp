@@ -1,14 +1,14 @@
 package com.asus.embedded.champp.model;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Championship implements Serializable {
+    private static final int NAME_LIMIT = 25;
+    private final int MODAL_LIMIT = 15;
     private String name;
     private String modal;
     private boolean isIndividual;
@@ -19,9 +19,12 @@ public class Championship implements Serializable {
     private boolean isCampeao = false;
     private Participant campeao;
 
-    public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException {
+    public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, ExceededCharacterException {
         if (name.isEmpty() || modal.isEmpty()) {
             throw new EmptyFieldException();
+        }
+        if (name.length() > NAME_LIMIT || modal.length() > MODAL_LIMIT){
+            throw new ExceededCharacterException();
         }
         this.name = name;
         this.modal = modal;
@@ -32,7 +35,13 @@ public class Championship implements Serializable {
 
     }
 
-    public Championship(String name) {
+    public Championship(String name) throws EmptyFieldException, ExceededCharacterException {
+        if (name.isEmpty()) {
+            throw new EmptyFieldException();
+        }
+        if (name.length() > NAME_LIMIT){
+            throw new ExceededCharacterException();
+        }
         this.name = name;
         this.participants = new ArrayList<Participant>();
         this.rounds = new ArrayList<Round>();
@@ -68,7 +77,7 @@ public class Championship implements Serializable {
         return false;
     }
 
-    public void addParticipant(String name) throws EmptyFieldException, SameNameException {
+    public void addParticipant(String name) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         for (Participant p : participants) {
             if (p.getName().equals(name)) {
                 throw new SameNameException();
@@ -158,7 +167,6 @@ public class Championship implements Serializable {
         return matches;
     }
 
-
     private void deleteNilParticipant() {
         for (int i = 0; i < participants.size(); i++) {
             if (participants.get(i).getName().isEmpty()) {
@@ -168,7 +176,7 @@ public class Championship implements Serializable {
         }
     }
 
-    public void setMatchScore(int number, int home, int visitant) {
+    public void setMatchScore(int number, int home, int visitant) throws InvalidScoreException {
             for (Match match : getMatches()) {
                 if (match.equals(new Match(number))) {
                     Log.i("mudei", match.getHome().getName() + " " + home + " X " + match.getVisitant().getName() + " " + visitant);
@@ -192,7 +200,6 @@ public class Championship implements Serializable {
         return true;
     }
 
-
     public boolean isCampeao(){
         return isCampeao;
     }
@@ -200,7 +207,6 @@ public class Championship implements Serializable {
     public Participant campeao(){
         return campeao;
     }
-
     //copa
     public void proximosConfrontos() {
         ArrayList<Participant> wins = new ArrayList<Participant>();

@@ -14,9 +14,6 @@ import com.asus.embedded.champp.model.Participant;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * CREATED BY VINICIUS
- */
 public class RankingAdapter extends BaseAdapter {
 
 

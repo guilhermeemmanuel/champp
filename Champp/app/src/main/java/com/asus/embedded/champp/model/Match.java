@@ -4,9 +4,6 @@ import android.util.Log;
 
 import java.io.Serializable;
 
-/**
- * Created by Guilherme-PC on 01/05/2015.
- */
 public class Match implements Serializable {
 
     private Participant home;
@@ -65,8 +62,10 @@ public class Match implements Serializable {
         return number;
     }
 
-
-    public void setScore(int home, int visitant) {
+    public void setScore(int home, int visitant) throws InvalidScoreException {
+        if (home < 0 || visitant < 0){
+            throw new InvalidScoreException();
+        }
         if(!finished) {
             this.homeScore = home;
             this.visitantScore = visitant;
@@ -99,7 +98,7 @@ public class Match implements Serializable {
         }
         return null;
     }
-    //Criado VINICIUS
+
     public void sumPoints(){
 
             if (visitantScore > homeScore) {

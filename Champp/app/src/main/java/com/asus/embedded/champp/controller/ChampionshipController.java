@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.ExceededCharacterException;
+import com.asus.embedded.champp.model.InvalidScoreException;
 import com.asus.embedded.champp.model.SameNameException;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class ChampionshipController {
         champs = new ArrayList<Championship>();
     }
 
-    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException {
+    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         Championship c = new Championship(name, modal, isIndividual, isCup);
 
         if(champs.contains(c)){ throw new SameNameException();}
@@ -30,7 +32,7 @@ public class ChampionshipController {
         Log.i("champ","" + isCup);
     }
 
-    public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException {
+    public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         for (Championship champ : champs) {
 
             if(champ.equals(new Championship(nameChamp))){
@@ -90,7 +92,7 @@ public class ChampionshipController {
     }
 
 
-    public Championship startChamp(String name){
+    public Championship startChamp(String name) throws ExceededCharacterException, EmptyFieldException {
         for (Championship championship : champs) {
             if (championship.equals(new Championship(name))){
                 championship.startedChamp();
@@ -102,7 +104,7 @@ public class ChampionshipController {
 
     //TODO falta criar o metodo completo
     //FIXME cuidado para nao permitir setar o resultado da mesma partida duas vezes
-    public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) {
+    public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
         for (Championship championship : champs) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant);

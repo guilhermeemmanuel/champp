@@ -5,12 +5,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.asus.embedded.champp.ParticipantCharacteristcsActivity">
+    tools:context="com.asus.embedded.champp.ParticipantCharacteristcsActivity"
+    android:background="@mipmap/taca">
 
     <TextView
         android:id="@+id/name_participant"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_material_dark"/>
 
     <Button
         android:id="@+id/add_integrant_bt"
