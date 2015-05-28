@@ -45,7 +45,6 @@
     <string name="title_activity_participant_characteristcs">Participant Characteristcs</string>
     <string name="name_participant" />
     <string name="init_champ">Start Championship</string>
-    <string name="title_activity_championship">ChampionshipActivity</string>
     <string name="btn_table">Show Table</string>
     <string name="title_activity_cup">Cup</string>
     <string name="title_activity_league">League</string>
@@ -61,6 +60,7 @@
     <string name="setScoreDialogTitle">Change Score</string>
     <string name="title_activity_campeao">Champion</string>
      <string name="title_activity_ranking">RankingActivity</string>
+<<<<<<< HEAD
     <string name="title_activity_logo">logoActivity</string>
 
 
@@ -71,5 +71,12 @@
         <item>Futsal</item>
         <item>Outro</item>
     </string-array>
+=======
+    <string name="congrat">Congratulations</string>
+    <string name="youWin">You are the new champion of</string>
+    <string name="validField">Enter valid values in the result fields</string>
+    <string name="charExceeded">Character Limit Exceeded</string>
+    <string name="title_activity_championship">Championship</string>
+>>>>>>> 6eecf4d3402b1c5d955fe4fe677ed0f82ac2ae0e
 
 </resources>

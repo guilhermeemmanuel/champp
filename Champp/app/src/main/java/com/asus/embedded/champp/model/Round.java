@@ -4,11 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Guiga on 14/05/2015.
- */
 public class Round implements Serializable {
-
 
     private int number;
     private List<Match> matches;

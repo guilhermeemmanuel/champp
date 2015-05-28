@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Participant implements Serializable {
+public class Participant implements Serializable, Comparable<Participant> {
 
+    private static final int NAME_LIMIT = 15;
     private String name;
     private List<Integrant> integrants;
     private int counterPontos;
 
-    public Participant(String name) throws EmptyFieldException {
-        if(name.isEmpty()){ throw new EmptyFieldException();}
-        this.name = name;
+    public Participant(String name) throws EmptyFieldException, ExceededCharacterException {
+        setName(name);
         this.counterPontos = 0;
         this.integrants = new ArrayList<>();
     }
@@ -21,21 +21,23 @@ public class Participant implements Serializable {
         return name;
     }
 
-    //CRIADO VINICIUS
     public void winMatch(){
         this.counterPontos+=3;
     }
-    //CRIADO VINICIUS
+
     public void empateMatch(){
         this.counterPontos+=1;
     }
-    //CRIADO VINICIUS
+
     public int getPontuacao(){
         return counterPontos;
     }
 
-
-    public void setName(String name) {
+    public void setName(String name) throws EmptyFieldException, ExceededCharacterException {
+        if(name.isEmpty()){ throw new EmptyFieldException();}
+        if (name.length() > NAME_LIMIT){
+            throw new ExceededCharacterException();
+        }
         this.name = name;
     }
 
@@ -49,6 +51,11 @@ public class Participant implements Serializable {
 
     protected void turnNilParticipant() {
         this.name = "";
+    }
+
+    @Override
+    public int compareTo(Participant participant) {
+        return (participant.getPontuacao() - getPontuacao());
     }
 }
 

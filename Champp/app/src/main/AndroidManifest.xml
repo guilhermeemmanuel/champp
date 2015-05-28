@@ -25,6 +25,10 @@
             android:label="@string/title_activity_new_champ" >
         </activity>
         <activity
+            android:name=".MyChampActivity"
+            android:label="@string/title_activity_my_champ" >
+        </activity>
+        <activity
             android:name=".ChampCharacteristicsActivity"
             android:label="@string/title_activity_champ_characteristics" >
         </activity>
@@ -53,14 +57,14 @@
             android:label="@string/title_activity_add_integrant" >
         </activity>
         <activity
-            android:name=".CampeaoActivity"
+            android:name=".ChampionActivity"
             android:label="@string/title_activity_campeao" >
         </activity>
-        <activity
-            android:name=".model.RankingActivity"
+     <activity
+            android:name=".RankingActivity"
             android:label="@string/title_activity_ranking" >
         </activity>
 
-    </application>
+</application>
 
 </manifest>

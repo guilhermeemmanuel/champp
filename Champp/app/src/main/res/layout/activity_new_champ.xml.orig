@@ -21,9 +21,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+<<<<<<< HEAD
     <Spinner
         android:id="@+id/modal_spinner"
         android:layout_width="fill_parent"
+=======
+    <EditText
+        android:id="@+id/modal_et"
+        android:maxLength="15"
+        android:layout_width="match_parent"
+>>>>>>> 6eecf4d3402b1c5d955fe4fe677ed0f82ac2ae0e
         android:layout_height="wrap_content" />
 
     <TextView

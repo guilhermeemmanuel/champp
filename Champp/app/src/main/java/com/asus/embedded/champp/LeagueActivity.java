@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,8 +15,10 @@ import com.asus.embedded.champp.adapters.MatchesAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.ExceededCharacterException;
+import com.asus.embedded.champp.model.InvalidScoreException;
 import com.asus.embedded.champp.model.Match;
-import com.asus.embedded.champp.model.RankingActivity;
 
 import java.util.List;
 
@@ -49,9 +50,12 @@ public class LeagueActivity extends ActionBarActivity {
 
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
+
         List<Match> participants = c.getMatches();
         adapter = new MatchesAdapter(this, participants);
         adapter.addListener(new MatchListener() {
@@ -64,7 +68,7 @@ public class LeagueActivity extends ActionBarActivity {
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
-                    Toast.makeText(LeagueActivity.this,"Insira valores validos nos campos de resultado",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LeagueActivity.this,R.string.validField,Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -88,6 +92,7 @@ public class LeagueActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_ranking) {
             Intent intent = new Intent(getApplicationContext(),RankingActivity.class);
+            intent.putExtra("CHAMP", c);
             startActivity(intent);
             return true;
         }
@@ -107,10 +112,13 @@ public class LeagueActivity extends ActionBarActivity {
 
             adapter.updateItens(c.getMatches());
 
-        } catch(Exception ex) {
-
-       }
-
+        } catch (InvalidScoreException e) {
+            Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();;
+        } catch (ExceededCharacterException e) {
+            Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+        } catch (EmptyFieldException e) {
+            Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();
+        }
 
 
     }

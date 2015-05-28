@@ -3,91 +3,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:id="@+id/linearLayout">
-    <TextView
-        android:id="@+id/number_tv"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@android:color/background_light">
+        <TextView
+            android:id="@+id/number_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/round_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:backgroundTint="@android:color/background_light"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_horizontal"
+        android:layout_toLeftOf="@+id/set_score_bt"
+        android:layout_toStartOf="@+id/set_score_bt">
+        <TextView
+            android:id="@+id/home_team_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/primary_material_dark"
+            android:text="team1"/>
+
+        <TextView
+            android:id="@+id/home_team_score_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_material_dark"
+            />
+
+        <EditText
+            android:id="@+id/home_team_score_et"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:maxLength="3"
+            android:inputType="number"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_material_dark"
+            android:text="X"/>
+
+        <TextView
+            android:id="@+id/visitant_team_score_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_material_dark"
+            />
+
+
+        <EditText
+            android:id="@+id/visitant_team_score_et"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:maxLength="3"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/visitant_team_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_material_dark"
+            android:text="team 2"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/set_score_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
-
-    <TextView
-        android:id="@+id/round_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp" />
-
-    <TextView
-        android:id="@+id/home_team_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="team1"/>
-
-    <TextView
-        android:id="@+id/home_team_score_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-    <EditText
-        android:id="@+id/home_team_score_et"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:maxLength="3"
-        android:inputType="number"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X"/>
-
-    <TextView
-        android:id="@+id/visitant_team_score_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-
-    <EditText
-        android:id="@+id/visitant_team_score_et"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:maxLength="3"
-        android:inputType="number"/>
-
-    <TextView
-        android:id="@+id/visitant_team_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="team 2"/>
-
-
-</LinearLayout>
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_below="@+id/linearLayout"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true">
-
-
-       <Button
-           android:id="@+id/set_score_bt"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginLeft="250sp"
-           android:text="SET SCORE"
-           />
-
-   </LinearLayout>
-
-
-
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout"
+        android:background="@android:drawable/ic_input_add"
+        android:onClick="setScore"/>
 
 
 </RelativeLayout>

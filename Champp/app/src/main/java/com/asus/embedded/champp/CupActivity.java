@@ -1,7 +1,6 @@
 package com.asus.embedded.champp;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -18,13 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.MatchesAdapter;
-import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.listeners.MatchListener;
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.ExceededCharacterException;
+import com.asus.embedded.champp.model.InvalidScoreException;
 import com.asus.embedded.champp.model.Match;
 import com.asus.embedded.champp.model.Participant;
-import com.asus.embedded.champp.model.RankingActivity;
 
 import java.util.List;
 
@@ -71,7 +71,7 @@ public class CupActivity extends ActionBarActivity {
                                     //Descomenta aqui somente se quiser que chame a activity de ver campeao , mas comente a linha
                                     // de cima
                                     //Participant campeao = c.campeao();
-                                    //Intent intent = new Intent(CupActivity.this,CampeaoActivity.class);
+                                    //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
                                     //intent.putExtra("CAMPEAO",campeao.getName());
                                     //intent.putExtra("CAMPEONATO",c.getName());
                                     //startActivity(intent);
@@ -79,7 +79,7 @@ public class CupActivity extends ActionBarActivity {
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
-                    Toast.makeText(CupActivity.this,"Insira valores validos nos campos de resultado",Toast.LENGTH_LONG).show();
+                    Toast.makeText(CupActivity.this,R.string.validField,Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -114,7 +114,7 @@ public class CupActivity extends ActionBarActivity {
 
         if (c.isCampeao()){
             Participant campeao = c.campeao();
-            Intent intent = new Intent(CupActivity.this,CampeaoActivity.class);
+            Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
             intent.putExtra("CAMPEAO",campeao.getName());
             intent.putExtra("CAMPEONATO",c.getName());
             startActivity(intent);
@@ -135,7 +135,7 @@ public class CupActivity extends ActionBarActivity {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.dialog_campeao_trofeu, null));
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage("Parabens " + campeao.getName() + " você é o novo campeao da " + c.getName() + "!!!")
+        builder.setMessage("Congratulations " + campeao.getName() + " You are the new champion of " + c.getName() + " !")
                 .setIcon(R.mipmap.campeao)
                 .setTitle("CAMPEÃO");
         // 3. Add the buttons
@@ -225,21 +225,13 @@ public class CupActivity extends ActionBarActivity {
             adapter.updateItens(c.getMatches());
 
             Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
-
-
-
-
-        } catch (Exception ex) {
-            //quando entrar aqui eh porque ele nao colocou nada no edittext
-            Toast.makeText(this,"Insira valores validos nos campos de resultado",Toast.LENGTH_LONG).show();
+        } catch (InvalidScoreException e) {
+            Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();;
+        } catch (ExceededCharacterException e) {
+            Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+        } catch (EmptyFieldException e) {
+            Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();
         }
-
-
-
-
-
-
-
 
 
     }

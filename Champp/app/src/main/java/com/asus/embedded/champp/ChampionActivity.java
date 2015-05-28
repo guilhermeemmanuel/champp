@@ -9,12 +9,13 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 
-public class CampeaoActivity extends ActionBarActivity {
-      private TextView campeao;
+public class ChampionActivity extends ActionBarActivity {
+    private TextView campeao;
     static final String CAMPEAO = "CAMPEAO";
     static final String CAMPEONATO = "CAMPEONATO";
     private String champName;
     private String participantName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ public class CampeaoActivity extends ActionBarActivity {
            Log.i("Entrou","aqui2");
        }
 
-        campeao.setText("Parabéns " + participantName + " você é o novo campeão da " + champName + " !!! ");
+        campeao.setText("Congratulations " + participantName + " You are the new champion of "+ champName + " !");
     }
 
 

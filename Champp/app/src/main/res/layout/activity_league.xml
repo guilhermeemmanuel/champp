@@ -11,10 +11,12 @@
         android:id="@+id/league_matches"
         android:text="Matches"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_material_dark"/>
 
     <ListView
         android:id="@+id/matches_League_Lv"
+        android:descendantFocusability="afterDescendants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -25,6 +25,7 @@ import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.ExceededCharacterException;
 import com.asus.embedded.champp.model.Participant;
 import com.asus.embedded.champp.model.SameNameException;
 
@@ -142,7 +143,13 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             if(c.getParticipants().size() < 2){
                 Toast.makeText(this,R.string.champUnstarted,Toast.LENGTH_LONG).show();
             }else{
-                c = ChampionshipController.getInstance().startChamp(c.getName());
+                try {
+                    c = ChampionshipController.getInstance().startChamp(c.getName());
+                } catch (ExceededCharacterException e) {
+                    Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+                } catch (EmptyFieldException e) {
+                    Toast.makeText(this,R.string.fieldEmpty,Toast.LENGTH_LONG).show();
+                }
                 Intent intent;
                 if (c.isCup()){
                     intent = new Intent(this, CupActivity.class);
@@ -226,6 +233,8 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                     Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
                 } catch (SameNameException e) {
                     Toast.makeText(this,R.string.sameName, Toast.LENGTH_SHORT).show();
+                } catch (ExceededCharacterException e) {
+                    Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
                 }
             }
         }

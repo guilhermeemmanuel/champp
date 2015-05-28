@@ -15,9 +15,6 @@ import com.asus.embedded.champp.model.Participant;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Guilherme-PC on 27/04/2015.
- */
 public class ParticipantsAdapter extends BaseAdapter {
 
 
