@@ -9,22 +9,29 @@
     <TextView
         android:id="@+id/welcome"
         android:text="@string/welcome"
-        android:textColor="@color/primary_text_default_material_light"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/txt_18sp"
+        style="@style/txt_green"/>
 
     <Button
+        style="@style/btn_white_large"
         android:id="@+id/newChamp"
         android:text="@string/newChamp"
         android:layout_gravity="center_horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="newChamp"/>
+        android:layout_height="50dp"
+        android:onClick="newChamp"
+        android:layout_marginBottom="@dimen/txt_18sp"
+       />
 
     <ListView
+
         android:id="@+id/champ_list_view"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="393dp"
+        android:divider="@color/verde"
+        android:dividerHeight="1dp"/>
 
 </LinearLayout>

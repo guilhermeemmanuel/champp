@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,13 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"
+            android:label="@string/app_name">
+
+        </activity>
         <activity
             android:name=".NewChampActivity"
             android:label="@string/title_activity_new_champ" >
-        </activity>
-        <activity
-            android:name=".MyChampActivity"
-            android:label="@string/title_activity_my_champ" >
         </activity>
         <activity
             android:name=".ChampCharacteristicsActivity"
@@ -56,11 +56,11 @@
             android:name=".CampeaoActivity"
             android:label="@string/title_activity_campeao" >
         </activity>
-     <activity
+        <activity
             android:name=".model.RankingActivity"
             android:label="@string/title_activity_ranking" >
         </activity>
 
-</application>
+    </application>
 
 </manifest>

@@ -62,5 +62,15 @@
     <string name="setScoreDialogTitle">Change Score</string>
     <string name="title_activity_campeao">CampeaoActivity</string>
      <string name="title_activity_ranking">RankingActivity</string>
+    <string name="title_activity_logo">logoActivity</string>
+
+
+    <string-array name="modal_array">
+        <item>Futebol</item>
+        <item>Vôlei</item>
+        <item>Tênis</item>
+        <item>Futsal</item>
+        <item>Outro</item>
+    </string-array>
 
 </resources>

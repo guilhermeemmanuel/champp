@@ -6,8 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -18,8 +22,9 @@ import java.lang.String;
 
 
 public class NewChampActivity extends ActionBarActivity {
-    private EditText nameEt, modalEt;
+    private EditText nameEt;
     private RadioButton individualRb, cupRb;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +32,24 @@ public class NewChampActivity extends ActionBarActivity {
         setContentView(R.layout.activity_new_champ);
 
         nameEt = (EditText) findViewById(R.id.name_et);
-        modalEt = (EditText) findViewById(R.id.modal_et);
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
+        spinner = (Spinner) findViewById(R.id.modal_spinner);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.modal_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                              int pos, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
     }
 
 
@@ -57,7 +77,7 @@ public class NewChampActivity extends ActionBarActivity {
 
     public void createChamp(View view){
         String nameCp = nameEt.getText().toString();
-        String modalCp = modalEt.getText().toString();
+        String modalCp = spinner.getSelectedItem().toString();
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
 
