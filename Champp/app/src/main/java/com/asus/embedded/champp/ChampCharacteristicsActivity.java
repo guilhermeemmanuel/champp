@@ -144,7 +144,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 Toast.makeText(this,R.string.champUnstarted,Toast.LENGTH_LONG).show();
             }else{
                 try {
-                    c = ChampionshipController.getInstance().startChamp(c.getName());
+                    c = ChampionshipController.getInstance(getApplicationContext()).startChamp(c.getName());
                 } catch (ExceededCharacterException e) {
                     Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
                 } catch (EmptyFieldException e) {
@@ -227,7 +227,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             if(resultCode == 1) {
                 String name = data.getStringExtra("NEW_PART");
                 try {
-                    this.c = ChampionshipController.getInstance().addParticipant(c.getName(),name);
+                    this.c = ChampionshipController.getInstance(getApplicationContext()).addParticipant(c.getName(),name);
                     Toast.makeText(this,R.string.participantCreated, Toast.LENGTH_SHORT).show();
                 }  catch (EmptyFieldException e) {
                     Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();

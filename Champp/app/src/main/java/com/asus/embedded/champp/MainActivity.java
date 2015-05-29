@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.adapters.ListMyChampsAdapter;
+import com.asus.embedded.champp.persistence.DatabaseHelper;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        List<Championship> champs = ChampionshipController.getInstance().getChamps();
+        List<Championship> champs = ChampionshipController.getInstance(getApplicationContext()).getChamps();
         adapter = new ListMyChampsAdapter(this, champs);
         champListView.setAdapter(adapter);
     }

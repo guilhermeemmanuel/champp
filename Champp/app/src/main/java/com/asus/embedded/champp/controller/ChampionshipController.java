@@ -1,5 +1,7 @@
 package com.asus.embedded.champp.controller;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
@@ -7,6 +9,7 @@ import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.ExceededCharacterException;
 import com.asus.embedded.champp.model.InvalidScoreException;
 import com.asus.embedded.champp.model.SameNameException;
+import com.asus.embedded.champp.persistence.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +17,12 @@ import java.util.List;
 public class ChampionshipController {
     private static ChampionshipController cp;
     private static List<Championship> champs;
+    private DatabaseHelper dbHelper;
 
-    private ChampionshipController() {
+    private ChampionshipController(Context context) {
         //TODO pegar todos os campeonatos do banco.
         champs = new ArrayList<Championship>();
+        dbHelper = new DatabaseHelper(context);
     }
 
     public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
@@ -43,10 +48,12 @@ public class ChampionshipController {
         return null;
     }
 
-    public static ChampionshipController getInstance() {
+    public static ChampionshipController getInstance(Context context) {
         if(cp == null){
-            cp = new ChampionshipController();
+            cp = new ChampionshipController(context);
             try {
+
+                /*
                 cp.createChampionship("Copa do Brasil", "Futebol", false, true);
                 cp.addParticipant("Copa do Brasil", "Palmeiras");
                 cp.addParticipant("Copa do Brasil", "Santos");
@@ -63,7 +70,7 @@ public class ChampionshipController {
                 cp.addParticipant("Campeonato Brasileiro", "Santos");
                 cp.addParticipant("Campeonato Brasileiro", "Corinthians");
                 cp.addParticipant("Campeonato Brasileiro", "Joinvile");
-
+*/
             } catch (Exception ex) {
 
             }
