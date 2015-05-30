@@ -27,14 +27,11 @@ public class ChampionshipController {
 
     public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         Championship c = new Championship(name, modal, isIndividual, isCup);
+        dbHelper.insertChampionship(c);
 
-        if(champs.contains(c)){ throw new SameNameException();}
+        //if(champs.contains(c)){ throw new SameNameException();}
 
-        champs.add(c);
-        Log.i("champ",name);
-        Log.i("champ",modal);
-        Log.i("champ","" + isIndividual);
-        Log.i("champ","" + isCup);
+        //champs.add(c);
     }
 
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
@@ -78,8 +75,8 @@ public class ChampionshipController {
         return cp;
     }
 
-    public static List<Championship> getChamps() {
-        return champs;
+    public List<Championship> getChamps() {
+        return dbHelper.getAllChampionships();
     }
 
 /*

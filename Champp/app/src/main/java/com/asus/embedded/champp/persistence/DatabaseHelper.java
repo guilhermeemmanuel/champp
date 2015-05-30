@@ -37,14 +37,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("BD", "onupgrade");
     }
 
-    public void insertChampionship(String name, String model) {
+    public void insertChampionship(Championship championship) {
         Log.d("BD", "insert Championship");
         SQLiteDatabase sqlLite = this.getWritableDatabase();
 
         ContentValues content = new ContentValues();
 
-        content.put("NOME", "Copa do Brasil");
-        content.put("MODAL", "Futebol");
+        content.put("NOME", championship.getName());
+        content.put("MODAL", championship.getModal());
         sqlLite.insert("CHAMPIONSHIP", null, content);
         sqlLite.close();
     }
