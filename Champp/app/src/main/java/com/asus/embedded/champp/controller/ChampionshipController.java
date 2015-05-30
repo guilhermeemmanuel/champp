@@ -25,13 +25,10 @@ public class ChampionshipController {
         dbHelper = new DatabaseHelper(context);
     }
 
+    //DB OK
     public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         Championship c = new Championship(name, modal, isIndividual, isCup);
         dbHelper.insertChampionship(c);
-
-        //if(champs.contains(c)){ throw new SameNameException();}
-
-        //champs.add(c);
     }
 
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
@@ -48,51 +45,18 @@ public class ChampionshipController {
     public static ChampionshipController getInstance(Context context) {
         if(cp == null){
             cp = new ChampionshipController(context);
-            try {
-
-                /*
-                cp.createChampionship("Copa do Brasil", "Futebol", false, true);
-                cp.addParticipant("Copa do Brasil", "Palmeiras");
-                cp.addParticipant("Copa do Brasil", "Santos");
-                cp.addParticipant("Copa do Brasil", "São Paulo");
-                cp.addParticipant("Copa do Brasil", "Flamengo");
-                cp.addParticipant("Copa do Brasil", "Vasco");
-                cp.addParticipant("Copa do Brasil", "Treze");
-                cp.addParticipant("Copa do Brasil", "Cruzeiro");
-                cp.addParticipant("Copa do Brasil", "Atletico");
-
-
-                cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
-                cp.addParticipant("Campeonato Brasileiro", "Palmeiras");
-                cp.addParticipant("Campeonato Brasileiro", "Santos");
-                cp.addParticipant("Campeonato Brasileiro", "Corinthians");
-                cp.addParticipant("Campeonato Brasileiro", "Joinvile");
-*/
-            } catch (Exception ex) {
-
-            }
         }
         return cp;
     }
 
+    //DB OK
     public List<Championship> getChamps() {
         return dbHelper.getAllChampionships();
     }
 
-/*
-    public List<String> getChampsName() {
-        List<String> result = new ArrayList<>();
-        if(!champsIsEmpty()){
-            for (Championship champ : champs){
-                result.add(champ.getName());
-            }
-        }
-        return result;
-    }
-*/
-
+    // DB OK
     public boolean champsIsEmpty(){
-        return champs.isEmpty();
+        return getChamps().isEmpty();
     }
 
 
