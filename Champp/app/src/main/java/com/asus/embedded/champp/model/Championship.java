@@ -21,9 +21,10 @@ public class Championship implements Serializable {
     private boolean isCup;
     //BD
     private List<Participant> participants;
-
+    //BD
     private boolean isStarted = false;
     private List<Round> rounds;
+    //BD
     private boolean isCampeao = false;
     private Participant campeao;
 
@@ -269,6 +270,7 @@ public class Championship implements Serializable {
         this.participants = participants;
         this.isStarted = isStarted;
         this.isCampeao = isCampeao;
+        this.rounds = new ArrayList<>();
     }
 
 

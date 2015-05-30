@@ -64,9 +64,10 @@ public class ChampionshipController {
 
 
     public Championship startChamp(String name) throws ExceededCharacterException, EmptyFieldException {
-        for (Championship championship : champs) {
+        for (Championship championship : getChamps()) {
             if (championship.equals(new Championship(name))){
                 championship.startedChamp();
+                dbHelper.insertMatches(name, championship.getMatches());
                 return championship;
             }
         }

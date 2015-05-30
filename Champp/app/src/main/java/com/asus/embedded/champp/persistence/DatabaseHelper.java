@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.Match;
 import com.asus.embedded.champp.model.Participant;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0, " +
                 "isStarted INTEGER DEFAULT 0, isCampeao INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, NUMBER INTEGER DEFAULT 0," +
+                "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT)");
 
     }
 
@@ -69,6 +72,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         content.put("CHAMP", champName);
         sqlLite.insert("PARTICIPANT", null, content);
         sqlLite.close();
+    }
+
+    public void insertMatches(String champName, List<Match> matches) {
+
     }
 
 
