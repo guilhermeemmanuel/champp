@@ -262,7 +262,8 @@ public class Championship implements Serializable {
     }
 
 
-    private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao) {
+    private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
+            List<Match> matches) {
         this.name = name;
         this.modal = modal;
         this.isCup = isCup;
@@ -274,8 +275,9 @@ public class Championship implements Serializable {
     }
 
 
-    public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao) {
-        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao);
+    public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao
+            , List<Match> matches) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches);
     }
 
 }

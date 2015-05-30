@@ -75,9 +75,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void insertMatches(String champName, List<Match> matches) {
+        for (Match match : matches) {
+            SQLiteDatabase sqlLite = this.getWritableDatabase();
 
+            ContentValues content = new ContentValues();
+
+            content.put("champName", champName);
+            sqlLite.insert("MATCH", null, content);
+            sqlLite.close();
+        }
     }
 
+    public void startChamp(String champName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("isStarted", 1);
+
+        // updating row
+        db.update("CHAMPIONSHIP", values, "NOME" + " = ?",
+                new String[] { String.valueOf(champName) });
+    }
 
 
     public List<Championship> getAllChampionships() {
@@ -94,8 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Log.d("BD", "iteracao");
                 try{
+                    List<Match> matches = new ArrayList<>();
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
-                            getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1), (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1));
+                            getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
+                            (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches);
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");

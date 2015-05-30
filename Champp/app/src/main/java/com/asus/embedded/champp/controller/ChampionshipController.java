@@ -67,6 +67,7 @@ public class ChampionshipController {
         for (Championship championship : getChamps()) {
             if (championship.equals(new Championship(name))){
                 championship.startedChamp();
+                dbHelper.startChamp(name);
                 dbHelper.insertMatches(name, championship.getMatches());
                 return championship;
             }
