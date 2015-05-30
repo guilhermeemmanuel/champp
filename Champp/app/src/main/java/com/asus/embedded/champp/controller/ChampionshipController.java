@@ -8,6 +8,7 @@ import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.ExceededCharacterException;
 import com.asus.embedded.champp.model.InvalidScoreException;
+import com.asus.embedded.champp.model.Participant;
 import com.asus.embedded.champp.model.SameNameException;
 import com.asus.embedded.champp.persistence.DatabaseHelper;
 
@@ -30,12 +31,14 @@ public class ChampionshipController {
         Championship c = new Championship(name, modal, isIndividual, isCup);
         dbHelper.insertChampionship(c);
     }
-
+    //DB OK
+    //FIXME pegar apenas os participantes desse campeonato
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
-        for (Championship champ : champs) {
+        for (Championship champ : getChamps()) {
 
             if(champ.equals(new Championship(nameChamp))){
                 champ.addParticipant(participant);
+                dbHelper.insertParticipant(nameChamp,new Participant(participant));
                 return champ;
             }
         }
