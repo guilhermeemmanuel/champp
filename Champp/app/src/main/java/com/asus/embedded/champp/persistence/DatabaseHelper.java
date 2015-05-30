@@ -19,7 +19,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,13 +28,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.d("BD", "oncreate");
-        sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0);");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         Log.d("BD", "onupgrade");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS CHAMPIONSHIP");
+
+        onCreate(sqLiteDatabase);
     }
 
     public void insertChampionship(Championship championship) {
@@ -45,6 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         content.put("NOME", championship.getName());
         content.put("MODAL", championship.getModal());
+        content.put("isCup", championship.isCup() ? 1 : 0);
+        content.put("isIndividual", championship.isIndividual() ? 1 : 0);
         sqlLite.insert("CHAMPIONSHIP", null, content);
         sqlLite.close();
     }
@@ -65,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Log.d("BD", "iteracao");
                 try{
-                    Championship championship = new Championship(cursor.getString(0));
+                    Championship championship = new Championship(cursor.getString(0), cursor.getString(1),(cursor.getInt(cursor.getColumnIndex("isCup")) == 1),(cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1));
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");
