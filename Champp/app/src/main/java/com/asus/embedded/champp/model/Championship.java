@@ -1,5 +1,6 @@
 package com.asus.embedded.champp.model;
 
+import android.provider.Telephony;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -9,11 +10,18 @@ import java.util.List;
 public class Championship implements Serializable {
     private static final int NAME_LIMIT = 25;
     private final int MODAL_LIMIT = 15;
+
+    //BD
     private String name;
+    //BD
     private String modal;
+    //BD
     private boolean isIndividual;
+    //BD
     private boolean isCup;
-    private ArrayList<Participant> participants;
+    //BD
+    private List<Participant> participants;
+
     private boolean isStarted = false;
     private List<Round> rounds;
     private boolean isCampeao = false;
@@ -86,7 +94,7 @@ public class Championship implements Serializable {
         participants.add(new Participant(name));
     }
 
-    public ArrayList<Participant> getParticipants() {
+    public List<Participant> getParticipants() {
         return participants;
     }
 
@@ -250,6 +258,22 @@ public class Championship implements Serializable {
             //}
         }
 
+    }
+
+
+    private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao) {
+        this.name = name;
+        this.modal = modal;
+        this.isCup = isCup;
+        this.isIndividual = isIndividual;
+        this.participants = participants;
+        this.isStarted = isStarted;
+        this.isCampeao = isCampeao;
+    }
+
+
+    public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao);
     }
 
 }
