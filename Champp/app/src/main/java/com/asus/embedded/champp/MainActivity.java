@@ -72,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void deleteItem(final View v) {
+    public void deleteItem(final View vAct) {
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -82,7 +82,7 @@ public class MainActivity extends ActionBarActivity {
         // 3. Add the buttons
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-               sureDeleteItem(v);
+               sureDeleteItem(vAct);
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

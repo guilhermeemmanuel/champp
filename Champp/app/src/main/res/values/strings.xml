@@ -11,6 +11,7 @@
     <string name="champ_cup">Cup</string>
     <string name="champ_league">League</string>
     <string name="ok">Ok</string>
+    <string name="participante_emptyName">participant Empty Name </string>
     <string name="type_modality">Type of the Modality:</string>
     <string name="type_of_competition">Type of competition:</string>
     <string name="title_activity_my_champs">My Champs</string>

@@ -53,11 +53,15 @@ public class AddParticipantActivity extends ActionBarActivity {
 
     public void createParticipant(View view){
         String name = nameParticipant.getText().toString();
+        //Excessao de times vazios
+        if(name.trim().equals("")){
+            Toast.makeText(this,R.string.participante_emptyName, Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intent = new Intent();
+            intent.putExtra("NEW_PART", name);
 
-        Intent intent = new Intent();
-        intent.putExtra("NEW_PART", name);
-
-        setResult(1, intent);
-        finish();
+            setResult(1, intent);
+            finish();
+        }
 }
 }
