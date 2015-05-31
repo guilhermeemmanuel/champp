@@ -261,6 +261,11 @@ public class Championship implements Serializable {
 
     }
 
+    //TODO
+    public boolean hasRound(int round) {
+        return false;
+    }
+
 
     private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
             List<Match> matches) {
@@ -272,6 +277,12 @@ public class Championship implements Serializable {
         this.isStarted = isStarted;
         this.isCampeao = isCampeao;
         this.rounds = new ArrayList<>();
+        for (Match match : matches) {
+            if (!hasRound(Integer.parseInt(match.getRound()))) {
+                Round round = new Round(Integer.parseInt(match.getRound()));
+                round.getMatches().add(match);
+            }
+        }
     }
 
 

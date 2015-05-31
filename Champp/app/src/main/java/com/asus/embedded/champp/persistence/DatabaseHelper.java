@@ -21,7 +21,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -33,8 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0, " +
                 "isStarted INTEGER DEFAULT 0, isCampeao INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT);");
-        sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, NUMBER INTEGER DEFAULT 0," +
-                "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT)");
+        sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
+                "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0)");
 
     }
 
@@ -81,6 +81,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ContentValues content = new ContentValues();
 
             content.put("champName", champName);
+            content.put("HOME", match.getHome().getName());
+            content.put("VISITANT", match.getVisitant().getName());
+            content.put("ROUND", match.getRound());
+            content.put("no", match.getNumber());
+            content.put("FINISHED", match.isFinished() ? 1 : 0);
+            content.put("visScore", match.getVisitantScore());
+            content.put("homeScore", match.getHomeScore());
+
             sqlLite.insert("MATCH", null, content);
             sqlLite.close();
         }
@@ -97,6 +105,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(champName) });
     }
 
+    //FIXME pegar apenas os desse campeonato
+    public List<Match> getAllMatches(String champName) {
+        List<Match> matches = new ArrayList<>();
+
+        String selectQuery = "SELECT  * FROM MATCH";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Log.d("BD", "iteracao");
+                try{
+                    String homeName = cursor.getString(1);
+                    String visName = cursor.getString(2);
+                    String round = cursor.getString(3);
+                    int no = cursor.getInt(cursor.getColumnIndex("no"));
+                    Match m = new Match(new Participant(homeName), new Participant(visName), round, no);
+                    matches.add(m);
+                } catch (Exception ex) {
+                    Log.d("BD", "erro");
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return matches;
+    }
 
     public List<Championship> getAllChampionships() {
         Log.d("BD", "get all championships");
@@ -113,12 +149,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Log.d("BD", "iteracao");
                 try{
                     List<Match> matches = new ArrayList<>();
+                    //List<Match> matches = getAllMatches(cursor.getString(0));
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
                             (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches);
                     champList.add(championship);
                 } catch (Exception ex) {
-                    Log.d("BD", "erro");
+                    Log.d("BD", ex.getMessage());
                 }
             } while (cursor.moveToNext());
         }
@@ -128,7 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    //TODO pegar apenas os desse campeonato
+    //FIXME pegar apenas os desse campeonato
     public List<Participant> getAllParticipants(String champName) {
         List<Participant> participants = new ArrayList<>();
 
