@@ -278,9 +278,19 @@ public class Championship implements Serializable {
         this.isCampeao = isCampeao;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
-            if (!hasRound(Integer.parseInt(match.getRound()))) {
-                Round round = new Round(Integer.parseInt(match.getRound()));
+            int r = 0;
+            if(match.getRound().equals("preliminars")) {
+                r = -1;
+            }
+            else {
+                String round = match.getRound();
+                round = round.replaceFirst("round of ","");
+                r = Integer.parseInt(round);
+            }
+            if (!hasRound(r)) {
+                Round round = new Round(r);
                 round.getMatches().add(match);
+                rounds.add(round);
             }
         }
     }

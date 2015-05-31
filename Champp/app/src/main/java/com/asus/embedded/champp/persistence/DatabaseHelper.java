@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Log.d("BD", "iteracao");
+                Log.d("BD", "iteracaoA");
                 try{
                     String homeName = cursor.getString(1);
                     String visName = cursor.getString(2);
@@ -146,10 +146,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                Log.d("BD", "iteracao");
+                Log.d("BD", "champ");
                 try{
-                    List<Match> matches = new ArrayList<>();
-                    //List<Match> matches = getAllMatches(cursor.getString(0));
+                    //List<Match> matches = new ArrayList<>();
+                    List<Match> matches = getAllMatches(cursor.getString(0));
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
                             (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches);
