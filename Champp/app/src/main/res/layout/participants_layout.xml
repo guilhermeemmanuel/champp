@@ -23,6 +23,7 @@
         android:layout_toStartOf="@+id/participant_delete_bt"/>
 
     <Button
+        style="@style/btn_white_large"
         android:id="@+id/participant_delete_bt"
         android:text="@string/btnDelete"
         android:layout_width="90dp"

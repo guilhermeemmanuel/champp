@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        style="@style/btn_white_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/init_champ"
@@ -39,6 +40,7 @@
         android:onClick="initChamp"/>
 
     <Button
+        style="@style/btn_white_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_table"
