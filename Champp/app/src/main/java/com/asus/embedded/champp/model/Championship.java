@@ -1,5 +1,6 @@
 package com.asus.embedded.champp.model;
 
+import android.provider.Telephony;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -9,13 +10,21 @@ import java.util.List;
 public class Championship implements Serializable {
     private static final int NAME_LIMIT = 25;
     private final int MODAL_LIMIT = 15;
+
+    //BD
     private String name;
+    //BD
     private String modal;
+    //BD
     private boolean isIndividual;
+    //BD
     private boolean isCup;
-    private ArrayList<Participant> participants;
+    //BD
+    private List<Participant> participants;
+    //BD
     private boolean isStarted = false;
     private List<Round> rounds;
+    //BD
     private boolean isCampeao = false;
     private Participant campeao;
 
@@ -86,7 +95,7 @@ public class Championship implements Serializable {
         participants.add(new Participant(name));
     }
 
-    public ArrayList<Participant> getParticipants() {
+    public List<Participant> getParticipants() {
         return participants;
     }
 
@@ -250,6 +259,46 @@ public class Championship implements Serializable {
             //}
         }
 
+    }
+
+    //TODO
+    public boolean hasRound(int round) {
+        return false;
+    }
+
+
+    private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
+            List<Match> matches) {
+        this.name = name;
+        this.modal = modal;
+        this.isCup = isCup;
+        this.isIndividual = isIndividual;
+        this.participants = participants;
+        this.isStarted = isStarted;
+        this.isCampeao = isCampeao;
+        this.rounds = new ArrayList<>();
+        for (Match match : matches) {
+            int r = 0;
+            if(match.getRound().equals("preliminars")) {
+                r = -1;
+            }
+            else {
+                String round = match.getRound();
+                round = round.replaceFirst("round of ","");
+                r = Integer.parseInt(round);
+            }
+            if (!hasRound(r)) {
+                Round round = new Round(r);
+                round.getMatches().add(match);
+                rounds.add(round);
+            }
+        }
+    }
+
+
+    public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao
+            , List<Match> matches) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches);
     }
 
 }

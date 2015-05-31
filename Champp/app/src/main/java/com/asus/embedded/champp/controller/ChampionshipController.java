@@ -1,12 +1,16 @@
 package com.asus.embedded.champp.controller;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.ExceededCharacterException;
 import com.asus.embedded.champp.model.InvalidScoreException;
+import com.asus.embedded.champp.model.Participant;
 import com.asus.embedded.champp.model.SameNameException;
+import com.asus.embedded.champp.persistence.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,88 +18,57 @@ import java.util.List;
 public class ChampionshipController {
     private static ChampionshipController cp;
     private static List<Championship> champs;
+    private DatabaseHelper dbHelper;
 
-    private ChampionshipController() {
+    private ChampionshipController(Context context) {
         //TODO pegar todos os campeonatos do banco.
         champs = new ArrayList<Championship>();
+        dbHelper = new DatabaseHelper(context);
     }
 
+    //DB OK
     public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         Championship c = new Championship(name, modal, isIndividual, isCup);
-
-        if(champs.contains(c)){ throw new SameNameException();}
-
-        champs.add(c);
-        Log.i("champ",name);
-        Log.i("champ",modal);
-        Log.i("champ","" + isIndividual);
-        Log.i("champ","" + isCup);
+        dbHelper.insertChampionship(c);
     }
-
+    //DB OK
+    //FIXME pegar apenas os participantes desse campeonato
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
-        for (Championship champ : champs) {
+        for (Championship champ : getChamps()) {
 
             if(champ.equals(new Championship(nameChamp))){
                 champ.addParticipant(participant);
+                dbHelper.insertParticipant(nameChamp,new Participant(participant));
                 return champ;
             }
         }
         return null;
     }
 
-    public static ChampionshipController getInstance() {
+    public static ChampionshipController getInstance(Context context) {
         if(cp == null){
-            cp = new ChampionshipController();
-            try {
-                cp.createChampionship("Copa do Brasil", "Futebol", false, true);
-                cp.addParticipant("Copa do Brasil", "Palmeiras");
-                cp.addParticipant("Copa do Brasil", "Santos");
-                cp.addParticipant("Copa do Brasil", "São Paulo");
-                cp.addParticipant("Copa do Brasil", "Flamengo");
-                cp.addParticipant("Copa do Brasil", "Vasco");
-                cp.addParticipant("Copa do Brasil", "Treze");
-                cp.addParticipant("Copa do Brasil", "Cruzeiro");
-                cp.addParticipant("Copa do Brasil", "Atletico");
-
-
-                cp.createChampionship("Campeonato Brasileiro", "Futebol", false, false);
-                cp.addParticipant("Campeonato Brasileiro", "Palmeiras");
-                cp.addParticipant("Campeonato Brasileiro", "Santos");
-                cp.addParticipant("Campeonato Brasileiro", "Corinthians");
-                cp.addParticipant("Campeonato Brasileiro", "Joinvile");
-
-            } catch (Exception ex) {
-
-            }
+            cp = new ChampionshipController(context);
         }
         return cp;
     }
 
-    public static List<Championship> getChamps() {
-        return champs;
+    //DB OK
+    public List<Championship> getChamps() {
+        return dbHelper.getAllChampionships();
     }
 
-/*
-    public List<String> getChampsName() {
-        List<String> result = new ArrayList<>();
-        if(!champsIsEmpty()){
-            for (Championship champ : champs){
-                result.add(champ.getName());
-            }
-        }
-        return result;
-    }
-*/
-
+    // DB OK
     public boolean champsIsEmpty(){
-        return champs.isEmpty();
+        return getChamps().isEmpty();
     }
 
 
     public Championship startChamp(String name) throws ExceededCharacterException, EmptyFieldException {
-        for (Championship championship : champs) {
+        for (Championship championship : getChamps()) {
             if (championship.equals(new Championship(name))){
                 championship.startedChamp();
+                dbHelper.startChamp(name);
+                dbHelper.insertMatches(name, championship.getMatches());
                 return championship;
             }
         }

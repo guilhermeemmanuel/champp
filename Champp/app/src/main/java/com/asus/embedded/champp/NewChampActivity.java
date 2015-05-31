@@ -83,7 +83,7 @@ public class NewChampActivity extends ActionBarActivity {
         boolean cupCp = cupRb.isChecked();
 
         try {
-            ChampionshipController.getInstance().createChampionship(nameCp, modalCp, indivCp, cupCp);
+            ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
             Intent intent = new Intent();
             setResult(1, intent);
             finish();

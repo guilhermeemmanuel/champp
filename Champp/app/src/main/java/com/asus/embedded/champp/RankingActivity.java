@@ -88,7 +88,7 @@ public class RankingActivity extends Activity {
         List<Participant> aux = new ArrayList<Participant>();
         String concatena = null;
 
-        for(Championship c : ChampionshipController.getChamps()) {
+        for(Championship c : ChampionshipController.getInstance(getApplicationContext()).getChamps()) {
 
                 if (c.getName().equals("liga")) {
                     aux = c.getParticipants();
