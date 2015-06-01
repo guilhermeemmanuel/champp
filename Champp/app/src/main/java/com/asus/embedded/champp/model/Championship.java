@@ -1,6 +1,7 @@
 package com.asus.embedded.champp.model;
 
 import android.provider.Telephony;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -119,7 +120,7 @@ public class Championship implements Serializable {
                 int dif = participants.size() - org;
                 Round r = new Round(-1);
                 for (int i = 0; i < dif; i++) {
-                    r.getMatches().add(new Match(participants.get(i * 2), participants.get(i * 2 + 1), "preliminars ", i));
+                    r.getMatches().add(new Match(participants.get(i * 2), participants.get(i * 2 + 1), "preliminars", i));
                 }
                 this.rounds.add(r);
 
@@ -261,14 +262,19 @@ public class Championship implements Serializable {
 
     }
 
-    //TODO
     public boolean hasRound(int round) {
+        for (Round r : rounds) {
+            if(r.getNumber() == round) {
+                return true;
+            }
+        }
         return false;
     }
 
 
     private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
             List<Match> matches) {
+        Log.d("BD",name);
         this.name = name;
         this.modal = modal;
         this.isCup = isCup;
@@ -279,12 +285,18 @@ public class Championship implements Serializable {
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
             int r = 0;
+            Log.d("BD",match.getRound());
             if(match.getRound().equals("preliminars")) {
                 r = -1;
             }
             else {
                 String round = match.getRound();
-                round = round.replaceFirst("round of ","");
+                if(isCup){
+                    round = round.replaceFirst("round of ","");
+                }
+                else {
+                    round = round.replaceFirst("round ","");
+                }
                 r = Integer.parseInt(round);
             }
             if (!hasRound(r)) {
@@ -292,6 +304,14 @@ public class Championship implements Serializable {
                 round.getMatches().add(match);
                 rounds.add(round);
             }
+            else {
+                for (Round round : rounds) {
+                    if(round.getNumber() == r) {
+                        round.getMatches().add(match);
+                    }
+                }
+            }
+            //FIXME Talvez seja preciso reordenar a lista de rounds
         }
     }
 

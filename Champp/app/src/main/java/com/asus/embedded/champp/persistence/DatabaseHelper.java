@@ -21,7 +21,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 14;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,6 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("BD", "onupgrade");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS CHAMPIONSHIP");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS PARTICIPANT");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS MATCH");
 
         onCreate(sqLiteDatabase);
     }
@@ -105,11 +106,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(champName) });
     }
 
+    public void setMatchScore(String champName, int matchNumber, int home, int visitant) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Log.d("BD","score");
+
+        ContentValues values = new ContentValues();
+        values.put("finished", 1);
+        values.put("homeScore", home);
+        values.put("visScore", visitant);
+
+        // updating row
+        db.update("MATCH", values, "champName" + " = ?",
+                new String[] { String.valueOf(champName) });
+    }
+
     //FIXME pegar apenas os desse campeonato
     public List<Match> getAllMatches(String champName) {
         List<Match> matches = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM MATCH";
+        String selectQuery = "SELECT  * FROM MATCH WHERE champName = '" + champName + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -123,7 +138,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String visName = cursor.getString(2);
                     String round = cursor.getString(3);
                     int no = cursor.getInt(cursor.getColumnIndex("no"));
-                    Match m = new Match(new Participant(homeName), new Participant(visName), round, no);
+                    boolean finished = (cursor.getInt(cursor.getColumnIndex("FINISHED")) == 1);
+                    int homeScore = cursor.getInt(cursor.getColumnIndex("homeScore"));
+                    int visScore = cursor.getInt(cursor.getColumnIndex("visScore"));
+                    Match m = Match.createFromBD(new Participant(homeName), new Participant(visName), round, no,finished, homeScore, visScore);
                     matches.add(m);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");
@@ -149,6 +167,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Log.d("BD", "champ");
                 try{
                     //List<Match> matches = new ArrayList<>();
+                    Log.d("BD",cursor.getString(0));
                     List<Match> matches = getAllMatches(cursor.getString(0));
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
@@ -169,7 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Participant> getAllParticipants(String champName) {
         List<Participant> participants = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM PARTICIPANT";
+        String selectQuery = "SELECT  * FROM PARTICIPANT WHERE CHAMP = '" + champName + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

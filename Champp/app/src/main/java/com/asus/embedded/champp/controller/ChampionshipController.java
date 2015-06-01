@@ -21,7 +21,6 @@ public class ChampionshipController {
     private DatabaseHelper dbHelper;
 
     private ChampionshipController(Context context) {
-        //TODO pegar todos os campeonatos do banco.
         champs = new ArrayList<Championship>();
         dbHelper = new DatabaseHelper(context);
     }
@@ -32,7 +31,6 @@ public class ChampionshipController {
         dbHelper.insertChampionship(c);
     }
     //DB OK
-    //FIXME pegar apenas os participantes desse campeonato
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         for (Championship champ : getChamps()) {
 
@@ -63,6 +61,7 @@ public class ChampionshipController {
     }
 
 
+    //DB OK
     public Championship startChamp(String name) throws ExceededCharacterException, EmptyFieldException {
         for (Championship championship : getChamps()) {
             if (championship.equals(new Championship(name))){
@@ -75,12 +74,20 @@ public class ChampionshipController {
         return null;
     }
 
-    //TODO falta criar o metodo completo
-    //FIXME cuidado para nao permitir setar o resultado da mesma partida duas vezes
+    public Championship getChamp(String name) throws ExceededCharacterException, EmptyFieldException {
+        for (Championship c : getChamps()) {
+            if(c.equals(new Championship(name))) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
-        for (Championship championship : champs) {
+        for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant);
+                dbHelper.setMatchScore(champName, matchNumber, home, visitant);
                 return championship;
             }
         }

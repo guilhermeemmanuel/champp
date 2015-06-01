@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -87,6 +88,12 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d("BD", "onStart");
+        try {
+            c = ChampionshipController.getInstance(getApplicationContext()).getChamp(c.getName());
+        } catch (Exception ex) {
+
+        }
         invalidateOptionsMenu();
         if(c.isStarted()){
             startBt.setVisibility(View.GONE);
