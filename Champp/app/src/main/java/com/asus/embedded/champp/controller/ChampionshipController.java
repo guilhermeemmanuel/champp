@@ -17,11 +17,9 @@ import java.util.List;
 
 public class ChampionshipController {
     private static ChampionshipController cp;
-    private static List<Championship> champs;
     private DatabaseHelper dbHelper;
 
     private ChampionshipController(Context context) {
-        champs = new ArrayList<Championship>();
         dbHelper = new DatabaseHelper(context);
     }
 
@@ -74,6 +72,7 @@ public class ChampionshipController {
         return null;
     }
 
+    //BD OK
     public Championship getChamp(String name) throws ExceededCharacterException, EmptyFieldException {
         for (Championship c : getChamps()) {
             if(c.equals(new Championship(name))) {
@@ -83,6 +82,9 @@ public class ChampionshipController {
         return null;
     }
 
+    //BD in progress
+    //FIXME ele seta todos os jogos ao mesmo tempo
+    //TODO falta adicionar jogos novos
     public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
         for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
@@ -92,6 +94,10 @@ public class ChampionshipController {
             }
         }
         return null;
+    }
+
+    public void deleteChampionship(String champName) {
+        dbHelper.deleteChamp(champName);
     }
 
 }

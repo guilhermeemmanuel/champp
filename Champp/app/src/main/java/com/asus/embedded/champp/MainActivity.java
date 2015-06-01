@@ -96,7 +96,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void sureDeleteItem(View v){
-        adapter.removeItem((Integer) v.getTag());
+        ChampionshipController.getInstance(getApplicationContext()).deleteChampionship(adapter.getItem((Integer) v.getTag()).getName());
+        adapter.updateItens(ChampionshipController.getInstance(getApplicationContext()).getChamps());
         Toast.makeText(this,R.string.champDeleted,Toast.LENGTH_LONG).show();
    }
 

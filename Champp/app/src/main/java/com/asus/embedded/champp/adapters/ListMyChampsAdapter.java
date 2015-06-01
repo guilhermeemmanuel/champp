@@ -75,7 +75,7 @@ public class ListMyChampsAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void updateItens(ArrayList<Championship> itens) {
+    public void updateItens(List<Championship> itens) {
         this.itens = itens;
         notifyDataSetChanged();
     }

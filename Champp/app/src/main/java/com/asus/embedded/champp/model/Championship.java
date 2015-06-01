@@ -24,10 +24,15 @@ public class Championship implements Serializable {
     private List<Participant> participants;
     //BD
     private boolean isStarted = false;
+    //BD
     private List<Round> rounds;
     //BD
     private boolean isCampeao = false;
     private Participant campeao;
+
+
+    //BOOLEAN DE CONTROLE
+    private boolean nextRoundCreated = false;
 
     public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, ExceededCharacterException {
         if (name.isEmpty() || modal.isEmpty()) {
@@ -230,6 +235,7 @@ public class Championship implements Serializable {
         }
 
         if(quantWins == 1 && isCup()){
+            nextRoundCreated = false;
             isCampeao = true;
             campeao = wins.get(wins.size() -1);
         }

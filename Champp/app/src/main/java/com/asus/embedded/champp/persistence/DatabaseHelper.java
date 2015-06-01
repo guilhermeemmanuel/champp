@@ -95,6 +95,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //Deletar tbm os participants e jogos
+    public void deleteChamp(String champName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("CHAMPIONSHIP", "NOME" + " = ?",
+                new String[] { String.valueOf(champName) });
+        db.close();
+    }
+
     public void startChamp(String champName) {
         SQLiteDatabase db = this.getWritableDatabase();
 
