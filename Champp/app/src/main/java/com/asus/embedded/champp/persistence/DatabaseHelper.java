@@ -105,8 +105,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteParticipant(String champName, String participant) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("PARTICIPANT", "CHAMP" + " = ?",
-                new String[] { String.valueOf(champName) });
+        db.delete("PARTICIPANT", "CHAMP" + " = ? AND NOME = ?",
+                new String[] { String.valueOf(champName), String.valueOf(participant)  });
         db.close();
     }
 
@@ -117,7 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("isStarted", 1);
 
         // updating row
-        db.update("CHAMPIONSHIP", values, "NOME" + " = ?",
+        db.update("CHAMPIONSHIP", values, "NOME" + " = ?" ,
                 new String[] { String.valueOf(champName) });
     }
 
