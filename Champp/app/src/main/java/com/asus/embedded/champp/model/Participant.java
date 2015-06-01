@@ -58,17 +58,14 @@ public class Participant implements Serializable, Comparable<Participant> {
         return (participant.getPontuacao() - getPontuacao());
     }
 
+    private Participant(String name, int pontos) {
+        this.name = name;
+        this.counterPontos = pontos;
+    }
 
-
-    public static Participant createFromBD(String name) {
-        try {
-            Participant p = new Participant("test");
-            p.turnNilParticipant();
-            return p;
-        } catch (Exception ex) {
-
-        }
-        return null;
+    public static Participant createFromBD(String name, int pontos) {
+        Participant p = new Participant(name, pontos);
+        return p;
     }
 }
 

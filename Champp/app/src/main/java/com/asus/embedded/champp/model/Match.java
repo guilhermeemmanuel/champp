@@ -99,8 +99,17 @@ public class Match implements Serializable {
         return null;
     }
 
+    public void setHome(Participant participant) {
+        this.home = participant;
+    }
+
+    public void setVisitant (Participant participant) {
+        this.visitant = participant;
+    }
+
     public void sumPoints(){
 
+        Log.d("BD", "ps");
             if (visitantScore > homeScore) {
                 visitant.winMatch();
                 Log.v("Visitante ganhoou", visitant.getPontuacao() + "" + visitant.getName());

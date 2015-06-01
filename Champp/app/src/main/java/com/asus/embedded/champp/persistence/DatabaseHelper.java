@@ -21,7 +21,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("BD", "oncreate");
         sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0, " +
                 "isStarted INTEGER DEFAULT 0, isCampeao INTEGER DEFAULT 0, campeao TEXT);");
-        sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT);");
+        sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT, PONTOS INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
                 "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0)");
 
@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteParticipant(String champName, String participant) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("PARTICIPANT", "CHAMP" + " = ? AND NOME = ?",
-                new String[] { String.valueOf(champName), String.valueOf(participant)  });
+                new String[]{String.valueOf(champName), String.valueOf(participant)});
         db.close();
     }
 
@@ -120,6 +120,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         db.update("CHAMPIONSHIP", values, "NOME" + " = ?",
                 new String[]{String.valueOf(champName)});
+    }
+
+    public void setPoints(String champName, List<Participant> participants) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        for (Participant participant : participants) {
+            Log.d("BD","" + participant.getPontuacao());
+            ContentValues values = new ContentValues();
+            values.put("PONTOS", participant.getPontuacao());
+
+            // updating row
+            db.update("PARTICIPANT", values, "CHAMP" + " = ? AND NOME = ?",
+                    new String[]{String.valueOf(champName), String.valueOf(participant.getName())});
+        }
+
     }
 
     public void isChampion(String champName, boolean isCampeao, String participant) {
@@ -200,7 +216,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
                             (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches,
-                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("campeao"))));
+                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("campeao")),0));
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", ex.getMessage());
@@ -227,7 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Log.d("BD", "iteracao");
                 try{
-                    Participant p = new Participant(cursor.getString(0));
+                    Participant p = Participant.createFromBD(cursor.getString(0),cursor.getInt(cursor.getColumnIndex("PONTOS")) );
                     participants.add(p);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");

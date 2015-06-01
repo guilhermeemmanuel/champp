@@ -197,10 +197,11 @@ public class Championship implements Serializable {
                 if (match.equals(new Match(number))) {
                     Log.i("mudei", match.getHome().getName() + " " + home + " X " + match.getVisitant().getName() + " " + visitant);
                     match.setScore(home, visitant);
+                    match.sumPoints();
                     if (isProximosConfrontos()){
                         proximosConfrontos();
                     }
-                    match.sumPoints();
+
                     Log.i("mudei", "" + home);
                 }
             }
@@ -300,6 +301,8 @@ public class Championship implements Serializable {
         this.campeao = campeao;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
+            match.setHome(getParticipant(match.getHome().getName()));
+            match.setVisitant(getParticipant(match.getVisitant().getName()));
             int r = 0;
             Log.d("BD",match.getRound());
             if(match.getRound().equals("preliminars")) {
@@ -329,6 +332,15 @@ public class Championship implements Serializable {
             }
             //FIXME Talvez seja preciso reordenar a lista de rounds
         }
+    }
+
+    public Participant getParticipant(String name) {
+        for (Participant p : participants) {
+            if(p.getName().equals(name)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 
