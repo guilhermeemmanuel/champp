@@ -103,6 +103,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteParticipant(String champName, String participant) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("PARTICIPANT", "CHAMP" + " = ?",
+                new String[] { String.valueOf(champName) });
+        db.close();
+    }
+
     public void startChamp(String champName) {
         SQLiteDatabase db = this.getWritableDatabase();
 

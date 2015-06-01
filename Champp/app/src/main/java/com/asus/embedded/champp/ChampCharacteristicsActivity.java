@@ -141,7 +141,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     }
 
     public void sureDeleteItem(View v){
-        adapter.removeItem((Integer) v.getTag());
+
+        c = ChampionshipController.getInstance(getApplicationContext()).deleteParticipant(c.getName(), adapter.getItem((Integer) v.getTag()).getName());
+        adapter.updateItens(c.getParticipants());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 

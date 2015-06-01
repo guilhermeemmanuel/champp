@@ -100,4 +100,14 @@ public class ChampionshipController {
         dbHelper.deleteChamp(champName);
     }
 
+    public Championship deleteParticipant(String champName, String participant) {
+        dbHelper.deleteParticipant(champName, participant);
+        try {
+            return getChamp(champName);
+        } catch (Exception ex) {
+
+        }
+        return null;
+    }
+
 }
