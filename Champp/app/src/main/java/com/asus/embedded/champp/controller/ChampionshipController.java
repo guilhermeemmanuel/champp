@@ -83,7 +83,6 @@ public class ChampionshipController {
     }
 
     //BD in progress
-    //FIXME ele seta todos os jogos ao mesmo tempo
     //TODO falta adicionar jogos novos
     public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
         for (Championship championship : getChamps()) {
@@ -96,10 +95,13 @@ public class ChampionshipController {
         return null;
     }
 
+
     public void deleteChampionship(String champName) {
         dbHelper.deleteChamp(champName);
     }
 
+
+    //BD OK
     public Championship deleteParticipant(String champName, String participant) {
         dbHelper.deleteParticipant(champName, participant);
         try {

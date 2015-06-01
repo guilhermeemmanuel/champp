@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Deletar tbm os participants e jogos
+    //FIXME Deletar tbm os participants e jogos
     public void deleteChamp(String champName) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("CHAMPIONSHIP", "NOME" + " = ?",
@@ -131,11 +131,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("visScore", visitant);
 
         // updating row
-        db.update("MATCH", values, "champName" + " = ?",
-                new String[] { String.valueOf(champName) });
+        db.update("MATCH", values, "champName" + " = ? AND no = ?",
+                new String[] { String.valueOf(champName), String.valueOf(matchNumber) });
     }
 
-    //FIXME pegar apenas os desse campeonato
     public List<Match> getAllMatches(String champName) {
         List<Match> matches = new ArrayList<>();
 
