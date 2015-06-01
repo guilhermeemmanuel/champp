@@ -27,7 +27,6 @@ public class ChampionshipActivity extends ActionBarActivity {
 
         Intent i = getIntent();
         c = (Championship) i.getSerializableExtra("CAMPEAO");
-
         nameChamp.setText(c.getName());
 
     }

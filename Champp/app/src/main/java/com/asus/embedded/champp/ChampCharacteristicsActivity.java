@@ -78,6 +78,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         c = (Championship) i.getSerializableExtra("CAMPEAO");
+        setTitle(c.getName());
         nameTv.setText(c.getName());
         modal.setText(c.getModal());
         /*typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
