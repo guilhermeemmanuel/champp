@@ -28,6 +28,7 @@ public class Championship implements Serializable {
     private List<Round> rounds;
     //BD
     private boolean isCampeao = false;
+
     private Participant campeao;
 
 
@@ -245,6 +246,7 @@ public class Championship implements Serializable {
             int jogosAnteriores = (Util.getNearLowPotency(2, participants.size()))/2;
             int org = Util.getNearLowPotency(2, wins.size());
             if (org == wins.size()) {
+                nextRoundCreated = true;
                 //participantes eh potencia de 2
                 Round r = new Round(org);
                 int games = org / 2;
@@ -268,6 +270,14 @@ public class Championship implements Serializable {
 
     }
 
+    public boolean isNextRoundCreated() {
+        return nextRoundCreated;
+    }
+
+    public List<Match> getLastRound() {
+        return rounds.get(rounds.size() -1).getMatches();
+    }
+
     public boolean hasRound(int round) {
         for (Round r : rounds) {
             if(r.getNumber() == round) {
@@ -277,9 +287,8 @@ public class Championship implements Serializable {
         return false;
     }
 
-
     private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
-            List<Match> matches) {
+            List<Match> matches, Participant campeao) {
         Log.d("BD",name);
         this.name = name;
         this.modal = modal;
@@ -288,6 +297,7 @@ public class Championship implements Serializable {
         this.participants = participants;
         this.isStarted = isStarted;
         this.isCampeao = isCampeao;
+        this.campeao = campeao;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
             int r = 0;
@@ -323,8 +333,8 @@ public class Championship implements Serializable {
 
 
     public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao
-            , List<Match> matches) {
-        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches);
+            , List<Match> matches, Participant campeao) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches, campeao);
     }
 
 }

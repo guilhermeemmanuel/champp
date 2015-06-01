@@ -57,6 +57,19 @@ public class Participant implements Serializable, Comparable<Participant> {
     public int compareTo(Participant participant) {
         return (participant.getPontuacao() - getPontuacao());
     }
+
+
+
+    public static Participant createFromBD(String name) {
+        try {
+            Participant p = new Participant("test");
+            p.turnNilParticipant();
+            return p;
+        } catch (Exception ex) {
+
+        }
+        return null;
+    }
 }
 
 

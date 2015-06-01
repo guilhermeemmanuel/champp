@@ -83,12 +83,15 @@ public class ChampionshipController {
     }
 
     //BD in progress
-    //TODO falta adicionar jogos novos
     public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
         for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant);
                 dbHelper.setMatchScore(champName, matchNumber, home, visitant);
+                if(championship.isNextRoundCreated()) {
+                    dbHelper.insertMatches(champName, championship.getLastRound());
+                }
+                dbHelper.isChampion(champName, championship.isCampeao(), championship.campeao().getName());
                 return championship;
             }
         }
@@ -96,6 +99,7 @@ public class ChampionshipController {
     }
 
 
+    //TESTAR
     public void deleteChampionship(String champName) {
         dbHelper.deleteChamp(champName);
     }

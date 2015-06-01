@@ -21,7 +21,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 17;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,7 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.d("BD", "oncreate");
         sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0, " +
-                "isStarted INTEGER DEFAULT 0, isCampeao INTEGER DEFAULT 0);");
+                "isStarted INTEGER DEFAULT 0, isCampeao INTEGER DEFAULT 0, campeao TEXT);");
         sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT);");
         sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
                 "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0)");
@@ -60,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         content.put("isIndividual", championship.isIndividual() ? 1 : 0);
         content.put("isStarted", championship.isStarted() ? 1 : 0);
         content.put("isCampeao", championship.isCampeao() ? 1 : 0);
+        content.put("campeao", "");
         sqlLite.insert("CHAMPIONSHIP", null, content);
         sqlLite.close();
     }
@@ -115,6 +116,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put("isStarted", 1);
+
+        // updating row
+        db.update("CHAMPIONSHIP", values, "NOME" + " = ?",
+                new String[]{String.valueOf(champName)});
+    }
+
+    public void isChampion(String champName, boolean isCampeao, String participant) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("isCampeao", isCampeao ? 1 : 0);
+        values.put("campeao", participant);
+
 
         // updating row
         db.update("CHAMPIONSHIP", values, "NOME" + " = ?" ,
@@ -185,7 +199,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     List<Match> matches = getAllMatches(cursor.getString(0));
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
-                            (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches);
+                            (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches,
+                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("campeao"))));
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", ex.getMessage());
