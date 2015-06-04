@@ -18,12 +18,9 @@ import java.util.List;
 
 public class ChampionshipController {
     private static ChampionshipController cp;
-    private static List<Championship> champs;
     private DatabaseHelper dbHelper;
 
     private ChampionshipController(Context context) {
-        //TODO pegar todos os campeonatos do banco.
-        champs = new ArrayList<Championship>();
         dbHelper = new DatabaseHelper(context);
     }
 
@@ -33,7 +30,6 @@ public class ChampionshipController {
         dbHelper.insertChampionship(c);
     }
     //DB OK
-    //FIXME pegar apenas os participantes desse campeonato
     public Championship addParticipant(String nameChamp, String participant) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         for (Championship champ : getChamps()) {
 
@@ -83,6 +79,7 @@ public class ChampionshipController {
     }
 
 
+    //DB OK
     public Championship startChamp(String name) throws ExceededCharacterException, EmptyFieldException {
         for (Championship championship : getChamps()) {
             if (championship.equals(new Championship(name))){
@@ -95,15 +92,49 @@ public class ChampionshipController {
         return null;
     }
 
-    //TODO falta criar o metodo completo
-    //FIXME cuidado para nao permitir setar o resultado da mesma partida duas vezes
+    //BD OK
+    public Championship getChamp(String name) throws ExceededCharacterException, EmptyFieldException {
+        for (Championship c : getChamps()) {
+            if(c.equals(new Championship(name))) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    //BD in progress
     public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
-        for (Championship championship : champs) {
+        for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant);
+                dbHelper.setMatchScore(champName, matchNumber, home, visitant);
+                dbHelper.setPoints(champName, championship.getParticipants());
+                if(championship.isNextRoundCreated()) {
+                    dbHelper.insertMatches(champName, championship.getLastRound());
+                }
+                dbHelper.isChampion(champName, championship.isCampeao(), championship.campeao().getName());
                 return championship;
             }
         }
         return null;
     }
+
+
+    //TESTAR
+    public void deleteChampionship(String champName) {
+        dbHelper.deleteChamp(champName);
+    }
+
+
+    //BD OK
+    public Championship deleteParticipant(String champName, String participant) {
+        dbHelper.deleteParticipant(champName, participant);
+        try {
+            return getChamp(champName);
+        } catch (Exception ex) {
+
+        }
+        return null;
+    }
+
 }

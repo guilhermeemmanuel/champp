@@ -83,7 +83,7 @@ public class ParticipantsAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void updateItens(ArrayList<Participant> itens) {
+    public void updateItens(List<Participant> itens) {
         this.itens = itens;
         notifyDataSetChanged();
     }

@@ -99,8 +99,17 @@ public class Match implements Serializable {
         return null;
     }
 
+    public void setHome(Participant participant) {
+        this.home = participant;
+    }
+
+    public void setVisitant (Participant participant) {
+        this.visitant = participant;
+    }
+
     public void sumPoints(){
 
+        Log.d("BD", "ps");
             if (visitantScore > homeScore) {
                 visitant.winMatch();
                 Log.v("Visitante ganhoou", visitant.getPontuacao() + "" + visitant.getName());
@@ -123,7 +132,22 @@ public class Match implements Serializable {
             }
 
     }
+
+    private Match(Participant home, Participant visitant, String round, int no, boolean finished, int homeScore, int visScore) {
+        this.home = home;
+        this.visitant = visitant;
+        this.round = round;
+        this.number = no;
+        this.finished = finished;
+        this.homeScore = homeScore;
+        this.visitantScore = visScore;
     }
+
+    public static Match createFromBD(Participant home, Participant visitant, String round, int no, boolean finished, int homeScore, int visScore) {
+        return new Match(home, visitant, round,no, finished, homeScore, visScore);
+    }
+
+}
 
 
 

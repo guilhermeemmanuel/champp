@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -77,6 +78,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         c = (Championship) i.getSerializableExtra("CAMPEAO");
+        setTitle(c.getName());
         nameTv.setText(c.getName());
         modal.setText(c.getModal());
         /*typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
@@ -87,6 +89,12 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d("BD", "onStart");
+        try {
+            c = ChampionshipController.getInstance(getApplicationContext()).getChamp(c.getName());
+        } catch (Exception ex) {
+
+        }
         invalidateOptionsMenu();
         if(c.isStarted()){
             startBt.setVisibility(View.GONE);
@@ -134,7 +142,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     }
 
     public void sureDeleteItem(View v){
-        adapter.removeItem((Integer) v.getTag());
+
+        c = ChampionshipController.getInstance(getApplicationContext()).deleteParticipant(c.getName(), adapter.getItem((Integer) v.getTag()).getName());
+        adapter.updateItens(c.getParticipants());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 

@@ -1,6 +1,7 @@
 package com.asus.embedded.champp.model;
 
 import android.provider.Telephony;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -23,10 +24,16 @@ public class Championship implements Serializable {
     private List<Participant> participants;
     //BD
     private boolean isStarted = false;
+    //BD
     private List<Round> rounds;
     //BD
     private boolean isCampeao = false;
+
     private Participant campeao;
+
+
+    //BOOLEAN DE CONTROLE
+    private boolean nextRoundCreated = false;
 
     public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, ExceededCharacterException {
         if (name.isEmpty() || modal.isEmpty()) {
@@ -119,7 +126,7 @@ public class Championship implements Serializable {
                 int dif = participants.size() - org;
                 Round r = new Round(-1);
                 for (int i = 0; i < dif; i++) {
-                    r.getMatches().add(new Match(participants.get(i * 2), participants.get(i * 2 + 1), "preliminars ", i));
+                    r.getMatches().add(new Match(participants.get(i * 2), participants.get(i * 2 + 1), "preliminars", i));
                 }
                 this.rounds.add(r);
 
@@ -190,10 +197,11 @@ public class Championship implements Serializable {
                 if (match.equals(new Match(number))) {
                     Log.i("mudei", match.getHome().getName() + " " + home + " X " + match.getVisitant().getName() + " " + visitant);
                     match.setScore(home, visitant);
+                    match.sumPoints();
                     if (isProximosConfrontos()){
                         proximosConfrontos();
                     }
-                    match.sumPoints();
+
                     Log.i("mudei", "" + home);
                 }
             }
@@ -229,6 +237,7 @@ public class Championship implements Serializable {
         }
 
         if(quantWins == 1 && isCup()){
+            nextRoundCreated = false;
             isCampeao = true;
             campeao = wins.get(wins.size() -1);
         }
@@ -238,6 +247,7 @@ public class Championship implements Serializable {
             int jogosAnteriores = (Util.getNearLowPotency(2, participants.size()))/2;
             int org = Util.getNearLowPotency(2, wins.size());
             if (org == wins.size()) {
+                nextRoundCreated = true;
                 //participantes eh potencia de 2
                 Round r = new Round(org);
                 int games = org / 2;
@@ -261,14 +271,26 @@ public class Championship implements Serializable {
 
     }
 
-    //TODO
+    public boolean isNextRoundCreated() {
+        return nextRoundCreated;
+    }
+
+    public List<Match> getLastRound() {
+        return rounds.get(rounds.size() -1).getMatches();
+    }
+
     public boolean hasRound(int round) {
+        for (Round r : rounds) {
+            if(r.getNumber() == round) {
+                return true;
+            }
+        }
         return false;
     }
 
-
     private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
-            List<Match> matches) {
+            List<Match> matches, Participant campeao) {
+        Log.d("BD",name);
         this.name = name;
         this.modal = modal;
         this.isCup = isCup;
@@ -276,15 +298,24 @@ public class Championship implements Serializable {
         this.participants = participants;
         this.isStarted = isStarted;
         this.isCampeao = isCampeao;
+        this.campeao = campeao;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
+            match.setHome(getParticipant(match.getHome().getName()));
+            match.setVisitant(getParticipant(match.getVisitant().getName()));
             int r = 0;
+            Log.d("BD",match.getRound());
             if(match.getRound().equals("preliminars")) {
                 r = -1;
             }
             else {
                 String round = match.getRound();
-                round = round.replaceFirst("round of ","");
+                if(isCup){
+                    round = round.replaceFirst("round of ","");
+                }
+                else {
+                    round = round.replaceFirst("round ","");
+                }
                 r = Integer.parseInt(round);
             }
             if (!hasRound(r)) {
@@ -292,13 +323,30 @@ public class Championship implements Serializable {
                 round.getMatches().add(match);
                 rounds.add(round);
             }
+            else {
+                for (Round round : rounds) {
+                    if(round.getNumber() == r) {
+                        round.getMatches().add(match);
+                    }
+                }
+            }
+            //FIXME Talvez seja preciso reordenar a lista de rounds
         }
+    }
+
+    public Participant getParticipant(String name) {
+        for (Participant p : participants) {
+            if(p.getName().equals(name)) {
+                return p;
+            }
+        }
+        return null;
     }
 
 
     public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao
-            , List<Match> matches) {
-        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches);
+            , List<Match> matches, Participant campeao) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches, campeao);
     }
 
 }

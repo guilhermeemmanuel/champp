@@ -3,11 +3,13 @@ package com.asus.embedded.champp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 
 
@@ -25,11 +27,16 @@ public class ChampionshipActivity extends ActionBarActivity {
 
         Intent i = getIntent();
         c = (Championship) i.getSerializableExtra("CAMPEAO");
-
         nameChamp.setText(c.getName());
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
