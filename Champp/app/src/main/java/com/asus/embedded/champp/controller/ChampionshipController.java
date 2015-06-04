@@ -7,6 +7,7 @@ import android.util.Log;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.ExceededCharacterException;
+import com.asus.embedded.champp.model.Integrant;
 import com.asus.embedded.champp.model.InvalidScoreException;
 import com.asus.embedded.champp.model.Participant;
 import com.asus.embedded.champp.model.SameNameException;
@@ -45,6 +46,17 @@ public class ChampionshipController {
         return null;
     }
 
+    public Participant addIntegrant(Participant participant, String integrant) throws ExceededCharacterException, EmptyFieldException, SameNameException {
+        for (Integrant i : getIntegrants(participant.getName())) {
+            if(i.equals(new Integrant(integrant))){
+                participant.addIntegrant(integrant);
+                dbHelper.insertIntegrant(participant, new Integrant(integrant));
+                return participant;
+            }
+        }
+        return null;
+    }
+
     public static ChampionshipController getInstance(Context context) {
         if(cp == null){
             cp = new ChampionshipController(context);
@@ -55,6 +67,14 @@ public class ChampionshipController {
     //DB OK
     public List<Championship> getChamps() {
         return dbHelper.getAllChampionships();
+    }
+
+    public List<Participant> getParticipants(String nameChamp) {
+        return dbHelper.getAllParticipants(nameChamp);
+    }
+
+    public List<Integrant> getIntegrants(String nameParticipant) {
+        return dbHelper.getAllIntegrants(nameParticipant);
     }
 
     // DB OK
@@ -86,5 +106,4 @@ public class ChampionshipController {
         }
         return null;
     }
-
 }

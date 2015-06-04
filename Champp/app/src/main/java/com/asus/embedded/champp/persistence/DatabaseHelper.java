@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.Integrant;
 import com.asus.embedded.champp.model.Match;
 import com.asus.embedded.champp.model.Participant;
 
@@ -71,6 +72,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         content.put("NOME", participant.getName());
         content.put("CHAMP", champName);
         sqlLite.insert("PARTICIPANT", null, content);
+        sqlLite.close();
+    }
+
+    public void insertIntegrant(Participant p, Integrant integrant) {
+        SQLiteDatabase sqlLite = this.getWritableDatabase();
+
+        ContentValues content = new ContentValues();
+
+        content.put("NOME", integrant.getName());
+        content.put("PARTICIPANT", p.getName());
+        sqlLite.insert("INTEGRANT", null, content);
         sqlLite.close();
     }
 
@@ -190,4 +202,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return participants;
     }
 
+    public List<Integrant> getAllIntegrants(String participantName) {
+        List<Integrant> integrants = new ArrayList<>();
+
+        String selectQuery = "SELECT  * FROM PARTICIPANT";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Log.d("BD", "iteracao");
+                try{
+                    Integrant i = new Integrant(cursor.getString(0));
+                    integrants.add(i);
+                } catch (Exception ex) {
+                    Log.d("BD", "erro");
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return integrants;
+    }
 }

@@ -1,17 +1,31 @@
 package com.asus.embedded.champp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.asus.embedded.champp.model.Championship;
+import com.asus.embedded.champp.model.Participant;
 
 
 public class AddIntegrantActivity extends ActionBarActivity {
+    EditText nameIntegrant;
+    Participant p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_integrant);
+
+        Intent intent = getIntent();
+        p = (Participant) intent.getSerializableExtra("PARTICIPANT");
+
+        nameIntegrant = (EditText) findViewById(R.id.name_integrant);
     }
 
     @Override
@@ -34,5 +48,19 @@ public class AddIntegrantActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createIntegrant(View view) {
+        String name = nameIntegrant.getText().toString();
+        //Excessao de times vazios
+        if (name.trim().equals("")) {
+            Toast.makeText(this, R.string.integrant_emptyName, Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra("NEW_INTEGRANT", name);
+
+            setResult(1, intent);
+            finish();
+        }
     }
 }

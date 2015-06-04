@@ -14,7 +14,7 @@ public class Participant implements Serializable, Comparable<Participant> {
     public Participant(String name) throws EmptyFieldException, ExceededCharacterException {
         setName(name);
         this.counterPontos = 0;
-        this.integrants = new ArrayList<>();
+        this.integrants = new ArrayList<Integrant>();
     }
 
     public String getName() {
@@ -45,8 +45,13 @@ public class Participant implements Serializable, Comparable<Participant> {
         return integrants;
     }
 
-    public void addIntegrant(Integrant integrant) {
-        this.integrants.add(integrant);
+    public void addIntegrant(String integrant) throws SameNameException, ExceededCharacterException, EmptyFieldException {
+        for (Integrant i : integrants) {
+            if (i.getName().equals(name)) {
+                throw new SameNameException();
+            }
+        }
+        integrants.add(new Integrant(name));
     }
 
     protected void turnNilParticipant() {
