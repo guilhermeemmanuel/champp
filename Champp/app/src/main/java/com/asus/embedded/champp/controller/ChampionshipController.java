@@ -46,7 +46,7 @@ public class ChampionshipController {
         for (Integrant i : getIntegrants(participant.getName())) {
             if(i.equals(new Integrant(integrant))){
                 participant.addIntegrant(integrant);
-                dbHelper.insertIntegrant(participant, new Integrant(integrant));
+                //dbHelper.insertIntegrant(participant, new Integrant(integrant));
                 return participant;
             }
         }
@@ -70,7 +70,8 @@ public class ChampionshipController {
     }
 
     public List<Integrant> getIntegrants(String nameParticipant) {
-        return dbHelper.getAllIntegrants(nameParticipant);
+        return new ArrayList<>();
+        //return dbHelper.getAllIntegrants(nameParticipant);
     }
 
     // DB OK

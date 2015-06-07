@@ -66,6 +66,7 @@ public class Participant implements Serializable, Comparable<Participant> {
     private Participant(String name, int pontos) {
         this.name = name;
         this.counterPontos = pontos;
+        this.integrants = new ArrayList<>();
     }
 
     public static Participant createFromBD(String name, int pontos) {
