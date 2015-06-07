@@ -74,5 +74,8 @@
         <item>Futsal</item>
         <item>Outro</item>
     </string-array>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="facebook_app_id"></string>
 
 </resources>
