@@ -49,10 +49,6 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champ_characteristics);
 
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-
         nameTv = (TextView) findViewById(R.id.name_tv);
         modal = (TextView) findViewById(R.id.modal_tv);
         /*typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
@@ -78,11 +74,16 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         c = (Championship) i.getSerializableExtra("CAMPEAO");
-        setTitle(c.getName());
+
         nameTv.setText(c.getName());
         modal.setText(c.getModal());
         /*typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
         typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");*/
+
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setTitle(c.getName());
 
     }
 
