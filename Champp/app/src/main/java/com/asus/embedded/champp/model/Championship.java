@@ -199,6 +199,9 @@ public class Championship implements Serializable {
                     match.setScore(home, visitant);
                     match.sumPoints();
                     if (isProximosConfrontos()){
+                        if(!isCup()) {
+                            isCampeao = true;
+                        }
                         proximosConfrontos();
                     }
 
@@ -236,6 +239,8 @@ public class Championship implements Serializable {
                    quantWins++;
         }
 
+
+
         if(quantWins == 1 && isCup()){
             nextRoundCreated = false;
             isCampeao = true;
@@ -270,6 +275,7 @@ public class Championship implements Serializable {
         }
 
     }
+
 
     public boolean isNextRoundCreated() {
         return nextRoundCreated;

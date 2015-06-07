@@ -102,7 +102,7 @@ public class ChampionshipController {
         return null;
     }
 
-    //BD in progress
+    //BD OK
     public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
         for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
@@ -119,8 +119,7 @@ public class ChampionshipController {
         return null;
     }
 
-
-    //TESTAR
+    //BD OK
     public void deleteChampionship(String champName) {
         dbHelper.deleteChamp(champName);
     }

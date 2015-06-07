@@ -22,7 +22,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 19;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -108,10 +108,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    //FIXME Deletar tbm os participants e jogos
     public void deleteChamp(String champName) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("CHAMPIONSHIP", "NOME" + " = ?",
+                new String[] { String.valueOf(champName) });
+        db.delete("PARTICIPANT", "CHAMP" + " = ?",
+                new String[] { String.valueOf(champName) });
+        db.delete("MATCH", "champName" + " = ?",
                 new String[] { String.valueOf(champName) });
         db.close();
     }
@@ -240,8 +243,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return champList;
     }
 
-
-    //FIXME pegar apenas os desse campeonato
     public List<Participant> getAllParticipants(String champName) {
         List<Participant> participants = new ArrayList<>();
 
