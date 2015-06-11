@@ -13,6 +13,12 @@
         android:id="@+id/modal_icon"
         android:layout_gravity="center_horizontal" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/modality_tv"
+        android:layout_gravity="center_horizontal" />
+
     <TextView android:text="@string/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

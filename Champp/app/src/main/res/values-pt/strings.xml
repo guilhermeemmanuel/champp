@@ -62,7 +62,7 @@
     <string name="title_activity_championship">Campeonato</string>
     <string name="title_activity_campeao">Campeão</string>
     <string name="select_modal_tv">Select The Championship Modality</string>
-    <string name="basquete">basketball</string>
+    <string name="basketball">basketball</string>
     <string name="football">football</string>
     <string name="futsal">futsal</string>
     <string name="handball">handball</string>

@@ -102,7 +102,6 @@ public class MainActivity extends ActionBarActivity {
    }
 
     public void newChamp(View view) {
-        //Intent intent = new Intent(this, NewChampActivity.class);
         Intent intent = new Intent(this, ModalActivity.class);
         startActivityForResult(intent, 1);
     }

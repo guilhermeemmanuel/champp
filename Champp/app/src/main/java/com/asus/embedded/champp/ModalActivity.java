@@ -3,13 +3,19 @@ package com.asus.embedded.champp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
 public class ModalActivity extends ActionBarActivity {
+    private final int BASKETBALL = R.string.basketball;
+    private final int FOOTBALL = R.string.football;
+    private final int FUTSAL = R.string.futsal;
+    private final int HANDBALL = R.string.handball;
+    private final int TENNIS = R.string.tennis;
+    private final int VOLLEY = R.string.volley;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +48,33 @@ public class ModalActivity extends ActionBarActivity {
 
     public void select(View view) {
         Intent intent = new Intent(this, NewChampActivity.class);
-        Log.d("Modality", String.valueOf(view.getId() == R.id.basketball_ib));
         switch(view.getId()){
             case R.id.basketball_ib:
-                intent.putExtra("MODAL", "basketball");
+                intent.putExtra("MODAL", BASKETBALL);
+                break;
             case R.id.football_ib:
-                intent.putExtra("MODAL", "football");
+                intent.putExtra("MODAL", FOOTBALL);
+                break;
             case R.id.futsal_ib:
-                intent.putExtra("MODAL", "futsal");
+                intent.putExtra("MODAL", FUTSAL);
+                break;
             case R.id.handball_ib:
-                intent.putExtra("MODAL", "handball");
+                intent.putExtra("MODAL", HANDBALL);
+                break;
             case R.id.tennis_ib:
-                intent.putExtra("MODAL", "tennis");
+                intent.putExtra("MODAL", TENNIS);
+                break;
             case R.id.volley_ib:
-                intent.putExtra("MODAL", "volley");
+                intent.putExtra("MODAL", VOLLEY);
+                break;
         }
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1){
+            finish();
+        }
     }
 }

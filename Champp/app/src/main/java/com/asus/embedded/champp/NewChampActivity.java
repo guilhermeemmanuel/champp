@@ -3,6 +3,7 @@ package com.asus.embedded.champp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -24,11 +26,19 @@ import java.lang.String;
 
 
 public class NewChampActivity extends ActionBarActivity {
+    private final int BASKETBALL = R.string.basketball;
+    private final int FOOTBALL = R.string.football;
+    private final int FUTSAL = R.string.futsal;
+    private final int HANDBALL = R.string.handball;
+    private final int TENNIS = R.string.tennis;
+    private final int VOLLEY = R.string.volley;
+
     private EditText nameEt;
     private RadioButton individualRb, cupRb;
-    private Spinner spinner;
     private LinearLayout modalLayout, compLayout;
     private ImageView modalIcon;
+    private int modal;
+    private TextView modalityText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,44 +46,12 @@ public class NewChampActivity extends ActionBarActivity {
         setContentView(R.layout.activity_new_champ);
 
         nameEt = (EditText) findViewById(R.id.name_et);
+        modalityText = (TextView) findViewById(R.id.modality_tv);
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
         modalLayout = (LinearLayout) findViewById(R.id.modality_layout);
         compLayout = (LinearLayout) findViewById(R.id.competition_layout);
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
         modalIcon = (ImageView) findViewById(R.id.modal_icon);
-        /*spinner = (Spinner) findViewById(R.id.modal_spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.modal_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);*/
-
-
-        /*
-        switch(modal){
-            case "basketball":
-                modalLayout.setVisibility(View.GONE);
-                modalIcon.setImageResource(R.mipmap.basketball);
-            case "football":
-                modalLayout.setVisibility(View.GONE);
-                modalIcon.setImageResource(R.mipmap.football);
-            case "futsal":
-                modalLayout.setVisibility(View.GONE);
-                modalIcon.setImageResource(R.mipmap.futsal);
-            case "handball":
-                modalLayout.setVisibility(View.GONE);
-                modalIcon.setImageResource(R.mipmap.handball);
-            case "tennis":
-                modalLayout.setVisibility(View.GONE);
-                modalIcon.setImageResource(R.mipmap.tennis);
-            case "volley":
-                compLayout.setVisibility(View.GONE);
-                modalIcon.setImageResource(R.mipmap.volley);
-        }*/
-
-
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -88,14 +66,40 @@ public class NewChampActivity extends ActionBarActivity {
         super.onStart();
 
         Intent i = getIntent();
-        String modal = (String) i.getSerializableExtra("MODAL");
+        modal = (int) i.getSerializableExtra("MODAL");
+        modalityText.setText(getResources().getString(modal));
 
-        if (modal.equals("tennis")){
-            compLayout.setVisibility(View.GONE);
-            modalLayout.setVisibility(View.VISIBLE);
-        }else{
-            modalLayout.setVisibility(View.GONE);
-            compLayout.setVisibility(View.VISIBLE);
+        switch(modal){
+            case BASKETBALL:
+                modalIcon.setImageResource(R.mipmap.basketball);
+                individualRb.setEnabled(false);
+                modalLayout.setVisibility(View.GONE);
+                break;
+            case FOOTBALL:
+                individualRb.setEnabled(false);
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.football);
+                break;
+            case FUTSAL:
+                individualRb.setEnabled(false);
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.futsal);
+                break;
+            case HANDBALL:
+                individualRb.setEnabled(false);
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.handball);
+                break;
+            case TENNIS:
+                compLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.tennis);
+                break;
+            case VOLLEY:
+                individualRb.setEnabled(false);
+                modalLayout.setVisibility(View.GONE);
+                compLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.volley);
+                break;
         }
 
     }
@@ -124,13 +128,13 @@ public class NewChampActivity extends ActionBarActivity {
 
     public void createChamp(View view){
         String nameCp = nameEt.getText().toString();
-        String modalCp = spinner.getSelectedItem().toString();
+        String modalCp = getResources().getString(modal);
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
 
         try {
             ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
-            Intent intent = new Intent();
+            Intent intent = new Intent(this, MainActivity.class);
             setResult(1, intent);
             finish();
         } catch (EmptyFieldException e) {
