@@ -135,7 +135,9 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
     }
 
     public void sureDeleteItem(View v){
-        adapter.removeItem((Integer) v.getTag());
+        Integrant integrant = adapter.getItem((Integer) v.getTag());
+        pt = ChampionshipController.getInstance(getApplicationContext()).deleteIntegrant(c.getName(), pt,integrant.getName());
+        adapter.updateItens(pt.getIntegrants());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 

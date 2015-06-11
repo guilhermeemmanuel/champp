@@ -22,7 +22,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 21;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -131,6 +131,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteIntegrant(String champName, String participant, String integrant) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("INTEGRANT", "CHAMP" + " = ? AND PARTICIPANT = ? AND NOME = ?",
+                new String[]{String.valueOf(champName), String.valueOf(participant), String.valueOf(integrant)});
+        db.close();
+    }
+
     public void startChamp(String champName) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -236,7 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
                             (cursor.getInt(cursor.getColumnIndex("isCampeao")) == 1), matches,
-                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("campeao")),0));
+                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("campeao")),0, new ArrayList<Integrant>()));
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", ex.getMessage());
@@ -261,7 +268,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 Log.d("BD", "iteracao");
                 try{
-                    Participant p = Participant.createFromBD(cursor.getString(0),cursor.getInt(cursor.getColumnIndex("PONTOS")) );
+                    List<Integrant> integrants = getAllIntegrants(champName, cursor.getString(0));
+                    Participant p = Participant.createFromBD(cursor.getString(0),cursor.getInt(cursor.getColumnIndex("PONTOS")), integrants);
                     participants.add(p);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");
@@ -272,10 +280,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return participants;
     }
 
-    public List<Integrant> getAllIntegrants(String participantName) {
+    public List<Integrant> getAllIntegrants(String champ, String participantName) {
         List<Integrant> integrants = new ArrayList<>();
 
-        String selectQuery = "SELECT  * FROM PARTICIPANT";
+        String selectQuery = "SELECT  * FROM INTEGRANT WHERE CHAMP = '" + champ + "' AND PARTICIPANT = '" + participantName + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

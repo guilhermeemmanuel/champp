@@ -132,4 +132,10 @@ public class ChampionshipController {
         return null;
     }
 
+    public Participant deleteIntegrant(String champName, Participant participant, String integrant) {
+        participant.deleteIntegrant(integrant);
+        dbHelper.deleteIntegrant(champName, participant.getName(), integrant);
+        return participant;
+    }
+
 }

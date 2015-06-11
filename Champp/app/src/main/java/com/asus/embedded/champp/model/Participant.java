@@ -54,6 +54,15 @@ public class Participant implements Serializable, Comparable<Participant> {
         integrants.add(new Integrant(integrant));
     }
 
+    public void deleteIntegrant(String integrant) {
+        for (int i = 0; i < integrants.size(); i++) {
+            if(integrants.get(i).getName().equals(integrant)) {
+                integrants.remove(i);
+            }
+        }
+
+    }
+
     protected void turnNilParticipant() {
         this.name = "";
     }
@@ -63,14 +72,15 @@ public class Participant implements Serializable, Comparable<Participant> {
         return (participant.getPontuacao() - getPontuacao());
     }
 
-    private Participant(String name, int pontos) {
+    private Participant(String name, int pontos, List<Integrant> integrants) {
         this.name = name;
         this.counterPontos = pontos;
-        this.integrants = new ArrayList<>();
+        this.integrants = integrants;
+
     }
 
-    public static Participant createFromBD(String name, int pontos) {
-        Participant p = new Participant(name, pontos);
+    public static Participant createFromBD(String name, int pontos, List<Integrant> integrants) {
+        Participant p = new Participant(name, pontos, integrants);
         return p;
     }
 }
