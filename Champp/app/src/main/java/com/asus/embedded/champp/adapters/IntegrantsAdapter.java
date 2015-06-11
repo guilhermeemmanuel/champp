@@ -76,7 +76,7 @@ public class IntegrantsAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void updateItens(ArrayList<Integrant> itens) {
+    public void updateItens(List<Integrant> itens) {
         this.itens = itens;
         notifyDataSetChanged();
     }

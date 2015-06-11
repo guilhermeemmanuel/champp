@@ -135,7 +135,9 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
     }
 
     public void sureDeleteItem(View v){
-        adapter.removeItem((Integer) v.getTag());
+        Integrant integrant = adapter.getItem((Integer) v.getTag());
+        pt = ChampionshipController.getInstance(getApplicationContext()).deleteIntegrant(c.getName(), pt,integrant.getName());
+        adapter.updateItens(pt.getIntegrants());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 
@@ -145,7 +147,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
             if(resultCode == 1) {
                 String name = data.getStringExtra("NEW_INTEGRANT");
                 try {
-                    this.pt = ChampionshipController.getInstance(getApplicationContext()).addIntegrant(pt,name);
+                    this.pt = ChampionshipController.getInstance(getApplicationContext()).addIntegrant(c.getName(), pt, name);
                     Toast.makeText(this, R.string.integrantCreated, Toast.LENGTH_SHORT).show();
                 }  catch (EmptyFieldException e) {
                     Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
