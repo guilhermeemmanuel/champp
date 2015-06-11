@@ -78,4 +78,9 @@
 
     <string name="facebook_app_id"></string>
 
+    <string name="congrat">Congratulations</string>
+    <string name="youWin">Você é o novo campeão do(a)</string>
+    <string name="validField">Insira valores válidos nos campos de resultado</string>
+    <string name="charExceeded">Character Limit Exceeded</string>
+
 </resources>

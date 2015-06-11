@@ -62,4 +62,23 @@
     <string name="title_activity_championship">Campeonato</string>
     <string name="title_activity_campeao">Campeão</string>
 
+    <string name="participante_emptyName">participant Empty Name </string>
+    <string name="integrant_emptyName">integrant Empty Name </string>
+    <string name="facebook_app_id"></string>
+
+    <string name="title_activity_logo">logoActivity</string>
+
+
+    <string-array name="modal_array">
+        <item>Futebol</item>
+        <item>Vôlei</item>
+        <item>Tênis</item>
+        <item>Futsal</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="integrantCreated">Integrant Created</string>
+
 </resources>

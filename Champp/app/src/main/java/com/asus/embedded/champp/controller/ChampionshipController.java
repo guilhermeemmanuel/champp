@@ -42,15 +42,10 @@ public class ChampionshipController {
         return null;
     }
 
-    public Participant addIntegrant(Participant participant, String integrant) throws ExceededCharacterException, EmptyFieldException, SameNameException {
-        for (Integrant i : getIntegrants(participant.getName())) {
-            if(i.equals(new Integrant(integrant))){
-                participant.addIntegrant(integrant);
-                //dbHelper.insertIntegrant(participant, new Integrant(integrant));
-                return participant;
-            }
-        }
-        return null;
+    public Participant addIntegrant(String champ, Participant participant, String integrant) throws ExceededCharacterException, EmptyFieldException, SameNameException {
+        participant.addIntegrant(integrant);
+        dbHelper.insertIntegrant(champ,participant,integrant);
+        return participant;
     }
 
     public static ChampionshipController getInstance(Context context) {

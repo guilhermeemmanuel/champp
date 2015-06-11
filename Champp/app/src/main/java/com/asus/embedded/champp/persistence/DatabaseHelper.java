@@ -36,6 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT, PONTOS INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
                 "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0)");
+        sqLiteDatabase.execSQL("CREATE TABLE INTEGRANT (NOME TEXT, CHAMP TEXT, PARTICIPANT TEXT);");
+
 
     }
 
@@ -45,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS CHAMPIONSHIP");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS PARTICIPANT");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS MATCH");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS INTEGRANT");
 
         onCreate(sqLiteDatabase);
     }
@@ -77,13 +80,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqlLite.close();
     }
 
-    public void insertIntegrant(Participant p, Integrant integrant) {
+    public void insertIntegrant(String champ, Participant p, String integrant) {
         SQLiteDatabase sqlLite = this.getWritableDatabase();
 
         ContentValues content = new ContentValues();
 
-        content.put("NOME", integrant.getName());
+        content.put("NOME", integrant);
         content.put("PARTICIPANT", p.getName());
+        content.put("CHAMP", champ);
+
         sqlLite.insert("INTEGRANT", null, content);
         sqlLite.close();
     }

@@ -47,11 +47,11 @@ public class Participant implements Serializable, Comparable<Participant> {
 
     public void addIntegrant(String integrant) throws SameNameException, ExceededCharacterException, EmptyFieldException {
         for (Integrant i : integrants) {
-            if (i.getName().equals(name)) {
+            if (i.getName().equals(integrant)) {
                 throw new SameNameException();
             }
         }
-        integrants.add(new Integrant(name));
+        integrants.add(new Integrant(integrant));
     }
 
     protected void turnNilParticipant() {
