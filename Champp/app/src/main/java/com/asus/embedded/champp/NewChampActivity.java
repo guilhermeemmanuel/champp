@@ -7,11 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -26,6 +27,8 @@ public class NewChampActivity extends ActionBarActivity {
     private EditText nameEt;
     private RadioButton individualRb, cupRb;
     private Spinner spinner;
+    private LinearLayout modalLayout, compLayout;
+    private ImageView modalIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +37,41 @@ public class NewChampActivity extends ActionBarActivity {
 
         nameEt = (EditText) findViewById(R.id.name_et);
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
+        modalLayout = (LinearLayout) findViewById(R.id.modality_layout);
+        compLayout = (LinearLayout) findViewById(R.id.competition_layout);
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
-        spinner = (Spinner) findViewById(R.id.modal_spinner);
+        modalIcon = (ImageView) findViewById(R.id.modal_icon);
+        /*spinner = (Spinner) findViewById(R.id.modal_spinner);
 // Create an ArrayAdapter using the string array and a default spinner layout
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.modal_array, android.R.layout.simple_spinner_item);
 // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);*/
+
+
+        /*
+        switch(modal){
+            case "basketball":
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.basketball);
+            case "football":
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.football);
+            case "futsal":
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.futsal);
+            case "handball":
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.handball);
+            case "tennis":
+                modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.tennis);
+            case "volley":
+                compLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.volley);
+        }*/
 
 
     }
@@ -53,6 +82,23 @@ public class NewChampActivity extends ActionBarActivity {
         // parent.getItemAtPosition(pos)
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent i = getIntent();
+        String modal = (String) i.getSerializableExtra("MODAL");
+
+        if (modal.equals("tennis")){
+            compLayout.setVisibility(View.GONE);
+            modalLayout.setVisibility(View.VISIBLE);
+        }else{
+            modalLayout.setVisibility(View.GONE);
+            compLayout.setVisibility(View.VISIBLE);
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
