@@ -3,31 +3,29 @@ package com.asus.embedded.champp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 
 
 public class ChampionshipActivity extends ActionBarActivity {
 
     private Championship c;
-    private TextView nameChamp;
+    private TextView nameChampTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_championship);
 
-        nameChamp = (TextView) findViewById(R.id.name_champ);
+        nameChampTv = (TextView) findViewById(R.id.name_champ_tv);
 
         Intent i = getIntent();
-        c = (Championship) i.getSerializableExtra("CAMPEAO");
-        nameChamp.setText(c.getName());
+        c = (Championship) i.getSerializableExtra("CHAMP");
+        nameChampTv.setText(c.getName());
 
     }
 
@@ -69,7 +67,7 @@ public class ChampionshipActivity extends ActionBarActivity {
             intent = new Intent(ChampionshipActivity.this, LeagueActivity.class);
         }
 
-        intent.putExtra("CAMPEAO", c);
+        intent.putExtra("CHAMP", c);
         startActivity(intent);
     }
 

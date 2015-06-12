@@ -35,23 +35,23 @@ public class CupActivity extends ActionBarActivity {
     private TextView champNameTv;
     private Championship c;
     private MatchesAdapter adapter;
-    private Button btnCampeao;
+    private Button championBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cup);
 
-        btnCampeao = (Button) findViewById(R.id.btn_campeao);
+        championBt = (Button) findViewById(R.id.cup_champion_bt);
 
-        champNameTv = (TextView) findViewById(R.id.champ_name);
+        champNameTv = (TextView) findViewById(R.id.cup_champ_tv);
 
 
-        matchesLv = (ListView) findViewById(R.id.matchesLv);
+        matchesLv = (ListView) findViewById(R.id.matches_cup_lv);
 
         Intent i = getIntent();
 
-        c = (Championship) i.getSerializableExtra("CAMPEAO");
+        c = (Championship) i.getSerializableExtra("CHAMP");
 
 
         champNameTv.setText(c.getName() + " - " + getString(R.string.table));
@@ -64,16 +64,16 @@ public class CupActivity extends ActionBarActivity {
                             try {
                                 c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant);
 
-                                adapter.updateItens(c.getMatches());
+                                adapter.updateItems(c.getMatches());
 
-                                if (c.isCampeao()){
+                                if (c.isChampion()){
                                     onCreateDialog();
-                                    //Descomenta aqui somente se quiser que chame a activity de ver campeao , mas comente a linha
+                                    //Descomenta aqui somente se quiser que chame a activity de ver getChampion , mas comente a linha
                                     // de cima
-                                    //Participant campeao = c.campeao();
+                                    //Participant getChampion = c.getChampion();
                                     //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
-                                    //intent.putExtra("CAMPEAO",campeao.getName());
-                                    //intent.putExtra("CAMPEONATO",c.getName());
+                                    //intent.putExtra("CHAMPION",getChampion.getName());
+                                    //intent.putExtra("CHAMPIONSHIP",c.getName());
                                     //startActivity(intent);
                                 }
 
@@ -93,16 +93,16 @@ public class CupActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
 
-        if (c.isCampeao()){
+        if (c.isChampion()){
             onCreateDialog();
         }
 
-        //if(c.isCampeao()){
-           // btnCampeao.setVisibility(View.VISIBLE);
+        //if(c.isChampion()){
+           // championBt.setVisibility(View.VISIBLE);
 
         //}
         //else {
-            btnCampeao.setVisibility(View.GONE);
+            championBt.setVisibility(View.GONE);
         //}
 
         super.onStart();
@@ -110,13 +110,13 @@ public class CupActivity extends ActionBarActivity {
 
 
 
-   /* public void showCampeao(View v){
+   /* public void showChampion(View v){
 
-        if (c.isCampeao()){
-            Participant campeao = c.campeao();
+        if (c.isChampion()){
+            Participant getChampion = c.getChampion();
             Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
-            intent.putExtra("CAMPEAO",campeao.getName());
-            intent.putExtra("CAMPEONATO",c.getName());
+            intent.putExtra("CHAMPION",getChampion.getName());
+            intent.putExtra("CHAMPIONSHIP",c.getName());
             startActivity(intent);
         }
 
@@ -124,8 +124,11 @@ public class CupActivity extends ActionBarActivity {
 
 
     public void onCreateDialog() {
+        String congratSt = getResources().getString(R.string.congrat);
+        String youWinSt = getResources().getString(R.string.youWin);
+        String championSt = getResources().getString(R.string.champion);
 
-        Participant campeao = c.campeao();
+        Participant champion = c.getChampion();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -133,11 +136,11 @@ public class CupActivity extends ActionBarActivity {
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialog_campeao_trofeu, null));
+        builder.setView(inflater.inflate(R.layout.dialog_champion_trophy, null));
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage("Congratulations " + campeao.getName() + " You are the new champion of " + c.getName() + " !")
-                .setIcon(R.mipmap.campeao)
-                .setTitle("CAMPEÃO");
+        builder.setMessage(congratSt + champion.getName() + youWinSt + c.getName() + " !")
+                .setIcon(R.mipmap.champion)
+                .setTitle(championSt);
         // 3. Add the buttons
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
@@ -222,7 +225,7 @@ public class CupActivity extends ActionBarActivity {
             int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
             c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
 
-            adapter.updateItens(c.getMatches());
+            adapter.updateItems(c.getMatches());
 
             Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
         } catch (InvalidScoreException e) {

@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.Participant;
-
 
 public class AddIntegrantActivity extends ActionBarActivity {
     EditText nameIntegrant;
@@ -25,7 +23,7 @@ public class AddIntegrantActivity extends ActionBarActivity {
         Intent intent = getIntent();
         p = (Participant) intent.getSerializableExtra("PARTICIPANT");
 
-        nameIntegrant = (EditText) findViewById(R.id.name_integrant);
+        nameIntegrant = (EditText) findViewById(R.id.new_integrant_name_et);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class AddIntegrantActivity extends ActionBarActivity {
         String name = nameIntegrant.getText().toString();
         //Excessao de times vazios
         if (name.trim().equals("")) {
-            Toast.makeText(this, R.string.integrant_emptyName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.integrant_emptyName, Toast.LENGTH_LONG).show();
         } else {
             Intent intent = new Intent();
             intent.putExtra("NEW_INTEGRANT", name);

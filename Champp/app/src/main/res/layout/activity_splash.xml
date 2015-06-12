@@ -12,7 +12,7 @@
         android:background="@mipmap/logo_splash"
         android:layout_width="500px"
         android:layout_height="500px"
-        android:id="@+id/imageView2"
+        android:id="@+id/splash_iv"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

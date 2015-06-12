@@ -15,13 +15,12 @@ import android.widget.Toast;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.adapters.ListMyChampsAdapter;
-import com.asus.embedded.champp.persistence.DatabaseHelper;
 
 import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    private ListView champListView;
+    private ListView champLv;
     private ListMyChampsAdapter adapter;
 
     @Override
@@ -29,15 +28,15 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        champListView = (ListView) findViewById(R.id.champ_list_view);
+        champLv = (ListView) findViewById(R.id.champ_list_view);
 
-        champListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        champLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Championship item = adapter.getItem(position);
                 Intent intent;
                 intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
-                intent.putExtra("CAMPEAO", item);
+                intent.putExtra("CHAMP", item);
                 startActivity(intent);
             }
         });
@@ -48,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
         super.onStart();
         List<Championship> champs = ChampionshipController.getInstance(getApplicationContext()).getChamps();
         adapter = new ListMyChampsAdapter(this, champs);
-        champListView.setAdapter(adapter);
+        champLv.setAdapter(adapter);
     }
 
     @Override
@@ -97,7 +96,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void sureDeleteItem(View v){
         ChampionshipController.getInstance(getApplicationContext()).deleteChampionship(adapter.getItem((Integer) v.getTag()).getName());
-        adapter.updateItens(ChampionshipController.getInstance(getApplicationContext()).getChamps());
+        adapter.updateItems(ChampionshipController.getInstance(getApplicationContext()).getChamps());
         Toast.makeText(this,R.string.champDeleted,Toast.LENGTH_LONG).show();
    }
 

@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.asus.embedded.champp.model.Championship;
 
-
 public class AddParticipantActivity extends ActionBarActivity {
-
     EditText nameParticipant;
     Championship c;
 
@@ -23,9 +21,9 @@ public class AddParticipantActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_participant);
 
         Intent intent = getIntent();
-        c = (Championship) intent.getSerializableExtra("CAMPEAO");
+        c = (Championship) intent.getSerializableExtra("CHAMP");
 
-        nameParticipant = (EditText) findViewById(R.id.name_participant);
+        nameParticipant = (EditText) findViewById(R.id.participant_name_et);
     }
 
 
@@ -55,7 +53,7 @@ public class AddParticipantActivity extends ActionBarActivity {
         String name = nameParticipant.getText().toString();
         //Excessao de times vazios
         if(name.trim().equals("")){
-            Toast.makeText(this,R.string.participante_emptyName, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.participante_emptyName, Toast.LENGTH_LONG).show();
         }else {
             Intent intent = new Intent();
             intent.putExtra("NEW_PART", name);

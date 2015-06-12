@@ -10,31 +10,33 @@ import android.widget.TextView;
 
 
 public class ChampionActivity extends ActionBarActivity {
-    private TextView campeao;
-    static final String CAMPEAO = "CAMPEAO";
-    static final String CAMPEONATO = "CAMPEONATO";
+    private TextView championTv;
+    static final String CHAMPION = "CHAMPION";
+    static final String CHAMPIONSHIP = "CHAMPIONSHIP";
     private String champName;
     private String participantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_campeao);
+        setContentView(R.layout.activity_champion);
 
-        campeao =(TextView) findViewById(R.id.campeao);
+        championTv =(TextView) findViewById(R.id.campeao);
        if(savedInstanceState != null){
-           participantName = (String) savedInstanceState.getString(CAMPEAO);
-           champName = (String) savedInstanceState.getString(CAMPEONATO);
+           participantName = (String) savedInstanceState.getString(CHAMPION);
+           champName = (String) savedInstanceState.getString(CHAMPIONSHIP);
            Log.i("Entrou","aqui");
        }else {
            Intent i = getIntent();
 
-           participantName = (String) i.getStringExtra(CAMPEAO);
-           champName = (String) i.getStringExtra(CAMPEONATO);
+           participantName = (String) i.getStringExtra(CHAMPION);
+           champName = (String) i.getStringExtra(CHAMPIONSHIP);
            Log.i("Entrou","aqui2");
        }
 
-        campeao.setText("Congratulations " + participantName + " You are the new champion of "+ champName + " !");
+        String congrat = getResources().getString(R.string.congrat);
+        String youWin = getResources().getString(R.string.youWin);
+        championTv.setText(congrat + participantName + youWin + champName + " !");
     }
 
 
@@ -70,8 +72,8 @@ public class ChampionActivity extends ActionBarActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         // Save the user's current game state
-        savedInstanceState.putString(CAMPEAO, participantName);
-        savedInstanceState.putString(CAMPEONATO, champName);
+        savedInstanceState.putString(CHAMPION, participantName);
+        savedInstanceState.putString(CHAMPIONSHIP, champName);
 
     }
 

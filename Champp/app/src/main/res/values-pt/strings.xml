@@ -87,5 +87,6 @@
     <string name="title_activity_login">LoginActivity</string>
 
     <string name="integrantCreated">Integrant Created</string>
+    <string name="champion">CHAMPION!</string>
 
 </resources>

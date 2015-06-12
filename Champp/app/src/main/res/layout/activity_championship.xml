@@ -10,7 +10,7 @@
     tools:context="com.asus.embedded.champp.ChampionshipActivity">
 
     <TextView
-        android:id="@+id/name_champ"
+        android:id="@+id/name_champ_tv"
         android:textColor="@color/primary_material_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_table"
         android:id="@+id/button"
-        android:layout_below="@+id/name_champ"
+        android:layout_below="@+id/name_champ_tv"
         android:onClick="viewTable"/>
 
 </RelativeLayout>

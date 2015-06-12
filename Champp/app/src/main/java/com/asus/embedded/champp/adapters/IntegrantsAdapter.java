@@ -6,23 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.model.Integrant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IntegrantsAdapter extends BaseAdapter {
-
-
     private LayoutInflater mInflater;
-    private List<Integrant> itens;
+    private List<Integrant> items;
 
-    public IntegrantsAdapter(Context context, List<Integrant> itens) {
+    public IntegrantsAdapter(Context context, List<Integrant> items) {
         //Itens que preencheram o listview
-        this.itens = itens;
+        this.items = items;
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
     }
@@ -30,7 +28,7 @@ public class IntegrantsAdapter extends BaseAdapter {
     //Retorna a quantidade de Itens
     @Override
     public int getCount() {
-        return itens.size();
+        return items.size();
     }
 
     /**
@@ -40,7 +38,7 @@ public class IntegrantsAdapter extends BaseAdapter {
      * @return
      */
     public Integrant getItem(int position) {
-        return itens.get(position);
+        return items.get(position);
     }
 
     /**
@@ -55,7 +53,7 @@ public class IntegrantsAdapter extends BaseAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         //Pega o item de acordo com a posção.
-        Integrant item = itens.get(position);
+        Integrant item = items.get(position);
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.integrants_layout, null);
 
@@ -63,21 +61,18 @@ public class IntegrantsAdapter extends BaseAdapter {
         //ao item e definimos as informações.
         ((TextView) view.findViewById(R.id.integrant_name_tv)).setText(item.getName());
 
-        // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade
-        //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());
-
         ((Button) view.findViewById(R.id.integrant_delete_bt)).setTag(position);
         return view;
     }
 
 
     public void removeItem(int positionToRemove){
-        itens.remove(positionToRemove);
+        items.remove(positionToRemove);
         notifyDataSetChanged();
     }
 
-    public void updateItens(List<Integrant> itens) {
-        this.itens = itens;
+    public void updateItems(List<Integrant> items) {
+        this.items = items;
         notifyDataSetChanged();
     }
 

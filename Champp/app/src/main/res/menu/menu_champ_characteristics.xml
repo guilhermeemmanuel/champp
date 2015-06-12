@@ -5,7 +5,7 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_add_participante"
+    <item android:id="@+id/action_add_participant"
         android:icon="@mipmap/ic_action_add_person"
         android:title="Adicionar Participante"
         app:showAsAction ="ifRoom"/>

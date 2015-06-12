@@ -6,29 +6,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.model.Championship;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListMyChampsAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private List<Championship> itens;
+    private List<Championship> items;
+    private Context myContext;
 
-    public ListMyChampsAdapter(Context context, List<Championship> itens) {
+    public ListMyChampsAdapter(Context context, List<Championship> items) {
         //Itens que preencheram o listview
-        this.itens = itens;
+        this.items = items;
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
+        myContext = context;
     }
 
     //Retorna a quantidade de Itens
     @Override
     public int getCount() {
-        return itens.size();
+        return items.size();
     }
 
     /**
@@ -38,7 +40,7 @@ public class ListMyChampsAdapter extends BaseAdapter {
      * @return
      */
     public Championship getItem(int position) {
-        return itens.get(position);
+        return items.get(position);
     }
 
     /**
@@ -53,30 +55,53 @@ public class ListMyChampsAdapter extends BaseAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         //Pega o item de acordo com a posção.
-        Championship item = itens.get(position);
+        Championship item = items.get(position);
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.item_layout, null);
 
         //atraves do layout pego pelo LayoutInflater, pegamos cada id relacionado
         //ao item e definimos as informações.
-        ((TextView) view.findViewById(R.id.text)).setText(item.getName());
+        ((TextView) view.findViewById(R.id.champ_name)).setText(item.getName());
 
-        // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade
-        //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());
+        ((ImageView) view.findViewById(R.id.icon_champ)).setImageResource(getIdImage(item));
 
-        ((Button) view.findViewById(R.id.btnDelete)).setTag(position);
+        ((Button) view.findViewById(R.id.delete_champ_bt)).setTag(position);
 
         return view;
     }
 
+    private int getIdImage(Championship item){
+        final String BASKETBALL = myContext.getResources().getString(R.string.basketball);
+        final String FOOTBALL = myContext.getResources().getString(R.string.football);
+        final String FUTSAL = myContext.getResources().getString(R.string.futsal);
+        final String HANDBALL = myContext.getResources().getString(R.string.handball);
+        final String TENNIS = myContext.getResources().getString(R.string.tennis);
+        final String VOLLEY = myContext.getResources().getString(R.string.volley);
+
+        if(item.getModal().equals(BASKETBALL)){
+            return R.mipmap.lbasketball;
+        }else if(item.getModal().equals(FOOTBALL)){
+            return R.mipmap.lfootball;
+        }else if(item.getModal().equals(FUTSAL)){
+            return R.mipmap.lfootball;
+        }else if(item.getModal().equals(HANDBALL)){
+            return R.mipmap.lhandball;
+        }else if(item.getModal().equals(TENNIS)){
+            return R.mipmap.ltennis;
+        }else if(item.getModal().equals(VOLLEY)){
+            return R.mipmap.lvolley;
+        }
+        return -1;
+    }
+
 
     public void removeItem(int positionToRemove){
-        itens.remove(positionToRemove);
+        items.remove(positionToRemove);
         notifyDataSetChanged();
     }
 
-    public void updateItens(List<Championship> itens) {
-        this.itens = itens;
+    public void updateItems(List<Championship> items) {
+        this.items = items;
         notifyDataSetChanged();
     }
 }

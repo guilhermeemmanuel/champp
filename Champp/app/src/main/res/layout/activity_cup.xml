@@ -11,18 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mostrar Campeão"
-        android:id="@+id/btn_campeao"
+        android:id="@+id/cup_champion_bt"
         android:layout_gravity="center_horizontal"
-        android:onClick="showCampeao"/>
+        android:onClick="showChampion"/>
 
     <TextView
-        android:id="@+id/champ_name"
-        android:text="@string/hello_world"
+        android:id="@+id/cup_champ_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <ListView
-        android:id="@+id/matchesLv"
+        android:id="@+id/matches_cup_lv"
         android:descendantFocusability="afterDescendants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

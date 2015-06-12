@@ -1,8 +1,6 @@
 package com.asus.embedded.champp.controller;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
@@ -108,7 +106,7 @@ public class ChampionshipController {
                 if(championship.isNextRoundCreated()) {
                     dbHelper.insertMatches(champName, championship.getLastRound());
                 }
-                dbHelper.isChampion(champName, championship.isCampeao(), championship.campeao().getName());
+                dbHelper.isChampion(champName, championship.isChampion(), championship.getChampion().getName());
                 return championship;
             }
         }

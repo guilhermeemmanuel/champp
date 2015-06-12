@@ -9,12 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Adapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.asus.embedded.champp.LeagueActivity;
-import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.adapters.RankingAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
@@ -43,15 +39,18 @@ public class RankingActivity extends Activity {
         rankingAdapter = new RankingAdapter(this, parts);
 
         lvRanking.setAdapter(rankingAdapter);
-        if(c.isCampeao()) {
-            showCampeao(parts.get(0));
+        if(c.isChampion()) {
+            showChampion(parts.get(0));
         }
 
     }
 
-    public void showCampeao(Participant participant) {
+    public void showChampion(Participant participant) {
+        String congratSt = getResources().getString(R.string.congrat);
+        String youWinSt = getResources().getString(R.string.youWin);
+        String championSt = getResources().getString(R.string.champion);
 
-        Participant campeao = participant;
+        Participant champion = participant;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -59,11 +58,11 @@ public class RankingActivity extends Activity {
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialog_campeao_trofeu, null));
+        builder.setView(inflater.inflate(R.layout.dialog_champion_trophy, null));
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage("Parabens " + campeao.getName() + " você é o novo campeao da " + c.getName() + "!!!")
-                .setIcon(R.mipmap.campeao)
-                .setTitle("CAMPEÃO");
+        builder.setMessage(congratSt + champion.getName() + youWinSt + c.getName() + "!!!")
+                .setIcon(R.mipmap.champion)
+                .setTitle(championSt);
         // 3. Add the buttons
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -85,23 +84,23 @@ public class RankingActivity extends Activity {
 
     public String generateRanking(){
         List<Participant> aux = new ArrayList<Participant>();
-        String concatena = null;
+        String concat = null;
 
         for(Championship c : ChampionshipController.getInstance(getApplicationContext()).getChamps()) {
 
                 if (c.getName().equals("liga")) {
                     aux = c.getParticipants();
-                    concatena = c.getName() + "\n";
-                    Log.v("kkkkkkkkkkkkk", concatena);
+                    concat = c.getName() + "\n";
+                    Log.v("kkkkkkkkkkkkk", concat);
                     for (Participant p : aux) {
-                        concatena += p.getName() + " " + p.getPontuacao() + "\n";
-                        Log.v("ZZZZZZZZZZZ", concatena);
+                        concat += p.getName() + " " + p.getScore() + "\n";
+                        Log.v("ZZZZZZZZZZZ", concat);
                     }
-                    concatena = "\n";
+                    concat = "\n";
                }
         }
 
-        return concatena;
+        return concat;
     }
 
 

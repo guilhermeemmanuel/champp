@@ -11,11 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
-
-import android.widget.AdapterView;
 
 
 import android.widget.ListView;
@@ -32,7 +29,6 @@ import com.asus.embedded.champp.model.SameNameException;
 
 import java.util.List;
 
-
 public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     private TextView nameTv;
@@ -41,7 +37,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private ParticipantsAdapter adapter;
     private Button startBt;
     private Button showTableBt;
-    private TextView modal;
+    private TextView modalTv;
 
 
     @Override
@@ -49,13 +45,11 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champ_characteristics);
 
-        nameTv = (TextView) findViewById(R.id.name_tv);
-        modal = (TextView) findViewById(R.id.modal_tv);
-        /*typeModalTv = (TextView) findViewById(R.id.type_modality_tv);
-        typeCompetitionTv = (TextView) findViewById(R.id.type_of_competition_tv);*/
+        nameTv = (TextView) findViewById(R.id.championship_name_tv);
+        modalTv = (TextView) findViewById(R.id.modal_championship_tv);
 
-        startBt = (Button) findViewById(R.id.buttonInitChamp);
-        showTableBt = (Button) findViewById(R.id.buttonShowTable);
+        startBt = (Button) findViewById(R.id.init_champ_bt);
+        showTableBt = (Button) findViewById(R.id.show_table_bt);
 
 
         participantsLv = (ListView) findViewById(R.id.participants_list_view);
@@ -66,19 +60,17 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
                 Intent intent = new Intent(ChampCharacteristicsActivity.this, ParticipantCharacteristcsActivity.class);
                 intent.putExtra("PARTICIPANT", item);
-                intent.putExtra("CAMPEAO", c);
+                intent.putExtra("CHAMP", c);
                 startActivityForResult(intent,1);
             }
         });
 
         Intent i = getIntent();
 
-        c = (Championship) i.getSerializableExtra("CAMPEAO");
+        c = (Championship) i.getSerializableExtra("CHAMP");
 
         nameTv.setText(c.getName());
-        modal.setText(c.getModal());
-        /*typeModalTv.setText(c.isIndividual() ? "Individual" : "Group");
-        typeCompetitionTv.setText(c.isCup() ? "Cup" : "League");*/
+        modalTv.setText(c.getModal());
 
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -145,7 +137,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     public void sureDeleteItem(View v){
 
         c = ChampionshipController.getInstance(getApplicationContext()).deleteParticipant(c.getName(), adapter.getItem((Integer) v.getTag()).getName());
-        adapter.updateItens(c.getParticipants());
+        adapter.updateItems(c.getParticipants());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 
@@ -167,7 +159,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 }else{
                     intent = new Intent(this, LeagueActivity.class);
                 }
-                intent.putExtra("CAMPEAO",c);
+                intent.putExtra("CHAMP",c);
                 startActivity(intent);
             }
         }else{
@@ -185,7 +177,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         }else{
             intent = new Intent(this, LeagueActivity.class);
         }
-        intent.putExtra("CAMPEAO",c);
+        intent.putExtra("CHAMP",c);
         startActivity(intent);
     }
 
@@ -200,13 +192,10 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem register = menu.findItem(R.id.action_add_participante);
-        if(c.isStarted())
-        {
+        MenuItem register = menu.findItem(R.id.action_add_participant);
+        if(c.isStarted()){
             register.setVisible(false);
-        }
-        else
-        {
+        }else{
             register.setVisible(true);
         }
         return true;
@@ -220,9 +209,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.action_add_participante:
+            case R.id.action_add_participant:
                 Intent intent = new Intent(ChampCharacteristicsActivity.this, AddParticipantActivity.class);
-                intent.putExtra("CAMPEAO", c);
+                intent.putExtra("CHAMP", c);
                 startActivityForResult(intent, 1);
                 return true;
             case R.id.action_settings:
@@ -239,11 +228,11 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 String name = data.getStringExtra("NEW_PART");
                 try {
                     this.c = ChampionshipController.getInstance(getApplicationContext()).addParticipant(c.getName(),name);
-                    Toast.makeText(this,R.string.participantCreated, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,R.string.participantCreated, Toast.LENGTH_LONG).show();
                 }  catch (EmptyFieldException e) {
-                    Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_LONG).show();
                 } catch (SameNameException e) {
-                    Toast.makeText(this,R.string.sameName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,R.string.sameName, Toast.LENGTH_LONG).show();
                 } catch (ExceededCharacterException e) {
                     Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
                 }

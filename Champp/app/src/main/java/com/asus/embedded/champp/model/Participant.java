@@ -9,11 +9,11 @@ public class Participant implements Serializable, Comparable<Participant> {
     private static final int NAME_LIMIT = 15;
     private String name;
     private List<Integrant> integrants;
-    private int counterPontos;
+    private int counterScore;
 
     public Participant(String name) throws EmptyFieldException, ExceededCharacterException {
         setName(name);
-        this.counterPontos = 0;
+        this.counterScore = 0;
         this.integrants = new ArrayList<Integrant>();
     }
 
@@ -22,15 +22,15 @@ public class Participant implements Serializable, Comparable<Participant> {
     }
 
     public void winMatch(){
-        this.counterPontos+=3;
+        this.counterScore +=3;
     }
 
     public void empateMatch(){
-        this.counterPontos+=1;
+        this.counterScore +=1;
     }
 
-    public int getPontuacao(){
-        return counterPontos;
+    public int getScore(){
+        return counterScore;
     }
 
     public void setName(String name) throws EmptyFieldException, ExceededCharacterException {
@@ -69,18 +69,18 @@ public class Participant implements Serializable, Comparable<Participant> {
 
     @Override
     public int compareTo(Participant participant) {
-        return (participant.getPontuacao() - getPontuacao());
+        return (participant.getScore() - getScore());
     }
 
-    private Participant(String name, int pontos, List<Integrant> integrants) {
+    private Participant(String name, int score, List<Integrant> integrants) {
         this.name = name;
-        this.counterPontos = pontos;
+        this.counterScore = score;
         this.integrants = integrants;
 
     }
 
-    public static Participant createFromBD(String name, int pontos, List<Integrant> integrants) {
-        Participant p = new Participant(name, pontos, integrants);
+    public static Participant createFromBD(String name, int score, List<Integrant> integrants) {
+        Participant p = new Participant(name, score, integrants);
         return p;
     }
 }

@@ -3,7 +3,6 @@ package com.asus.embedded.champp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +42,7 @@ public class NewChampActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_champ);
 
-        nameEt = (EditText) findViewById(R.id.name_et);
+        nameEt = (EditText) findViewById(R.id.new_champ_name_et);
         modalityText = (TextView) findViewById(R.id.modality_tv);
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
         modalLayout = (LinearLayout) findViewById(R.id.modality_layout);
@@ -138,9 +135,9 @@ public class NewChampActivity extends ActionBarActivity {
             setResult(1, intent);
             finish();
         } catch (EmptyFieldException e) {
-            Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_LONG).show();
         } catch (SameNameException e) {
-            Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_LONG).show();
         } catch (ExceededCharacterException e) {
             Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
         }

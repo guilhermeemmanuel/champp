@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/linearLayout"
+        android:id="@+id/round_layout"
         android:gravity="center_horizontal"
         android:backgroundTint="@android:color/background_light">
         <TextView
@@ -26,9 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/linearLayout2"
+        android:id="@+id/match_layout"
         android:backgroundTint="@android:color/background_light"
-        android:layout_below="@+id/linearLayout"
+        android:layout_below="@+id/round_layout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:gravity="center_horizontal"
@@ -92,8 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/linearLayout2"
-        android:layout_below="@+id/linearLayout"
+        android:layout_alignBottom="@+id/match_layout"
+        android:layout_below="@+id/round_layout"
         android:background="@android:drawable/ic_input_add"
         android:onClick="setScore"/>
 

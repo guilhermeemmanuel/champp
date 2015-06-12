@@ -9,14 +9,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.IntegrantsAdapter;
-import com.asus.embedded.champp.adapters.ParticipantsAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
 import com.asus.embedded.champp.model.Championship;
 import com.asus.embedded.champp.model.EmptyFieldException;
@@ -29,11 +27,8 @@ import java.util.List;
 
 
 public class ParticipantCharacteristcsActivity extends ActionBarActivity {
-
-    private TextView name_participant;
     private Participant pt;
     private Championship c;
-    private Button addIntegrant;
     private ListView integrantsLv;
     private IntegrantsAdapter adapter;
 
@@ -49,7 +44,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         pt = (Participant) i.getSerializableExtra("PARTICIPANT");
-        c = (Championship) i.getSerializableExtra("CAMPEAO");
+        c = (Championship) i.getSerializableExtra("CHAMP");
 
         integrantsLv = (ListView) findViewById(R.id.integrants_list_view);
 
@@ -137,7 +132,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
     public void sureDeleteItem(View v){
         Integrant integrant = adapter.getItem((Integer) v.getTag());
         pt = ChampionshipController.getInstance(getApplicationContext()).deleteIntegrant(c.getName(), pt,integrant.getName());
-        adapter.updateItens(pt.getIntegrants());
+        adapter.updateItems(pt.getIntegrants());
         Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
     }
 

@@ -112,21 +112,21 @@ public class Match implements Serializable {
         Log.d("BD", "ps");
             if (visitantScore > homeScore) {
                 visitant.winMatch();
-                Log.v("Visitante ganhoou", visitant.getPontuacao() + "" + visitant.getName());
-                Log.v("Home perdeuu", home.getPontuacao() + home.getName());
+                Log.v("Visitante ganhoou", visitant.getScore() + "" + visitant.getName());
+                Log.v("Home perdeuu", home.getScore() + home.getName());
 
 
             } else if (visitantScore < homeScore) {
                 home.winMatch();
-                Log.v("Visitante perdeu", visitant.getPontuacao() + "" + visitant.getName());
-                Log.v("Home ganhooouu", home.getPontuacao() + home.getName());
+                Log.v("Visitante perdeu", visitant.getScore() + "" + visitant.getName());
+                Log.v("Home ganhooouu", home.getScore() + home.getName());
 
 
             } else if (visitantScore == homeScore) {
                 visitant.empateMatch();
                 home.empateMatch();
-                Log.v("Visitante empatouu", visitant.getPontuacao() + "" + visitant.getName());
-                Log.v("Home empatoouu", home.getPontuacao() + home.getName());
+                Log.v("Visitante empatouu", visitant.getScore() + "" + visitant.getName());
+                Log.v("Home empatoouu", home.getScore() + home.getName());
 
 
             }

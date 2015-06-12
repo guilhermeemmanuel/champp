@@ -28,23 +28,23 @@ public class LeagueActivity extends ActionBarActivity {
     private ListView matchesLv;
     private Championship c;
     private MatchesAdapter adapter;
-    private TextView league_matches;
+    private TextView leagueMatchesTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_league);
 
-        league_matches = (TextView) findViewById(R.id.league_matches);
+        leagueMatchesTv = (TextView) findViewById(R.id.league_matches_tv);
 
 
-        matchesLv = (ListView) findViewById(R.id.matches_League_Lv);
+        matchesLv = (ListView) findViewById(R.id.league_matches_lv);
 
         Intent i = getIntent();
 
-        c = (Championship) i.getSerializableExtra("CAMPEAO");
+        c = (Championship) i.getSerializableExtra("CHAMP");
 
-        league_matches.setText(c.getName() + " - " + getString(R.string.table));
+        leagueMatchesTv.setText(c.getName() + " - " + getString(R.string.table));
 
 
 
@@ -64,7 +64,7 @@ public class LeagueActivity extends ActionBarActivity {
                 try {
                     c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant);
 
-                    adapter.updateItens(c.getMatches());
+                    adapter.updateItems(c.getMatches());
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
@@ -110,7 +110,7 @@ public class LeagueActivity extends ActionBarActivity {
             int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
             c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
 
-            adapter.updateItens(c.getMatches());
+            adapter.updateItems(c.getMatches());
 
         } catch (InvalidScoreException e) {
             Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();;

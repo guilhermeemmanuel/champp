@@ -1,7 +1,5 @@
 package com.asus.embedded.champp.model;
 
-import android.provider.Telephony;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -27,9 +25,9 @@ public class Championship implements Serializable {
     //BD
     private List<Round> rounds;
     //BD
-    private boolean isCampeao = false;
+    private boolean isChampion = false;
 
-    private Participant campeao;
+    private Participant champion;
 
 
     //BOOLEAN DE CONTROLE
@@ -107,6 +105,7 @@ public class Championship implements Serializable {
     }
 
     public void startedChamp() {
+
         isStarted = true;
         if (isCup()) {
             //eh copa
@@ -200,9 +199,9 @@ public class Championship implements Serializable {
                     match.sumPoints();
                     if (isProximosConfrontos()){
                         if(!isCup()) {
-                            isCampeao = true;
+                            isChampion = true;
                         }
-                        proximosConfrontos();
+                        nextConfrontations();
                     }
 
                     Log.i("mudei", "" + home);
@@ -220,15 +219,15 @@ public class Championship implements Serializable {
         return true;
     }
 
-    public boolean isCampeao(){
-        return isCampeao;
+    public boolean isChampion(){
+        return isChampion;
     }
 
-    public Participant campeao(){
-        return campeao;
+    public Participant getChampion(){
+        return champion;
     }
     //copa
-    public void proximosConfrontos() {
+    public void nextConfrontations() {
         ArrayList<Participant> wins = new ArrayList<Participant>();
         Log.i("gerar" , "proximox");
 
@@ -243,13 +242,13 @@ public class Championship implements Serializable {
 
         if(quantWins == 1 && isCup()){
             nextRoundCreated = false;
-            isCampeao = true;
-            campeao = wins.get(wins.size() -1);
+            isChampion = true;
+            champion = wins.get(wins.size() -1);
         }
 
         if (isCup()) {
             //eh copa
-            int jogosAnteriores = (Util.getNearLowPotency(2, participants.size()))/2;
+            int previousMatches = (Util.getNearLowPotency(2, participants.size()))/2;
             int org = Util.getNearLowPotency(2, wins.size());
             if (org == wins.size()) {
                 nextRoundCreated = true;
@@ -257,7 +256,7 @@ public class Championship implements Serializable {
                 Round r = new Round(org);
                 int games = org / 2;
                 for (int i = 0; i < games; i++) {
-                    r.getMatches().add(new Match(wins.get(i * 2), wins.get(i * 2 + 1), "round of " + org, i + jogosAnteriores));
+                    r.getMatches().add(new Match(wins.get(i * 2), wins.get(i * 2 + 1), "round of " + org, i + previousMatches));
                 }
             this.rounds.add(r);
 
@@ -294,8 +293,8 @@ public class Championship implements Serializable {
         return false;
     }
 
-    private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao,
-            List<Match> matches, Participant campeao) {
+    private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isChampion,
+            List<Match> matches, Participant champion) {
         Log.d("BD",name);
         this.name = name;
         this.modal = modal;
@@ -303,8 +302,8 @@ public class Championship implements Serializable {
         this.isIndividual = isIndividual;
         this.participants = participants;
         this.isStarted = isStarted;
-        this.isCampeao = isCampeao;
-        this.campeao = campeao;
+        this.isChampion = isChampion;
+        this.champion = champion;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
             match.setHome(getParticipant(match.getHome().getName()));

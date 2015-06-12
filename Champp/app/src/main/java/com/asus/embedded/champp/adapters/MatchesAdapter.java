@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,15 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchesAdapter extends BaseAdapter {
-
     private LayoutInflater mInflater;
-    private List<Match> itens;
+    private List<Match> items;
 
     private List<MatchListener> listeners;
 
-    public MatchesAdapter(Context context, List<Match> itens) {
+    public MatchesAdapter(Context context, List<Match> items) {
         //Itens que preencheram o listview
-        this.itens = itens;
+        this.items = items;
         listeners = new ArrayList();
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
@@ -40,7 +38,7 @@ public class MatchesAdapter extends BaseAdapter {
     //Retorna a quantidade de Itens
     @Override
     public int getCount() {
-        return itens.size();
+        return items.size();
     }
 
     /**
@@ -50,7 +48,7 @@ public class MatchesAdapter extends BaseAdapter {
      * @return
      */
     public Match getItem(int position) {
-        return itens.get(position);
+        return items.get(position);
     }
 
     /**
@@ -65,9 +63,9 @@ public class MatchesAdapter extends BaseAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         //Pega o item de acordo com a posção.
-        final Match item = itens.get(position);
+        final Match item = items.get(position);
 
-//        Log.i("Array", Arrays.asList(itens).toString());
+//        Log.i("Array", Arrays.asList(items).toString());
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.matches_layout, null);
 
@@ -128,9 +126,6 @@ public class MatchesAdapter extends BaseAdapter {
 
         //((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
 
-        // Aqui agnt pode colocar a imagem pra indicar tipo a modalidade
-        //((ImageView) view.findViewById(R.id.imagemview)).setImageResource(item.getIconeRid());
-
 
         return view;
     }
@@ -148,8 +143,8 @@ public class MatchesAdapter extends BaseAdapter {
     }
 
 
-    public void updateItens(List<Match> itens) {
-        this.itens = itens;
+    public void updateItems(List<Match> items) {
+        this.items = items;
         notifyDataSetChanged();
     }
 
