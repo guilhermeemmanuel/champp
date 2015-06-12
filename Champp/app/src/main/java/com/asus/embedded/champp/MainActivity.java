@@ -77,8 +77,8 @@ public class MainActivity extends ActionBarActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage(R.string.deleteChampsDialog)
-                .setTitle(R.string.btnDelete);
+        builder.setMessage(R.string.delete_champs_dialog)
+                .setTitle(R.string.delete_button);
         // 3. Add the buttons
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -97,7 +97,7 @@ public class MainActivity extends ActionBarActivity {
     public void sureDeleteItem(View v){
         ChampionshipController.getInstance(getApplicationContext()).deleteChampionship(adapter.getItem((Integer) v.getTag()).getName());
         adapter.updateItems(ChampionshipController.getInstance(getApplicationContext()).getChamps());
-        Toast.makeText(this,R.string.champDeleted,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,R.string.champ_deleted,Toast.LENGTH_LONG).show();
    }
 
     public void newChamp(View view) {

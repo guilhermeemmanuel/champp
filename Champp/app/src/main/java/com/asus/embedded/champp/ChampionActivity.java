@@ -21,7 +21,7 @@ public class ChampionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champion);
 
-        championTv =(TextView) findViewById(R.id.campeao);
+        championTv =(TextView) findViewById(R.id.champion_tv);
        if(savedInstanceState != null){
            participantName = (String) savedInstanceState.getString(CHAMPION);
            champName = (String) savedInstanceState.getString(CHAMPIONSHIP);
@@ -35,7 +35,7 @@ public class ChampionActivity extends ActionBarActivity {
        }
 
         String congrat = getResources().getString(R.string.congrat);
-        String youWin = getResources().getString(R.string.youWin);
+        String youWin = getResources().getString(R.string.you_win);
         championTv.setText(congrat + participantName + youWin + champName + " !");
     }
 

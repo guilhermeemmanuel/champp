@@ -24,6 +24,10 @@ public class AddParticipantActivity extends ActionBarActivity {
         c = (Championship) intent.getSerializableExtra("CHAMP");
 
         nameParticipant = (EditText) findViewById(R.id.participant_name_et);
+
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
 
@@ -53,7 +57,7 @@ public class AddParticipantActivity extends ActionBarActivity {
         String name = nameParticipant.getText().toString();
         //Excessao de times vazios
         if(name.trim().equals("")){
-            Toast.makeText(this,R.string.participante_emptyName, Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.participant_empty_name, Toast.LENGTH_LONG).show();
         }else {
             Intent intent = new Intent();
             intent.putExtra("NEW_PART", name);

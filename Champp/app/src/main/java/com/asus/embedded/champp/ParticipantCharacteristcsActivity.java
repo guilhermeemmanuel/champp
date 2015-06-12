@@ -9,9 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.IntegrantsAdapter;
@@ -37,10 +35,6 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_participant_characteristcs);
 
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-
         Intent i = getIntent();
 
         pt = (Participant) i.getSerializableExtra("PARTICIPANT");
@@ -48,7 +42,10 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
 
         integrantsLv = (ListView) findViewById(R.id.integrants_list_view);
 
-        setTitle(pt.getName());
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setTitle(pt.getName());
     }
 
     @Override
@@ -106,8 +103,8 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setMessage(R.string.deleteParticipanteDialog)
-                    .setTitle(R.string.btnDelete);
+            builder.setMessage(R.string.delete_participante_dialog)
+                    .setTitle(R.string.delete_button);
             // 3. Add the buttons
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -123,7 +120,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
             builder.show();
 
         }else {
-            Toast.makeText(this, R.string.champStarted, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.champ_started, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
@@ -133,7 +130,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         Integrant integrant = adapter.getItem((Integer) v.getTag());
         pt = ChampionshipController.getInstance(getApplicationContext()).deleteIntegrant(c.getName(), pt,integrant.getName());
         adapter.updateItems(pt.getIntegrants());
-        Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,R.string.participant_deleted,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -143,13 +140,13 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
                 String name = data.getStringExtra("NEW_INTEGRANT");
                 try {
                     this.pt = ChampionshipController.getInstance(getApplicationContext()).addIntegrant(c.getName(), pt, name);
-                    Toast.makeText(this, R.string.integrantCreated, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.integrant_created, Toast.LENGTH_SHORT).show();
                 }  catch (EmptyFieldException e) {
-                    Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,R.string.field_empty, Toast.LENGTH_SHORT).show();
                 } catch (ExceededCharacterException e) {
-                    Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_SHORT).show();
                 } catch (SameNameException e) {
-                    Toast.makeText(this,R.string.sameName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,R.string.same_name, Toast.LENGTH_SHORT).show();
                 }
             }
         }

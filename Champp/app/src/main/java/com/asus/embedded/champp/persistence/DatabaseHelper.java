@@ -21,7 +21,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 21;
+    private static final int DATABASE_VERSION = 22;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -164,11 +164,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void isChampion(String champName, boolean isCampeao, String participant) {
+    public void isChampion(String champName, boolean isChampion, String participant) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put("isChampion", isCampeao ? 1 : 0);
+        values.put("isChampion", isChampion ? 1 : 0);
         values.put("getChampion", participant);
 
 

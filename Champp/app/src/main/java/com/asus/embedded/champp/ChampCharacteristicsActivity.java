@@ -111,8 +111,8 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setMessage(R.string.deleteParticipanteDialog)
-                    .setTitle(R.string.btnDelete);
+            builder.setMessage(R.string.delete_participante_dialog)
+                    .setTitle(R.string.delete_button);
             // 3. Add the buttons
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -128,7 +128,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             builder.show();
 
         }else {
-            Toast.makeText(this, R.string.champStarted, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.champ_started, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(ChampCharacteristicsActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -138,20 +138,20 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         c = ChampionshipController.getInstance(getApplicationContext()).deleteParticipant(c.getName(), adapter.getItem((Integer) v.getTag()).getName());
         adapter.updateItems(c.getParticipants());
-        Toast.makeText(this,R.string.participantDeleted,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,R.string.participant_deleted,Toast.LENGTH_LONG).show();
     }
 
     public void initChamp(View v){
         if(!c.isStarted()){
             if(c.getParticipants().size() < 2){
-                Toast.makeText(this,R.string.champUnstarted,Toast.LENGTH_LONG).show();
+                Toast.makeText(this,R.string.champ_unstarted,Toast.LENGTH_LONG).show();
             }else{
                 try {
                     c = ChampionshipController.getInstance(getApplicationContext()).startChamp(c.getName());
                 } catch (ExceededCharacterException e) {
-                    Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
                 } catch (EmptyFieldException e) {
-                    Toast.makeText(this,R.string.fieldEmpty,Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.field_empty,Toast.LENGTH_LONG).show();
                 }
                 Intent intent;
                 if (c.isCup()){
@@ -163,7 +163,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         }else{
-            Toast.makeText(this,R.string.champStarted,Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.champ_started,Toast.LENGTH_LONG).show();
             Intent intent = new Intent(ChampCharacteristicsActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -228,13 +228,13 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 String name = data.getStringExtra("NEW_PART");
                 try {
                     this.c = ChampionshipController.getInstance(getApplicationContext()).addParticipant(c.getName(),name);
-                    Toast.makeText(this,R.string.participantCreated, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.participant_created, Toast.LENGTH_LONG).show();
                 }  catch (EmptyFieldException e) {
-                    Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
                 } catch (SameNameException e) {
-                    Toast.makeText(this,R.string.sameName, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.same_name, Toast.LENGTH_LONG).show();
                 } catch (ExceededCharacterException e) {
-                    Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
                 }
             }
         }

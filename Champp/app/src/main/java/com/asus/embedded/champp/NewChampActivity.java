@@ -135,11 +135,11 @@ public class NewChampActivity extends ActionBarActivity {
             setResult(1, intent);
             finish();
         } catch (EmptyFieldException e) {
-            Toast.makeText(this,R.string.fieldEmpty, Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
         } catch (SameNameException e) {
-            Toast.makeText(this,R.string.sameChamp, Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
         } catch (ExceededCharacterException e) {
-            Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
         }
     }
 }

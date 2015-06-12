@@ -47,7 +47,7 @@ public class RankingActivity extends Activity {
 
     public void showChampion(Participant participant) {
         String congratSt = getResources().getString(R.string.congrat);
-        String youWinSt = getResources().getString(R.string.youWin);
+        String youWinSt = getResources().getString(R.string.you_win);
         String championSt = getResources().getString(R.string.champion);
 
         Participant champion = participant;

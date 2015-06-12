@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Campeonato</string>
     <string name="welcome">Bem-vindo ao Champ App Manager!</string>
-    <string name="newChamp">Novo Campeonato</string>
+    <string name="new_champ">Novo Campeonato</string>
     <string name="action_settings">Configurações</string>
     <string name="title_activity_new_champ">Novo Campeonato</string>
     <string name="name">Nome</string>
@@ -15,25 +15,24 @@
     <string name="type_modality">Tipo da modalidade:</string>
     <string name="type_of_competition">Tipo de competição:</string>
     <string name="bt_myChamps">Meus Campeonatos</string>
-    <string name="noChamps">Sem Campeonatos</string>
-    <string name="sameChamp">Campeonato com o mesmo nome já existe</string>
-    <string name="champDelete">Campeonato Deletado com Sucesso</string>
-    <string name="champDeleted">Campeonato Deletado com Sucesso</string>
-    <string name="participantDeleted">Participante deletado com Sucesso</string>
-    <string name="fieldEmpty">Preencha todos os campos</string>
-    <string name="btnDelete">Deletar</string>
+    <string name="no_champs">Sem Campeonatos</string>
+    <string name="same_champ">Campeonato com o mesmo nome já existe</string>
+    <string name="champ_deleted">Campeonato Deletado com Sucesso</string>
+    <string name="participant_deleted">Participante deletado com Sucesso</string>
+    <string name="field_empty">Preencha todos os campos</string>
+    <string name="delete_button">Deletar</string>
     <string name="cancel">Cancelar</string>
-    <string name="deleteChampsDialog">Você tem certeza que deseja deletar esse campeonato ?</string>
+    <string name="delete_champs_dialog">Você tem certeza que deseja deletar esse campeonato?</string>
 
-    <string name="deleteParticipanteDialog">Você tem certeza que deseja deletar o participante ?</string>
+    <string name="delete_participante_dialog">Você tem certeza que deseja deletar o participante?</string>
 
     <string name="name_participant" />
     <string name="init_champ">Iniciar Campeonato</string>
     <string name="btn_table">Visualizar Tabela</string>
-    <string name="champStarted">Esse campeonato já foi iniciado</string>
-    <string name="participantCreated">Participante criado</string>
-    <string name="sameName">Já existe um participante com mesmo nome</string>
-    <string name="champUnstarted">Adicione pelo menos 2 participantes</string>
+    <string name="champ_started">Esse campeonato já foi iniciado</string>
+    <string name="participant_created">Participante criado</string>
+    <string name="same_name">Já existe um participante com mesmo nome</string>
+    <string name="champ_unstarted">Adicione pelo menos 2 participantes</string>
     <string name="table">Tabela</string>
     <string name="action_example">Exemplo de ação</string>
     <string name="hello_blank_fragment">Olá fragment blank</string>
@@ -52,25 +51,25 @@
     <string name="title_section3">Section 3</string>
     <string name="title_activity_participant_characteristcs">Características de Participante</string>
 
-    <string name="setScoreDialog">Você tem certeza que deseja mudar o placar ? Você nao poderá mais alterar ele. </string>
-    <string name="setScoreDialogTitle">Modificar Placar</string>
-    <string name="congrat">Congratulations</string>
-    <string name="youWin">Você é o novo campeão do(a)</string>
-    <string name="validField">Insira valores válidos nos campos de resultado</string>
-    <string name="charExceeded">Character Limit Exceeded</string>
+    <string name="set_score_dialog">Você tem certeza que deseja mudar o placar? Você nao poderá mais alterar ele.</string>
+    <string name="set_score_dialog_title">Modificar Placar</string>
+    <string name="congrat">Parabéns </string>
+    <string name="you_win"> Você é o novo campeão do(a) </string>
+    <string name="invalid_field">Insira valores válidos nos campos de resultado</string>
+    <string name="char_exceeded">Limite de caracteres excedido</string>
     <string name="title_activity_ranking">Ranking</string>
     <string name="title_activity_championship">Campeonato</string>
     <string name="title_activity_campeao">Campeão</string>
-    <string name="select_modal_tv">Select The Championship Modality</string>
-    <string name="basketball">basketball</string>
-    <string name="football">football</string>
-    <string name="futsal">futsal</string>
-    <string name="handball">handball</string>
-    <string name="tennis">tennis</string>
-    <string name="volley">volleyball</string>
+    <string name="select_modal_tv">Selecione a modalidade do campeonato</string>
+    <string name="basketball">Basquete</string>
+    <string name="football">Futebol</string>
+    <string name="futsal">Futsal</string>
+    <string name="handball">Handebol</string>
+    <string name="tennis">Tênis</string>
+    <string name="volley">Vôlei</string>
 
-    <string name="participante_emptyName">participant Empty Name </string>
-    <string name="integrant_emptyName">integrant Empty Name </string>
+    <string name="participant_empty_name">Participante com nome vazio</string>
+    <string name="integrant_empty_name">Integrante com nome vazio</string>
     <string name="facebook_app_id"></string>
 
     <string name="title_activity_logo">logoActivity</string>
@@ -86,7 +85,7 @@
 
     <string name="title_activity_login">LoginActivity</string>
 
-    <string name="integrantCreated">Integrant Created</string>
-    <string name="champion">CHAMPION!</string>
+    <string name="integrant_created">Integrante criado</string>
+    <string name="champion">CAMPEÃO!</string>
 
 </resources>

@@ -79,13 +79,16 @@ public class CupActivity extends ActionBarActivity {
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
-                    Toast.makeText(CupActivity.this,R.string.validField,Toast.LENGTH_LONG).show();
+                    Toast.makeText(CupActivity.this,R.string.invalid_field,Toast.LENGTH_LONG).show();
                 }
             }
         });
         matchesLv.setAdapter(adapter);
 
-
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setTitle(c.getName());
 
     }
 
@@ -125,7 +128,7 @@ public class CupActivity extends ActionBarActivity {
 
     public void onCreateDialog() {
         String congratSt = getResources().getString(R.string.congrat);
-        String youWinSt = getResources().getString(R.string.youWin);
+        String youWinSt = getResources().getString(R.string.you_win);
         String championSt = getResources().getString(R.string.champion);
 
         Participant champion = c.getChampion();
@@ -229,11 +232,11 @@ public class CupActivity extends ActionBarActivity {
 
             Toast.makeText(this,homeScore + " x " + visitantScore,Toast.LENGTH_LONG).show();
         } catch (InvalidScoreException e) {
-            Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();;
+            Toast.makeText(this,R.string.invalid_field,Toast.LENGTH_LONG).show();;
         } catch (ExceededCharacterException e) {
-            Toast.makeText(this,R.string.charExceeded,Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
         } catch (EmptyFieldException e) {
-            Toast.makeText(this,R.string.validField,Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.invalid_field,Toast.LENGTH_LONG).show();
         }
 
 

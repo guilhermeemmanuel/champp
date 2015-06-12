@@ -41,7 +41,7 @@
             android:layout_marginTop="3dp"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:text="@string/btnDelete"
+            android:text="@string/delete_button"
             android:onClick="deleteItem"
             android:layout_gravity="center" />
 

@@ -24,6 +24,10 @@ public class AddIntegrantActivity extends ActionBarActivity {
         p = (Participant) intent.getSerializableExtra("PARTICIPANT");
 
         nameIntegrant = (EditText) findViewById(R.id.new_integrant_name_et);
+
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class AddIntegrantActivity extends ActionBarActivity {
         String name = nameIntegrant.getText().toString();
         //Excessao de times vazios
         if (name.trim().equals("")) {
-            Toast.makeText(this, R.string.integrant_emptyName, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.integrant_empty_name, Toast.LENGTH_LONG).show();
         } else {
             Intent intent = new Intent();
             intent.putExtra("NEW_INTEGRANT", name);

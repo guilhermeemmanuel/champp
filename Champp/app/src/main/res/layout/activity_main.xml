@@ -18,7 +18,7 @@
     <Button
         style="@style/btn_white_large"
         android:id="@+id/new_champ_bt"
-        android:text="@string/newChamp"
+        android:text="@string/new_champ"
         android:layout_gravity="center_horizontal"
         android:layout_width="fill_parent"
         android:layout_height="50dp"

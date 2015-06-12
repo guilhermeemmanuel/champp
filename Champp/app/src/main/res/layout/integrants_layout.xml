@@ -24,7 +24,7 @@
         <Button
             style="@style/btn_white_large"
             android:id="@+id/integrant_delete_bt"
-            android:text="@string/btnDelete"
+            android:text="@string/delete_button"
             android:layout_width="90dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
