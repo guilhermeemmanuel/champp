@@ -10,11 +10,26 @@ public class Participant implements Serializable, Comparable<Participant> {
     private String name;
     private List<Integrant> integrants;
     private int counterScore;
+    //Variables for table classificacion ranking
+    private int numberGames;
+    private int numberWins;
+    private int numberDefeats;
+    private int goalsPro;
+    private int goalsAgainst;
+    private int balance;
+    private String classification;
 
     public Participant(String name) throws EmptyFieldException, ExceededCharacterException {
         setName(name);
         this.counterScore = 0;
         this.integrants = new ArrayList<Integrant>();
+        this.numberGames = 0;
+        this.numberWins = 0;
+        this.numberDefeats = 0;
+        this.goalsPro = 0;
+        this.goalsAgainst = 0;
+        this.balance = 0;
+        this.classification = null;
     }
 
     public String getName() {
@@ -82,6 +97,34 @@ public class Participant implements Serializable, Comparable<Participant> {
     public static Participant createFromBD(String name, int score, List<Integrant> integrants) {
         Participant p = new Participant(name, score, integrants);
         return p;
+    }
+
+    public int getNumberGames() {
+        return numberGames;
+    }
+
+    public int getNumberWins() {
+        return numberWins;
+    }
+
+    public int getNumberDefeats() {
+        return numberDefeats;
+    }
+
+    public int getGoalsPro() {
+        return goalsPro;
+    }
+
+    public int getGoalsAgainst() {
+        return goalsAgainst;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public String getClassification() {
+        return classification;
     }
 }
 
