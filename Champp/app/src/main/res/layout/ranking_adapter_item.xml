@@ -17,15 +17,61 @@
         android:layout_height="wrap_content"
         android:text="Team"
         android:textColor="@color/primary_material_dark"
-        android:layout_marginRight="100dp"
+        android:layout_marginRight="10dp"
         />
 
       <TextView
           android:id="@+id/tv_team_score"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="999"
+          android:text="999|"
           />
+        <TextView
+            android:id="@+id/tv_number_games"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+        <TextView
+            android:id="@+id/tv_number_win"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+
+        <TextView
+            android:id="@+id/tv_number_defeats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+
+        <TextView
+            android:id="@+id/tv_goals_pro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+
+        <TextView
+            android:id="@+id/tv_goals_against"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+
+        <TextView
+            android:id="@+id/tv_classification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999"
+            />
 
 
 

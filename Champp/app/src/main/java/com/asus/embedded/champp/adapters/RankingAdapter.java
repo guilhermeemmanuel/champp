@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.model.Participant;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,9 +60,24 @@ public class RankingAdapter extends BaseAdapter {
 
         TextView tvParticipantName = (TextView) view.findViewById(R.id.tv_team_name);
         TextView tvParticipantScore = (TextView) view.findViewById(R.id.tv_team_score);
+        //inicio sprint 5
+        TextView tvParticipantGames = (TextView) view.findViewById(R.id.tv_number_games);
+        TextView tvParticipantNumberWin = (TextView) view.findViewById(R.id.tv_number_win);
+        TextView tvParticipantNumberDefeats = (TextView) view.findViewById(R.id.tv_number_defeats);
+        TextView tvParticipantGoalsPro = (TextView) view.findViewById(R.id.tv_goals_pro);
+        TextView tvParticipantGoalsAgainst = (TextView) view.findViewById(R.id.tv_goals_against);
+        TextView tvParticipantBalance = (TextView) view.findViewById(R.id.tv_balance);
+        TextView tvParticipantClassification = (TextView) view.findViewById(R.id.tv_classification);
 
         tvParticipantName.setText(participant.getName());
-        tvParticipantScore.setText(participant.getScore() + "");
+        tvParticipantScore.setText(participant.getScore() + "|");
+        tvParticipantGames.setText(participant.getNumberGames()+ "|");
+        tvParticipantNumberWin.setText(participant.getNumberWins()+ "|");
+        tvParticipantNumberDefeats.setText(participant.getNumberDefeats()+ "|");
+        tvParticipantGoalsPro.setText(participant.getGoalsPro()+ "|");
+        tvParticipantGoalsAgainst.setText(participant.getGoalsAgainst()+ "|");
+        tvParticipantBalance.setText(participant.getBalance()+ "|");
+        tvParticipantClassification.setText(participant.getClassification());
 
         return view;
     }
