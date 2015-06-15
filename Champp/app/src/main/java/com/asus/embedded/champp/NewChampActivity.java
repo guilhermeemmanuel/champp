@@ -31,7 +31,7 @@ public class NewChampActivity extends ActionBarActivity {
     private final int VOLLEY = R.string.volley;
 
     private EditText nameEt;
-    private RadioButton individualRb, cupRb;
+    private RadioButton individualRb, cupRb,league;
     private LinearLayout modalLayout, compLayout;
     private ImageView modalIcon;
     private int modal;
@@ -48,6 +48,7 @@ public class NewChampActivity extends ActionBarActivity {
         modalLayout = (LinearLayout) findViewById(R.id.modality_layout);
         compLayout = (LinearLayout) findViewById(R.id.competition_layout);
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
+        league = (RadioButton) findViewById(R.id.radio_champ_league);
         modalIcon = (ImageView) findViewById(R.id.modal_icon);
     }
 
@@ -123,23 +124,46 @@ public class NewChampActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     public void createChamp(View view){
         String nameCp = nameEt.getText().toString();
         String modalCp = getResources().getString(modal);
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
+        boolean cupLeague = league.isChecked();
 
-        try {
-            ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
-            Intent intent = new Intent(this, MainActivity.class);
-            setResult(1, intent);
-            finish();
-        } catch (EmptyFieldException e) {
-            Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
-        } catch (SameNameException e) {
-            Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
-        } catch (ExceededCharacterException e) {
-            Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
+        if(cupLeague){
+            try {
+                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp,cupLeague);
+                Intent i = new Intent(this, TypeofCompetition.class);
+                startActivity(i);
+            }catch (EmptyFieldException e) {
+                Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
+            } catch (SameNameException e) {
+                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
+            } catch (ExceededCharacterException e) {
+                Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
+            }
+
         }
-    }
+
+        else if(cupCp){
+            try {
+                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp,cupLeague);
+                Intent intent = new Intent(this, MainActivity.class);
+                setResult(1, intent);
+                finish();
+            } catch (EmptyFieldException e) {
+                Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
+            } catch (SameNameException e) {
+                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
+            } catch (ExceededCharacterException e) {
+                Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
+            }
+        }
+        }
+
+
+
+
 }

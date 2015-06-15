@@ -63,5 +63,13 @@
     <string name="invalid_field">Enter valid values in the result fields</string>
     <string name="char_exceeded">Character Limit Exceeded</string>
     <string name="champion">CHAMPION!</string>
+    <string name="title_activity_typeof_competition">Type of Competition</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="tittle_whats_competition">Choose the type of competition</string>
+    <string name="champ_turno">About</string>
+    <string name="champ_return">Returno</string>
+    <string name="select_competition">Select one of the options</string>
+
 
 </resources>

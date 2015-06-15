@@ -23,8 +23,8 @@ public class ChampionshipController {
     }
 
     //DB OK
-    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
-        Championship c = new Championship(name, modal, isIndividual, isCup);
+    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup,boolean isLeague) throws EmptyFieldException, SameNameException, ExceededCharacterException {
+        Championship c = new Championship(name, modal, isIndividual, isCup,isLeague);
         dbHelper.insertChampionship(c);
     }
     //DB OK
