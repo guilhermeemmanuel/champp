@@ -112,6 +112,9 @@ public class Championship implements Serializable {
     public void startedChamp() {
 
         isStarted = true;
+
+        participants = Util.suffle(participants);
+
         if (isCup()) {
             //eh copa
             int org = Util.getNearLowPotency(2, participants.size());

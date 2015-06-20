@@ -1,5 +1,8 @@
 package com.asus.embedded.champp.model;
 
+import java.util.List;
+import java.util.Random;
+
 public class Util {
 
     public static int getNearLowPotency(int number, int limit) {
@@ -17,6 +20,17 @@ public class Util {
             }
             i++;
         }
+    }
+
+
+    public static List<Participant> suffle(List<Participant> participantList ) {
+        Random random = new Random();
+        for (int i = 0; i < participantList.size() ; i++) {
+            int position = random.nextInt(participantList.size() -1);
+            Participant p = participantList.remove(position);
+            participantList.add(p);
+        }
+        return participantList;
     }
 
 }
