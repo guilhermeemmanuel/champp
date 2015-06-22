@@ -130,12 +130,14 @@ public class NewChampActivity extends ActionBarActivity {
         String modalCp = getResources().getString(modal);
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
-        boolean cupLeague = league.isChecked();
+        //boolean cupLeague = league.isChecked();
 
-        if(cupLeague){
+        if (nameCp.trim().equals("")) {
+            Toast.makeText(this, R.string.champ_empty_name, Toast.LENGTH_LONG).show();
+        } else {
             try {
-                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp,cupLeague);
-                Intent i = new Intent(this, TypeofCompetition.class);
+                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
+                Intent i = new Intent(this, SettingsChampActivity.class);
                 startActivity(i);
             }catch (EmptyFieldException e) {
                 Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
@@ -146,7 +148,7 @@ public class NewChampActivity extends ActionBarActivity {
             }
 
         }
-
+/*
         else if(cupCp){
             try {
                 ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp,cupLeague);
@@ -160,8 +162,10 @@ public class NewChampActivity extends ActionBarActivity {
             } catch (ExceededCharacterException e) {
                 Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
             }
-        }
-        }
+        }*/
+    }
+
+
 
 
 

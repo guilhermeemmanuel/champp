@@ -34,7 +34,7 @@ public class Championship implements Serializable {
     //BOOLEAN DE CONTROLE
     private boolean nextRoundCreated = false;
 
-    public Championship(String name, String modal, boolean isIndividual, boolean isCup,boolean isLeague) throws EmptyFieldException, ExceededCharacterException {
+    public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, ExceededCharacterException {
         if (name.isEmpty() || modal.isEmpty()) {
             throw new EmptyFieldException();
         }
@@ -47,7 +47,7 @@ public class Championship implements Serializable {
         this.isCup = isCup;
         this.participants = new ArrayList<Participant>();
         this.rounds = new ArrayList<Round>();
-        this.isLeague = isLeague;
+
 
     }
 

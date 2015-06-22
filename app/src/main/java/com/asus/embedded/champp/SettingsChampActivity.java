@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 
-public class TypeofCompetition extends ActionBarActivity {
+public class SettingsChampActivity extends ActionBarActivity {
 
     private RadioButton about,returno;
 
@@ -18,7 +18,7 @@ public class TypeofCompetition extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_typeof_competition);
+        setContentView(R.layout.activity_settings_champ);
 
         about = (RadioButton) findViewById(R.id.radio_champ_turn);
         returno = (RadioButton) findViewById(R.id.radio_champ_return);

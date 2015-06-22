@@ -77,8 +77,8 @@
             android:label="@string/title_activity_modal" >
         </activity>
         <activity
-            android:name=".TypeofCompetition"
-            android:label="@string/title_activity_typeof_competition" >
+            android:name=".SettingsChampActivity"
+            android:label="@string/title_activity_settings_champ" >
         </activity>
     </application>
 

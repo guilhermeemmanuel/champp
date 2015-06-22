@@ -87,12 +87,13 @@
 
     <string name="integrant_created">Integrante criado</string>
     <string name="champion">CAMPEÃO!</string>
-    <string name="title_activity_typeof_competition">Tipo de Competição</string>
+    <string name="title_activity_settings_champ">Configurações de Campeonato</string>
 
     <string name="tittle_whats_competition">Escolha o tipo de competição</string>
-    <string name="champ_turno">Turno</string>
-    <string name="champ_return">Returno</string>
+    <string name="champ_round_robin">Turno</string>
+    <string name="champ_double_round_robin">Returno</string>
     <string name="select_competition">Marque uma das opções</string>
+    <string name="champ_empty_name">Campeonato com nome vazio</string>
 
 
 </resources>
