@@ -73,9 +73,9 @@ public class RankingAdapter extends BaseAdapter {
         tvParticipantGames.setText(participant.getNumberGames()+ "|");
         tvParticipantNumberWin.setText(participant.getNumberWins()+ "|");
         tvParticipantNumberDefeats.setText(participant.getNumberDefeats()+ "|");
+        tvParticipantDraw.setText(participant.getDraw() + "|");
         tvParticipantGoalsPro.setText(participant.getGoalsPro()+ "|");
         tvParticipantGoalsAgainst.setText(participant.getGoalsAgainst()+ "|");
-        tvParticipantBalance.setText(participant.getBalance()+ "|");
 
         return view;
     }
