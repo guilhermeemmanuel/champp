@@ -32,7 +32,7 @@
     <string name="name_participant" />
     <string name="init_champ">Start Championship</string>
     <string name="title_activity_championship">ChampionshipActivity</string>
-    <string name="btn_table">Show Table</string>
+    <string name="show_table">Show Table</string>
     <string name="title_activity_cup">Cup</string>
     <string name="title_activity_league">League</string>
     <string name="champ_started">The Championship has started</string>
@@ -73,6 +73,7 @@
     <string name="cup_settings_tv">Choose tiebreaker</string>
     <string name="cup_penalities">Penalities</string>
     <string name="cup_home_win">Home Win</string>
+    <string name="show_ranking">Show Ranking</string>
 
 
 </resources>

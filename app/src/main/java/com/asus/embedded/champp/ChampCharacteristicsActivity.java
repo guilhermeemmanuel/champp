@@ -35,8 +35,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private Championship c;
     private ListView participantsLv;
     private ParticipantsAdapter adapter;
-    private Button startBt;
-    private Button showTableBt;
+    private Button startBt, showTableBt, showRankingBt;
     private TextView modalTv;
 
 
@@ -50,6 +49,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         startBt = (Button) findViewById(R.id.init_champ_bt);
         showTableBt = (Button) findViewById(R.id.show_table_bt);
+        showRankingBt = (Button) findViewById(R.id.ranking_bt);
 
 
         participantsLv = (ListView) findViewById(R.id.participants_list_view);
@@ -97,6 +97,11 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             startBt.setVisibility(View.VISIBLE);
             showTableBt.setVisibility(View.GONE);
         }
+
+        if(c.isCup()){
+            showRankingBt.setVisibility(View.GONE);
+        }
+
         List<Participant> participants = c.getParticipants();
         adapter = new ParticipantsAdapter(this, participants, c.isStarted());
         participantsLv.setAdapter(adapter);
@@ -178,6 +183,12 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             intent = new Intent(this, LeagueActivity.class);
         }
         intent.putExtra("CHAMP",c);
+        startActivity(intent);
+    }
+
+    public void showRanking(View v){
+        Intent intent = new Intent(ChampCharacteristicsActivity.this, RankingActivity.class);
+        intent.putExtra("CHAMP", c);
         startActivity(intent);
     }
 

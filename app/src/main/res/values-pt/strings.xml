@@ -28,7 +28,7 @@
 
     <string name="name_participant" />
     <string name="init_champ">Iniciar Campeonato</string>
-    <string name="btn_table">Visualizar Tabela</string>
+    <string name="show_table">Visualizar Tabela</string>
     <string name="champ_started">Esse campeonato já foi iniciado</string>
     <string name="participant_created">Participante criado</string>
     <string name="same_name">Já existe um participante com mesmo nome</string>
@@ -97,6 +97,7 @@
     <string name="cup_settings_tv">Choose tiebreaker</string>
     <string name="cup_penalities">Penalities</string>
     <string name="cup_home_win">Home Win</string>
+    <string name="show_ranking">Show Ranking</string>
 
 
 </resources>

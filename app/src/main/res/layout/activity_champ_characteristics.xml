@@ -44,9 +44,17 @@
         style="@style/btn_white_large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_table"
+        android:text="@string/show_table"
         android:id="@+id/show_table_bt"
         android:onClick="showTable"/>
+
+    <Button
+        style="@style/btn_white_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/show_ranking"
+        android:id="@+id/ranking_bt"
+        android:onClick="showRanking" />
 
     <ListView
         android:id="@+id/participants_list_view"
