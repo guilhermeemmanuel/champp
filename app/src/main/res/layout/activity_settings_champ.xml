@@ -36,8 +36,7 @@
                 android:id="@+id/cup_set_home_win"
                 android:text="@string/cup_home_win"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true" />
+                android:layout_height="wrap_content"/>
         </RadioGroup>
     </LinearLayout>
 
@@ -69,8 +68,7 @@
             android:id="@+id/radio_champ_return"
             android:text="@string/champ_double_round_robin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"/>
+            android:layout_height="wrap_content"/>
 
     </RadioGroup>
 

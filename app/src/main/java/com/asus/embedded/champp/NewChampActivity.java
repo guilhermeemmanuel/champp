@@ -31,7 +31,7 @@ public class NewChampActivity extends ActionBarActivity {
     private final int VOLLEY = R.string.volley;
 
     private EditText nameEt;
-    private RadioButton individualRb, cupRb,league;
+    private RadioButton individualRb, groupRb, cupRb, leagueRb;
     private LinearLayout modalLayout, compLayout;
     private ImageView modalIcon;
     private int modal;
@@ -44,11 +44,16 @@ public class NewChampActivity extends ActionBarActivity {
 
         nameEt = (EditText) findViewById(R.id.new_champ_name_et);
         modalityText = (TextView) findViewById(R.id.modality_tv);
+
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
+        groupRb = (RadioButton) findViewById(R.id.radio_champ_group);
+
         modalLayout = (LinearLayout) findViewById(R.id.modality_layout);
         compLayout = (LinearLayout) findViewById(R.id.league_settings_layout);
+
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
-        league = (RadioButton) findViewById(R.id.radio_champ_league);
+        leagueRb = (RadioButton) findViewById(R.id.radio_champ_league);
+
         modalIcon = (ImageView) findViewById(R.id.modal_icon);
     }
 
@@ -69,33 +74,39 @@ public class NewChampActivity extends ActionBarActivity {
 
         switch(modal){
             case BASKETBALL:
-                modalIcon.setImageResource(R.mipmap.basketball);
-                individualRb.setEnabled(false);
+                groupRb.setChecked(true);
+                individualRb.setChecked(false);
                 modalLayout.setVisibility(View.GONE);
+                modalIcon.setImageResource(R.mipmap.basketball);
                 break;
             case FOOTBALL:
-                individualRb.setEnabled(false);
+                groupRb.setChecked(true);
+                individualRb.setChecked(false);
                 modalLayout.setVisibility(View.GONE);
                 modalIcon.setImageResource(R.mipmap.football);
                 break;
             case FUTSAL:
-                individualRb.setEnabled(false);
+                groupRb.setChecked(true);
+                individualRb.setChecked(false);
                 modalLayout.setVisibility(View.GONE);
                 modalIcon.setImageResource(R.mipmap.futsal);
                 break;
             case HANDBALL:
-                individualRb.setEnabled(false);
+                groupRb.setChecked(true);
+                individualRb.setChecked(false);
                 modalLayout.setVisibility(View.GONE);
                 modalIcon.setImageResource(R.mipmap.handball);
                 break;
             case TENNIS:
+                cupRb.setChecked(true);
+                leagueRb.setChecked(false);
                 compLayout.setVisibility(View.GONE);
                 modalIcon.setImageResource(R.mipmap.tennis);
                 break;
             case VOLLEY:
-                individualRb.setEnabled(false);
+                groupRb.setChecked(true);
+                individualRb.setChecked(false);
                 modalLayout.setVisibility(View.GONE);
-                compLayout.setVisibility(View.GONE);
                 modalIcon.setImageResource(R.mipmap.volley);
                 break;
         }
@@ -130,7 +141,7 @@ public class NewChampActivity extends ActionBarActivity {
         String modalCp = getResources().getString(modal);
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
-        //boolean cupLeague = league.isChecked();
+        //boolean cupLeague = leagueRb.isChecked();
 
         if (nameCp.trim().equals("")) {
             Toast.makeText(this, R.string.champ_empty_name, Toast.LENGTH_LONG).show();
