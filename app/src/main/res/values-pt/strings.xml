@@ -89,11 +89,14 @@
     <string name="champion">CAMPEÃO!</string>
     <string name="title_activity_settings_champ">Configurações de Campeonato</string>
 
-    <string name="tittle_whats_competition">Escolha o tipo de competição</string>
+    <string name="league_settings_tv">Escolha o tipo de competição</string>
     <string name="champ_round_robin">Turno</string>
     <string name="champ_double_round_robin">Returno</string>
     <string name="select_competition">Marque uma das opções</string>
     <string name="champ_empty_name">Campeonato com nome vazio</string>
+    <string name="cup_settings_tv">Choose tiebreaker</string>
+    <string name="cup_penalities">Penalities</string>
+    <string name="cup_home_win">Home Win</string>
 
 
 </resources>

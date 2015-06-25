@@ -28,7 +28,6 @@ public class Championship implements Serializable {
     private boolean isChampion = false;
 
     private Participant champion;
-    private boolean isLeague;
 
 
     //BOOLEAN DE CONTROLE
@@ -81,9 +80,6 @@ public class Championship implements Serializable {
 
     public boolean isStarted() {
         return isStarted;
-    }
-    public boolean isLeague(){
-        return isLeague;
     }
 
     @Override
