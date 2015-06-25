@@ -130,7 +130,7 @@ public class NewChampActivity extends ActionBarActivity {
         String modalCp = getResources().getString(modal);
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
-        //boolean cupLeague = league.isChecked();
+        boolean cupLeague = league.isChecked();
 
         if (nameCp.trim().equals("")) {
             Toast.makeText(this, R.string.champ_empty_name, Toast.LENGTH_LONG).show();

@@ -112,12 +112,32 @@ public class Match implements Serializable {
         Log.d("BD", "ps");
             if (visitantScore > homeScore) {
                 visitant.winMatch();
+                visitant.addWin();
+                visitant.addGoalsPro(visitantScore);
+                visitant.addGoalsAgainst(homeScore);
+                home.addGoalsPro(homeScore);
+                home.addGoalsAgainst(visitantScore);
+                home.addNumberDefeats();
+                home.addNumberGames();
+                visitant.addNumberGames();
+                visitant.getBalance();
+                home.getBalance();
                 Log.v("Visitante ganhoou", visitant.getScore() + "" + visitant.getName());
                 Log.v("Home perdeuu", home.getScore() + home.getName());
 
 
             } else if (visitantScore < homeScore) {
                 home.winMatch();
+                home.addWin();
+                visitant.addNumberDefeats();
+                visitant.addNumberGames();
+                home.addNumberGames();
+                home.addGoalsPro(homeScore);
+                home.addGoalsAgainst(visitantScore);
+                visitant.addGoalsPro(visitantScore);
+                visitant.addGoalsAgainst(homeScore);
+                visitant.getBalance();
+                home.getBalance();
                 Log.v("Visitante perdeu", visitant.getScore() + "" + visitant.getName());
                 Log.v("Home ganhooouu", home.getScore() + home.getName());
 
@@ -125,6 +145,16 @@ public class Match implements Serializable {
             } else if (visitantScore == homeScore) {
                 visitant.empateMatch();
                 home.empateMatch();
+                home.addDraw();
+                visitant.addDraw();
+                visitant.addNumberGames();
+                home.addNumberGames();
+                visitant.addGoalsPro(visitantScore);
+                visitant.addGoalsAgainst(homeScore);
+                home.addGoalsPro(homeScore);
+                home.addGoalsAgainst(visitantScore);
+                home.getBalance();
+                visitant.getBalance();
                 Log.v("Visitante empatouu", visitant.getScore() + "" + visitant.getName());
                 Log.v("Home empatoouu", home.getScore() + home.getName());
 

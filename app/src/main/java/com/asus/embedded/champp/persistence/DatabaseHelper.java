@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.print.PageRange;
 import android.util.Log;
 
 import com.asus.embedded.champp.model.Championship;
@@ -21,7 +22,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 22;
+    private static final int DATABASE_VERSION = 23;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d("BD", "oncreate");
         sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0, " +
                 "isStarted INTEGER DEFAULT 0, isChampion INTEGER DEFAULT 0, getChampion TEXT);");
-        sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT, PONTOS INTEGER DEFAULT 0);");
+        sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT, PONTOS INTEGER DEFAULT 0,JOGOS INTEGER DEFAULT 0," +
+                "VITORIAS INTEGER DEFAULT 0, DERROTAS INTEGER DEFAULT 0, GOALSPRO INTEGER DEFAULT 0, GOALSCONTRA INTEGER DEFAULT 0, EMPATE INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
                 "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0)");
         sqLiteDatabase.execSQL("CREATE TABLE INTEGRANT (NOME TEXT, CHAMP TEXT, PARTICIPANT TEXT);");
@@ -153,9 +155,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         for (Participant participant : participants) {
-            Log.d("BD","" + participant.getScore());
+            Log.d("BD", "" + participant.getScore());
             ContentValues values = new ContentValues();
             values.put("PONTOS", participant.getScore());
+            values.put("JOGOS", participant.getNumberGames());
+            values.put("VITORIAS", participant.getNumberWins());
+            values.put("DERROTAS", participant.getNumberDefeats());
+            values.put("GOALSPRO", participant.getGoalsPro());
+            values.put("GOALSCONTRA", participant.getGoalsAgainst());
+            values.put("EMPATE", participant.getDraw());
+
+
+
+
+
 
             // updating row
             db.update("PARTICIPANT", values, "CHAMP" + " = ? AND NOME = ?",
@@ -242,7 +255,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
                             (cursor.getInt(cursor.getColumnIndex("isChampion")) == 1), matches,
-                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("getChampion")),0, new ArrayList<Integrant>()));
+                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("getChampion")),0, new ArrayList<Integrant>(),0,0,0,0,0,0));
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", ex.getMessage());
@@ -268,7 +281,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Log.d("BD", "iteracao");
                 try{
                     List<Integrant> integrants = getAllIntegrants(champName, cursor.getString(0));
-                    Participant p = Participant.createFromBD(cursor.getString(0),cursor.getInt(cursor.getColumnIndex("PONTOS")), integrants);
+                    Participant p = Participant.createFromBD(cursor.getString(0),cursor.getInt(cursor.getColumnIndex("PONTOS")), integrants,cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getInt(6),
+                            cursor.getInt(7),cursor.getInt(8));
                     participants.add(p);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");

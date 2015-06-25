@@ -67,17 +67,22 @@ public class RankingAdapter extends BaseAdapter {
         TextView tvParticipantGoalsPro = (TextView) view.findViewById(R.id.tv_goals_pro);
         TextView tvParticipantGoalsAgainst = (TextView) view.findViewById(R.id.tv_goals_against);
         TextView tvParticipantBalance = (TextView) view.findViewById(R.id.tv_balance);
-        TextView tvParticipantClassification = (TextView) view.findViewById(R.id.tv_classification);
+        TextView tvParticipantDraw = (TextView) view.findViewById(R.id.tv_empate);
+
+
 
         tvParticipantName.setText(participant.getName());
         tvParticipantScore.setText(participant.getScore() + "|");
         tvParticipantGames.setText(participant.getNumberGames()+ "|");
         tvParticipantNumberWin.setText(participant.getNumberWins()+ "|");
         tvParticipantNumberDefeats.setText(participant.getNumberDefeats()+ "|");
+        tvParticipantDraw.setText(participant.getDraw() + "|");
         tvParticipantGoalsPro.setText(participant.getGoalsPro()+ "|");
         tvParticipantGoalsAgainst.setText(participant.getGoalsAgainst()+ "|");
-        tvParticipantBalance.setText(participant.getBalance()+ "|");
-        tvParticipantClassification.setText(participant.getClassification());
+        tvParticipantBalance.setText(participant.getBalance()+ "");
+
+
+
 
         return view;
     }

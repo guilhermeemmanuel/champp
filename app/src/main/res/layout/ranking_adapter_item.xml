@@ -45,6 +45,13 @@
             android:layout_height="wrap_content"
             android:text="999|"
             />
+        <TextView
+            android:id="@+id/tv_empate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            />
+
 
         <TextView
             android:id="@+id/tv_goals_pro"
@@ -66,12 +73,6 @@
             android:text="999|"
             />
 
-        <TextView
-            android:id="@+id/tv_classification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="999"
-            />
 
 
 

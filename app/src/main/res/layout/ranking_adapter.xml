@@ -55,6 +55,13 @@
             />
 
         <TextView
+            android:id="@+id/tv_empate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E|"
+            />
+
+        <TextView
             android:id="@+id/tv_goals_pro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,15 +78,11 @@
             android:id="@+id/tv_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Saldo|"
+            android:text="Saldo"
             />
 
-        <TextView
-            android:id="@+id/tv_classification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Classificação"
-            />
+
+
 
 
 

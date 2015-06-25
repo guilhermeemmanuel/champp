@@ -16,8 +16,7 @@ public class Participant implements Serializable, Comparable<Participant> {
     private int numberDefeats;
     private int goalsPro;
     private int goalsAgainst;
-    private int balance;
-    private String classification;
+    private int draw;
 
     public Participant(String name) throws EmptyFieldException, ExceededCharacterException {
         setName(name);
@@ -28,8 +27,7 @@ public class Participant implements Serializable, Comparable<Participant> {
         this.numberDefeats = 0;
         this.goalsPro = 0;
         this.goalsAgainst = 0;
-        this.balance = 0;
-        this.classification = null;
+        this.draw = 0;
     }
 
     public String getName() {
@@ -42,6 +40,7 @@ public class Participant implements Serializable, Comparable<Participant> {
 
     public void empateMatch(){
         this.counterScore +=1;
+
     }
 
     public int getScore(){
@@ -87,44 +86,74 @@ public class Participant implements Serializable, Comparable<Participant> {
         return (participant.getScore() - getScore());
     }
 
-    private Participant(String name, int score, List<Integrant> integrants) {
+    private Participant(String name, int score, List<Integrant> integrants,int jogos,int vitorias, int derrotas, int goalsPro, int goalsContra, int empate) {
         this.name = name;
         this.counterScore = score;
         this.integrants = integrants;
+        this.numberGames = jogos;
+        this.numberWins = vitorias;
+        this.numberDefeats = derrotas;
+        this.goalsPro = goalsPro;
+        this.goalsAgainst = goalsContra;
+        this.draw = empate;
 
     }
 
-    public static Participant createFromBD(String name, int score, List<Integrant> integrants) {
-        Participant p = new Participant(name, score, integrants);
+    public static Participant createFromBD(String name, int score, List<Integrant> integrants, int jogos,int vitorias,int derrotas,int goalsPro,int goalsContra,int empate) {
+        Participant p = new Participant(name, score, integrants,jogos,vitorias,derrotas,goalsPro,goalsContra,empate);
         return p;
-    }
-
-    public int getNumberGames() {
-        return numberGames;
     }
 
     public int getNumberWins() {
         return numberWins;
     }
 
+
+    public void addWin(){
+         this.numberWins+=1;
+    }
+
+    public int getNumberGames() {
+        return numberGames;
+    }
+    public void addNumberGames(){
+        this.numberGames+=1;
+    }
+
     public int getNumberDefeats() {
         return numberDefeats;
+    }
+
+    public void addNumberDefeats(){
+        this.numberDefeats+=1;
     }
 
     public int getGoalsPro() {
         return goalsPro;
     }
 
+    public void addGoalsPro(int goalsPro){
+        this.goalsPro+=goalsPro;
+    }
+
     public int getGoalsAgainst() {
         return goalsAgainst;
     }
 
-    public int getBalance() {
-        return balance;
+    public void addGoalsAgainst(int goalsAgainst){
+        this.goalsAgainst+=goalsAgainst;
     }
 
-    public String getClassification() {
-        return classification;
+    public int getBalance() {
+        return goalsPro - goalsAgainst;
+    }
+
+
+    public int getDraw() {
+        return draw;
+    }
+    public void addDraw(){
+        this.draw+=1;
     }
 }
 
