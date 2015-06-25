@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 
 public class SettingsChampActivity extends ActionBarActivity {
-
-    private RadioButton about,returno;
+    private View cupLay, leagueLay;
+    private RadioButton turn,returno;
 
 
     @Override
@@ -20,14 +20,31 @@ public class SettingsChampActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_champ);
 
-        about = (RadioButton) findViewById(R.id.radio_champ_turn);
+        cupLay = findViewById(R.id.cup_settings_layout);
+        leagueLay = findViewById(R.id.league_settings_layout);
+
+        turn = (RadioButton) findViewById(R.id.radio_champ_turn);
         returno = (RadioButton) findViewById(R.id.radio_champ_return);
 
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        boolean isCup = (boolean) getIntent().getSerializableExtra("TYPE");
+
+        if(isCup){
+            cupLay.setVisibility(View.VISIBLE);
+            leagueLay.setVisibility(View.GONE);
+        }else{
+            leagueLay.setVisibility(View.VISIBLE);
+            cupLay.setVisibility(View.GONE);
+        }
+    }
+
     public void ReturnMyChamp(View view){
-        boolean turnCompetition = about.isChecked();
+        boolean turnCompetition = turn.isChecked();
         boolean returnCompetition = returno.isChecked();
 
         if(turnCompetition || returnCompetition){

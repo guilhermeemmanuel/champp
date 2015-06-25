@@ -46,7 +46,7 @@ public class NewChampActivity extends ActionBarActivity {
         modalityText = (TextView) findViewById(R.id.modality_tv);
         individualRb = (RadioButton) findViewById(R.id.radio_champ_individual);
         modalLayout = (LinearLayout) findViewById(R.id.modality_layout);
-        compLayout = (LinearLayout) findViewById(R.id.competition_layout);
+        compLayout = (LinearLayout) findViewById(R.id.league_settings_layout);
         cupRb = (RadioButton) findViewById(R.id.radio_champ_cup);
         league = (RadioButton) findViewById(R.id.radio_champ_league);
         modalIcon = (ImageView) findViewById(R.id.modal_icon);
@@ -138,6 +138,7 @@ public class NewChampActivity extends ActionBarActivity {
             try {
                 ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
                 Intent i = new Intent(this, SettingsChampActivity.class);
+                i.putExtra("TYPE", cupCp);
                 startActivity(i);
             }catch (EmptyFieldException e) {
                 Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();

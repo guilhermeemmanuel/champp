@@ -65,11 +65,14 @@
     <string name="champion">CHAMPION!</string>
     <string name="title_activity_settings_champ">Settings Champ</string>
 
-    <string name="tittle_whats_competition">Choose the type of competition</string>
+    <string name="league_settings_tv">Choose the type of league</string>
     <string name="champ_round_robin">Round-Robin</string>
     <string name="champ_double_round_robin">Double Round-Robin</string>
     <string name="select_competition">Select one of the options</string>
     <string name="champ_empty_name">Championship Empty Name</string>
+    <string name="cup_settings_tv">Choose tiebreaker</string>
+    <string name="cup_penalities">Penalities</string>
+    <string name="cup_home_win">Home Win</string>
 
 
 </resources>
