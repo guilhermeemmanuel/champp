@@ -106,7 +106,7 @@ public class ChampionshipController {
         for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
                 championship.setMatchScore(matchNumber, home, visitant, homePenalty, visPenalty);
-                dbHelper.setMatchScore(champName, matchNumber, home, visitant);
+                dbHelper.setMatchScore(champName, matchNumber, home, visitant, homePenalty, visPenalty, championship.isHomeWin());
                 dbHelper.setPoints(champName, championship.getParticipants());
                 if(championship.isNextRoundCreated()) {
                     dbHelper.insertMatches(champName, championship.getLastRound());

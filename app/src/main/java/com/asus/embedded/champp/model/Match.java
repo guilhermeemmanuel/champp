@@ -196,7 +196,8 @@ public class Match implements Serializable {
 
     }
 
-    private Match(Participant home, Participant visitant, String round, int no, boolean finished, int homeScore, int visScore) {
+    private Match(Participant home, Participant visitant, String round, int no, boolean finished, int homeScore, int visScore,
+            int homePenalty, int visPenalty, boolean isHomeWin) {
         this.home = home;
         this.visitant = visitant;
         this.round = round;
@@ -204,10 +205,14 @@ public class Match implements Serializable {
         this.finished = finished;
         this.homeScore = homeScore;
         this.visitantScore = visScore;
+        this.homePenalty = homePenalty;
+        this.visPenalty = visPenalty;
+        this.isHomeWin = isHomeWin;
     }
 
-    public static Match createFromBD(Participant home, Participant visitant, String round, int no, boolean finished, int homeScore, int visScore) {
-        return new Match(home, visitant, round,no, finished, homeScore, visScore);
+    public static Match createFromBD(Participant home, Participant visitant, String round, int no, boolean finished, int homeScore, int visScore,
+                                     int homePenalty, int visPenalty, boolean isHomeWin) {
+        return new Match(home, visitant, round,no, finished, homeScore, visScore, homePenalty, visPenalty, isHomeWin);
     }
 
 }

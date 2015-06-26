@@ -22,7 +22,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 24;
+    private static final int DATABASE_VERSION = 25;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,7 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT, PONTOS INTEGER DEFAULT 0,JOGOS INTEGER DEFAULT 0," +
                 "VITORIAS INTEGER DEFAULT 0, DERROTAS INTEGER DEFAULT 0, GOALSPRO INTEGER DEFAULT 0, GOALSCONTRA INTEGER DEFAULT 0, EMPATE INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
-                "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0)");
+                "FINISHED INTEGER DEFAULT 0, visScore INTEGER DEFAULT 0, homeScore INTEGER DEFAULT 0, homePenalty INTEGER DEFAULT 0, " +
+                "visPenalty INTEGER DEFAULT 0, isHomeWin INTEGER DEFAULT 0)");
         sqLiteDatabase.execSQL("CREATE TABLE INTEGRANT (NOME TEXT, CHAMP TEXT, PARTICIPANT TEXT);");
 
 
@@ -191,14 +192,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(champName) });
     }
 
-    public void setMatchScore(String champName, int matchNumber, int home, int visitant) {
+    public void setMatchScore(String champName, int matchNumber, int home, int visitant, int homePenalty, int visPenalty, boolean isHomeWin) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.d("BD","score");
+        Log.d("BD", "score");
 
         ContentValues values = new ContentValues();
         values.put("finished", 1);
         values.put("homeScore", home);
         values.put("visScore", visitant);
+        values.put("homePenalty",homePenalty);
+        values.put("visPenalty",visPenalty);
+        values.put("isHomeWin",isHomeWin ? 1 : 0);
+
 
         // updating row
         db.update("MATCH", values, "champName" + " = ? AND no = ?",
@@ -225,7 +230,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     boolean finished = (cursor.getInt(cursor.getColumnIndex("FINISHED")) == 1);
                     int homeScore = cursor.getInt(cursor.getColumnIndex("homeScore"));
                     int visScore = cursor.getInt(cursor.getColumnIndex("visScore"));
-                    Match m = Match.createFromBD(new Participant(homeName), new Participant(visName), round, no,finished, homeScore, visScore);
+                    int homePenalty = cursor.getInt(cursor.getColumnIndex("homePenalty"));
+                    int visPenalty = cursor.getInt(cursor.getColumnIndex("visPenalty"));
+                    boolean isHomeWin = (cursor.getInt(cursor.getColumnIndex("isHomeWin")) == 1);
+
+                    Match m = Match.createFromBD(new Participant(homeName), new Participant(visName), round, no,finished, homeScore, visScore, homePenalty, visPenalty, isHomeWin);
                     matches.add(m);
                 } catch (Exception ex) {
                     Log.d("BD", "erro");

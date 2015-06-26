@@ -62,28 +62,26 @@ public class CupActivity extends ActionBarActivity {
                         @Override
                         public void setScore(int matchNumber, int home, int visitant) {
                             try {
-                                if(home == visitant) {
-                                    if(c.isHomeWin()) {
-                                        c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant, 0, 0);
-
-                                        adapter.updateItems(c.getMatches());
-
-                                        if (c.isChampion()){
-                                            onCreateDialog();
-                                            //Descomenta aqui somente se quiser que chame a activity de ver getChampion , mas comente a linha
-                                            // de cima
-                                            //Participant getChampion = c.getChampion();
-                                            //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
-                                            //intent.putExtra("CHAMPION",getChampion.getName());
-                                            //intent.putExtra("CHAMPIONSHIP",c.getName());
-                                            //startActivity(intent);
-                                        }
-                                    } else {
-                                        dialogPenalities(matchNumber, home, visitant);
-                                    }
+                                if(home == visitant && !c.isHomeWin()) {
+                                    dialogPenalities(matchNumber, home, visitant);
                                 }
+                                else {
+                                    c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant, 0, 0);
 
+                                    adapter.updateItems(c.getMatches());
 
+                                    if (c.isChampion()) {
+                                        onCreateDialog();
+                                        //Descomenta aqui somente se quiser que chame a activity de ver getChampion , mas comente a linha
+                                        // de cima
+                                        //Participant getChampion = c.getChampion();
+                                        //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
+                                        //intent.putExtra("CHAMPION",getChampion.getName());
+                                        //intent.putExtra("CHAMPIONSHIP",c.getName());
+                                        //startActivity(intent);
+                                    }
+
+                                }
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
                     Toast.makeText(CupActivity.this,R.string.invalid_field,Toast.LENGTH_LONG).show();
