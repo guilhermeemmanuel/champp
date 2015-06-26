@@ -93,19 +93,17 @@ public class LeagueActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_ranking) {
-            Intent intent = new Intent(getApplicationContext(),RankingActivity.class);
-            intent.putExtra("CHAMP", c);
-            startActivity(intent);
-            return true;
-        }*/
-
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_ranking:
+                Intent intent = new Intent(getApplicationContext(),RankingActivity.class);
+                intent.putExtra("CHAMP", c);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void setScore(View view) {
