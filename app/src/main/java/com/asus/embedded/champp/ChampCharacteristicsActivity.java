@@ -92,15 +92,18 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         if(c.isStarted()){
             startBt.setVisibility(View.GONE);
             showTableBt.setVisibility(View.VISIBLE);
+
+            if(c.isCup()){
+                showRankingBt.setVisibility(View.GONE);
+            }
+
         }
         else {
             startBt.setVisibility(View.VISIBLE);
             showTableBt.setVisibility(View.GONE);
         }
 
-        if(c.isCup()){
-            showRankingBt.setVisibility(View.GONE);
-        }
+
 
         List<Participant> participants = c.getParticipants();
         adapter = new ParticipantsAdapter(this, participants, c.isStarted());

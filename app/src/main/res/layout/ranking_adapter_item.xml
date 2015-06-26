@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
 
+
         <TextView
             android:id="@+id/tv_team_name"
             android:layout_width="wrap_content"
@@ -29,49 +30,64 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
         <TextView
             android:id="@+id/tv_number_games"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
         <TextView
             android:id="@+id/tv_number_win"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
         <TextView
             android:id="@+id/tv_number_defeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
+
+        <TextView
+            android:id="@+id/tv_draw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999|"
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
         <TextView
             android:id="@+id/tv_goals_pro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
         <TextView
             android:id="@+id/tv_goals_against"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
         <TextView
             android:id="@+id/tv_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="999|"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_span="3" />
 
     </TableRow>
 

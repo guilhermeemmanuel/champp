@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.asus.embedded.champp.adapters.RankingAdapter;
@@ -36,9 +38,10 @@ public class RankingActivity extends Activity {
         c = (Championship) i.getSerializableExtra("CHAMP");
         List<Participant> parts = c.getParticipants();
         Collections.sort(parts);
-        rankingAdapter = new RankingAdapter(this, parts);
 
+        rankingAdapter = new RankingAdapter(this, parts);
         lvRanking.setAdapter(rankingAdapter);
+
         if(c.isChampion()) {
             showChampion(parts.get(0));
         }

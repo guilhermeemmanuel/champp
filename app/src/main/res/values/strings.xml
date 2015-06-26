@@ -74,6 +74,14 @@
     <string name="cup_penalities">Penalities</string>
     <string name="cup_home_win">Home Win</string>
     <string name="show_ranking">Show Ranking</string>
+    <string name="points_tv">| P </string>
+    <string name="games_tv">| G </string>
+    <string name="wins_tv">| W </string>
+    <string name="defeats_tv">| D </string>
+    <string name="draw_tv">|DW </string>
+    <string name="gols_pro_tv">|GP </string>
+    <string name="gols_against_tv">|GA </string>
+    <string name="balance_tv">| B </string>
 
 
 </resources>

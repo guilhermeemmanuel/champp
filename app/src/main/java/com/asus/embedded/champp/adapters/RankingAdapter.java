@@ -10,8 +10,6 @@ import android.widget.TextView;
 import com.asus.embedded.champp.R;
 import com.asus.embedded.champp.model.Participant;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +53,7 @@ public class RankingAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         //Pega o item de acordo com a posção.
         Participant participant = items.get(position);
+
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.ranking_adapter_item, null);
 
@@ -64,6 +63,7 @@ public class RankingAdapter extends BaseAdapter {
         TextView tvParticipantGames = (TextView) view.findViewById(R.id.tv_number_games);
         TextView tvParticipantNumberWin = (TextView) view.findViewById(R.id.tv_number_win);
         TextView tvParticipantNumberDefeats = (TextView) view.findViewById(R.id.tv_number_defeats);
+        TextView tvParticipantDraw = (TextView) view.findViewById(R.id.tv_draw);
         TextView tvParticipantGoalsPro = (TextView) view.findViewById(R.id.tv_goals_pro);
         TextView tvParticipantGoalsAgainst = (TextView) view.findViewById(R.id.tv_goals_against);
         TextView tvParticipantBalance = (TextView) view.findViewById(R.id.tv_balance);
@@ -76,6 +76,7 @@ public class RankingAdapter extends BaseAdapter {
         tvParticipantDraw.setText(participant.getDraw() + "|");
         tvParticipantGoalsPro.setText(participant.getGoalsPro()+ "|");
         tvParticipantGoalsAgainst.setText(participant.getGoalsAgainst()+ "|");
+        tvParticipantBalance.setText(participant.getBalance()+ "");
 
         return view;
     }
