@@ -102,10 +102,10 @@ public class ChampionshipController {
     }
 
     //BD OK
-    public Championship setMatchScore(String champName, int matchNumber, int home, int visitant) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
+    public Championship setMatchScore(String champName, int matchNumber, int home, int visitant, int homePenalty, int visPenalty) throws ExceededCharacterException, EmptyFieldException, InvalidScoreException {
         for (Championship championship : getChamps()) {
             if(championship.equals(new Championship(champName))) {
-                championship.setMatchScore(matchNumber, home, visitant);
+                championship.setMatchScore(matchNumber, home, visitant, homePenalty, visPenalty);
                 dbHelper.setMatchScore(champName, matchNumber, home, visitant);
                 dbHelper.setPoints(champName, championship.getParticipants());
                 if(championship.isNextRoundCreated()) {

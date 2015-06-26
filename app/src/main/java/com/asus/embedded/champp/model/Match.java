@@ -14,6 +14,11 @@ public class Match implements Serializable {
     private int visitantScore;
     private int homeScore;
 
+    //TODO salvar no banco
+    private int homePenalty;
+    private int visPenalty;
+    private boolean isHomeWin;
+
     public Match(Participant home, Participant visitant, String round, int number){
         this.home = home;
         this.visitant = visitant;
@@ -31,6 +36,18 @@ public class Match implements Serializable {
 
     public int getNumber() {
         return number;
+    }
+
+    public int getHomePenalty() {
+        return homePenalty;
+    }
+
+    public int getVisPenalty() {
+        return visPenalty;
+    }
+
+    public boolean isHomeWin() {
+        return isHomeWin;
     }
 
     public Participant getHome() {
@@ -62,13 +79,17 @@ public class Match implements Serializable {
         return number;
     }
 
-    public void setScore(int home, int visitant) throws InvalidScoreException {
+    //FIXME cuidado com as condicoes para score invalido
+    public void setScore(int home, int visitant, int homePenalty, int visPenalty, boolean homeWin) throws InvalidScoreException {
         if (home < 0 || visitant < 0){
             throw new InvalidScoreException();
         }
         if(!finished) {
             this.homeScore = home;
             this.visitantScore = visitant;
+            this.homePenalty = homePenalty;
+            this.visPenalty = visPenalty;
+            this.isHomeWin = homeWin;
             this.finished = true;
             Log.i("mudei", "" + getHome().getName() + " X " + getVisitant().getName() );
         }
@@ -91,8 +112,20 @@ public class Match implements Serializable {
         if (isFinished()){
             if (visitantScore > homeScore){
                 return visitant;
-            }else{
+            }else if (homeScore > visitantScore){
                 return home;
+            } else {
+                if(isHomeWin) {
+                    return home;
+                }
+                else {
+                    if(homePenalty > visPenalty) {
+                        return home;
+                    }
+                    else {
+                        return visitant;
+                    }
+                }
             }
 
         }

@@ -57,14 +57,14 @@ public class CupActivity extends ActionBarActivity {
         champNameTv.setText(c.getName() + " - " + getString(R.string.table));
 
                     List<Match> participants = c.getMatches();
-                    adapter = new MatchesAdapter(this, participants);
+                    adapter = new MatchesAdapter(this, participants, true);
                     adapter.addListener(new MatchListener() {
                         @Override
                         public void setScore(int matchNumber, int home, int visitant) {
                             try {
                                 if(home == visitant) {
                                     if(c.isHomeWin()) {
-                                        c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant);
+                                        c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant, 0, 0);
 
                                         adapter.updateItems(c.getMatches());
 
@@ -158,7 +158,7 @@ public class CupActivity extends ActionBarActivity {
                     int homePen = Integer.parseInt(homeEt.getText().toString());
                     int visPen = Integer.parseInt(visEt.getText().toString());
 
-                    c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homePen, visPen);
+                    c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant, homePen, visPen);
 
                     adapter.updateItems(c.getMatches());
 
@@ -285,7 +285,7 @@ public class CupActivity extends ActionBarActivity {
             Log.i("homeScore", homeScore + "");
             int visitantScore = Integer.parseInt(visitant_score_et.getText().toString());
             int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
-            c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+            c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homeScore, visitantScore, 0, 0);
 
             adapter.updateItems(c.getMatches());
 

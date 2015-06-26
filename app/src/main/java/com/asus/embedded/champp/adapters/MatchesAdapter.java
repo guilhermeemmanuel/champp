@@ -20,13 +20,15 @@ import java.util.List;
 public class MatchesAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<Match> items;
+    private boolean isCup;
 
     private List<MatchListener> listeners;
 
-    public MatchesAdapter(Context context, List<Match> items) {
+    public MatchesAdapter(Context context, List<Match> items, boolean isCup) {
         //Itens que preencheram o listview
         this.items = items;
         listeners = new ArrayList();
+        this.isCup = isCup;
         //responsavel por pegar o Layout do item.
         mInflater = LayoutInflater.from(context);
     }
@@ -111,9 +113,14 @@ public class MatchesAdapter extends BaseAdapter {
             }
         });
         if (item.isFinished()) {
-            ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
-            ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");
-
+            if (isCup && !item.isHomeWin() && item.getHomeScore() == item.getVisitantScore()) {
+                ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " (" + item.getHomePenalty() +") ");
+                ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" (" + item.getVisPenalty() +") " + item.getVisitantScore() + " ");
+            }
+            else {
+                ((TextView) view.findViewById(R.id.home_team_score_tv)).setText(" " + item.getHomeScore() + " ");
+                ((TextView) view.findViewById(R.id.visitant_team_score_tv)).setText(" " + item.getVisitantScore() + " ");
+            }
             holder.home.setVisibility(View.GONE);
             holder.vis.setVisibility(View.GONE);
 

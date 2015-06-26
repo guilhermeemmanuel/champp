@@ -60,12 +60,12 @@ public class LeagueActivity extends ActionBarActivity {
         super.onStart();
 
         List<Match> participants = c.getMatches();
-        adapter = new MatchesAdapter(this, participants);
+        adapter = new MatchesAdapter(this, participants, false);
         adapter.addListener(new MatchListener() {
             @Override
             public void setScore(int matchNumber, int home, int visitant) {
                 try {
-                    c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant);
+                    c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant, 0, 0);
 
                     adapter.updateItems(c.getMatches());
 
@@ -114,7 +114,7 @@ public class LeagueActivity extends ActionBarActivity {
             int homeScore = Integer.parseInt(((EditText) v.findViewById(R.id.home_team_score_et)).getText().toString());
             int visitantScore = Integer.parseInt(((EditText) v.findViewById(R.id.visitant_team_score_et)).getText().toString());
             int matchNumber = adapter.getItem((Integer) view.getTag()).getNumber();
-            c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homeScore, visitantScore);
+            c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homeScore, visitantScore, 0, 0);
 
             adapter.updateItems(c.getMatches());
 
