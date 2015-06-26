@@ -62,20 +62,27 @@ public class CupActivity extends ActionBarActivity {
                         @Override
                         public void setScore(int matchNumber, int home, int visitant) {
                             try {
-                                c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant);
+                                if(home == visitant) {
+                                    if(c.isHomeWin()) {
+                                        c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, home, visitant);
 
-                                adapter.updateItems(c.getMatches());
+                                        adapter.updateItems(c.getMatches());
 
-                                if (c.isChampion()){
-                                    onCreateDialog();
-                                    //Descomenta aqui somente se quiser que chame a activity de ver getChampion , mas comente a linha
-                                    // de cima
-                                    //Participant getChampion = c.getChampion();
-                                    //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
-                                    //intent.putExtra("CHAMPION",getChampion.getName());
-                                    //intent.putExtra("CHAMPIONSHIP",c.getName());
-                                    //startActivity(intent);
+                                        if (c.isChampion()){
+                                            onCreateDialog();
+                                            //Descomenta aqui somente se quiser que chame a activity de ver getChampion , mas comente a linha
+                                            // de cima
+                                            //Participant getChampion = c.getChampion();
+                                            //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
+                                            //intent.putExtra("CHAMPION",getChampion.getName());
+                                            //intent.putExtra("CHAMPIONSHIP",c.getName());
+                                            //startActivity(intent);
+                                        }
+                                    } else {
+                                        dialogPenalities(matchNumber, home, visitant);
+                                    }
                                 }
+
 
                 } catch (Exception ex) {
                     //quando entrar aqui eh porque ele nao colocou nada no edittext
@@ -125,6 +132,58 @@ public class CupActivity extends ActionBarActivity {
 
     }*/
 
+
+    public void dialogPenalities(final int matchNumber, final int home, final int visitant) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        final View layout = inflater.inflate(R.layout.penalities_layout, null);
+        builder.setView(layout);
+        // 2. Chain together various setter methods to set the dialog characteristics
+       // builder.setMessage(congratSt + champion.getName() + youWinSt + c.getName() + " !")
+               // .setIcon(R.mipmap.champion)
+                //.setTitle(championSt);
+        // 3. Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                EditText homeEt = (EditText) layout.findViewById(R.id.home_penalty);
+                EditText visEt = (EditText) layout.findViewById(R.id.vis_penalty);
+
+
+                try {
+                    int homePen = Integer.parseInt(homeEt.getText().toString());
+                    int visPen = Integer.parseInt(visEt.getText().toString());
+
+                    c = ChampionshipController.getInstance(getApplicationContext()).setMatchScore(c.getName(), matchNumber, homePen, visPen);
+
+                    adapter.updateItems(c.getMatches());
+
+                    if (c.isChampion()){
+                        onCreateDialog();
+                        //Descomenta aqui somente se quiser que chame a activity de ver getChampion , mas comente a linha
+                        // de cima
+                        //Participant getChampion = c.getChampion();
+                        //Intent intent = new Intent(CupActivity.this,ChampionActivity.class);
+                        //intent.putExtra("CHAMPION",getChampion.getName());
+                        //intent.putExtra("CHAMPIONSHIP",c.getName());
+                        //startActivity(intent);
+                    }
+
+
+                } catch (Exception ex) {
+
+                }
+
+            }
+        });
+
+
+        builder.show();
+    }
 
     public void onCreateDialog() {
         String congratSt = getResources().getString(R.string.congrat);
