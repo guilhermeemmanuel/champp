@@ -141,40 +141,13 @@ public class NewChampActivity extends ActionBarActivity {
         String modalCp = getResources().getString(modal);
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
-        //boolean cupLeague = leagueRb.isChecked();
 
-        if (nameCp.trim().equals("")) {
-            Toast.makeText(this, R.string.champ_empty_name, Toast.LENGTH_LONG).show();
-        } else {
-            try {
-                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
-                Intent i = new Intent(this, SettingsChampActivity.class);
-                i.putExtra("TYPE", cupCp);
-                startActivity(i);
-            }catch (EmptyFieldException e) {
-                Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
-            } catch (SameNameException e) {
-                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
-            } catch (ExceededCharacterException e) {
-                Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
-            }
-
-        }
-/*
-        else if(cupCp){
-            try {
-                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp,cupLeague);
-                Intent intent = new Intent(this, MainActivity.class);
-                setResult(1, intent);
-                finish();
-            } catch (EmptyFieldException e) {
-                Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
-            } catch (SameNameException e) {
-                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
-            } catch (ExceededCharacterException e) {
-                Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
-            }
-        }*/
+        Intent i = new Intent(this, SettingsChampActivity.class);
+        i.putExtra("NAMECP", nameCp);
+        i.putExtra("MODALCP", modalCp);
+        i.putExtra("INDIVCP", indivCp);
+        i.putExtra("CUPCP", cupCp);
+        startActivity(i);
     }
 
 

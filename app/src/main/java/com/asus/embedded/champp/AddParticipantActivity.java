@@ -28,6 +28,8 @@ public class AddParticipantActivity extends ActionBarActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
+        String title = (String) getSupportActionBar().getTitle();
+        getSupportActionBar().setTitle("    " + title);
     }
 
 

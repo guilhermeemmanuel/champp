@@ -9,10 +9,17 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.asus.embedded.champp.controller.ChampionshipController;
+import com.asus.embedded.champp.model.EmptyFieldException;
+import com.asus.embedded.champp.model.ExceededCharacterException;
+import com.asus.embedded.champp.model.SameNameException;
+
 
 public class SettingsChampActivity extends ActionBarActivity {
     private View cupLay, leagueLay;
     private RadioButton turn,returno;
+    String nameCp, modalCp;
+    boolean indivCp, cupCp;
 
 
     @Override
@@ -26,15 +33,19 @@ public class SettingsChampActivity extends ActionBarActivity {
         turn = (RadioButton) findViewById(R.id.radio_champ_turn);
         returno = (RadioButton) findViewById(R.id.radio_champ_return);
 
+        Intent intent = getIntent();
+        nameCp = (String) intent.getSerializableExtra("NAMECP");
+        modalCp = (String) intent.getSerializableExtra("MODALCP");
+        indivCp = (boolean) intent.getSerializableExtra("INDIVCP");
+        cupCp = (boolean) intent.getSerializableExtra("CUPCP");
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        boolean isCup = (boolean) getIntent().getSerializableExtra("TYPE");
 
-        if(isCup){
+        if(cupCp){
             cupLay.setVisibility(View.VISIBLE);
             leagueLay.setVisibility(View.GONE);
         }else{
@@ -44,18 +55,22 @@ public class SettingsChampActivity extends ActionBarActivity {
     }
 
     public void ReturnMyChamp(View view){
-        boolean turnCompetition = turn.isChecked();
-        boolean returnCompetition = returno.isChecked();
 
-        if(turnCompetition || returnCompetition){
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
+        if (nameCp.trim().equals("")) {
+            Toast.makeText(this, R.string.champ_empty_name, Toast.LENGTH_LONG).show();
+        } else {
+            try {
+                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+            }catch (EmptyFieldException e) {
+                Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
+            } catch (SameNameException e) {
+                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
+            } catch (ExceededCharacterException e) {
+                Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
+            }
 
-        }
-
-
-        else {
-            Toast.makeText(this, R.string.select_competition, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -82,4 +97,5 @@ public class SettingsChampActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

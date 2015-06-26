@@ -88,7 +88,7 @@ public class CupActivity extends ActionBarActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setTitle(c.getName());
+        getSupportActionBar().setTitle("    " + c.getName());
 
     }
 

@@ -24,6 +24,11 @@ public class ChampionshipController {
 
     //DB OK
     public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
+        for (Championship champ : getChamps()) {
+            if(champ.equals(new Championship(name))){
+                throw new SameNameException();
+            }
+        }
         Championship c = new Championship(name, modal, isIndividual, isCup);
         dbHelper.insertChampionship(c);
     }

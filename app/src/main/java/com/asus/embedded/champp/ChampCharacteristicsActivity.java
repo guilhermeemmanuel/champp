@@ -75,7 +75,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setTitle(c.getName());
+        getSupportActionBar().setTitle("    " + c.getName());
 
     }
 
@@ -89,19 +89,18 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         }
         invalidateOptionsMenu();
+        if(c.isCup()){
+            showRankingBt.setVisibility(View.GONE);
+        }
+
         if(c.isStarted()){
             startBt.setVisibility(View.GONE);
             showTableBt.setVisibility(View.VISIBLE);
-
-            if(c.isCup()){
-                showRankingBt.setVisibility(View.GONE);
-            }
-
-        }
-        else {
+        }else {
             startBt.setVisibility(View.VISIBLE);
             showTableBt.setVisibility(View.GONE);
         }
+
 
 
 

@@ -45,7 +45,7 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setTitle(pt.getName());
+        getSupportActionBar().setTitle("    " + pt.getName());
     }
 
     @Override
