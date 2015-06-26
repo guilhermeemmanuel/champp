@@ -23,13 +23,13 @@ public class ChampionshipController {
     }
 
     //DB OK
-    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, SameNameException, ExceededCharacterException {
+    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin) throws EmptyFieldException, SameNameException, ExceededCharacterException {
         for (Championship champ : getChamps()) {
             if(champ.equals(new Championship(name))){
                 throw new SameNameException();
             }
         }
-        Championship c = new Championship(name, modal, isIndividual, isCup);
+        Championship c = new Championship(name, modal, isIndividual, isCup, isHomeWin);
         dbHelper.insertChampionship(c);
     }
     //DB OK

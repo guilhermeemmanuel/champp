@@ -29,11 +29,12 @@ public class Championship implements Serializable {
 
     private Participant champion;
 
+    private boolean isHomeWin;
 
     //BOOLEAN DE CONTROLE
     private boolean nextRoundCreated = false;
 
-    public Championship(String name, String modal, boolean isIndividual, boolean isCup) throws EmptyFieldException, ExceededCharacterException {
+    public Championship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin) throws EmptyFieldException, ExceededCharacterException {
         if (name.isEmpty() || modal.isEmpty()) {
             throw new EmptyFieldException();
         }
@@ -46,7 +47,7 @@ public class Championship implements Serializable {
         this.isCup = isCup;
         this.participants = new ArrayList<Participant>();
         this.rounds = new ArrayList<Round>();
-
+        this.isHomeWin = isHomeWin;
 
     }
 
@@ -230,6 +231,15 @@ public class Championship implements Serializable {
     public Participant getChampion(){
         return champion;
     }
+
+    public boolean isHomeWin() {
+        return isHomeWin;
+    }
+
+    public void setIsHomeWin(boolean isHomeWin) {
+        this.isHomeWin = isHomeWin;
+    }
+
     //copa
     public void nextConfrontations() {
         ArrayList<Participant> wins = new ArrayList<Participant>();
@@ -298,7 +308,7 @@ public class Championship implements Serializable {
     }
 
     private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isChampion,
-            List<Match> matches, Participant champion) {
+            List<Match> matches, Participant champion, boolean isHomeWin) {
         Log.d("BD",name);
         this.name = name;
         this.modal = modal;
@@ -308,6 +318,7 @@ public class Championship implements Serializable {
         this.isStarted = isStarted;
         this.isChampion = isChampion;
         this.champion = champion;
+        this.isHomeWin = isHomeWin;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
             match.setHome(getParticipant(match.getHome().getName()));
@@ -354,8 +365,8 @@ public class Championship implements Serializable {
 
 
     public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao
-            , List<Match> matches, Participant campeao) {
-        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches, campeao);
+            , List<Match> matches, Participant campeao, boolean isHomeWin) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches, campeao, isHomeWin);
     }
 
 }

@@ -18,6 +18,7 @@ import com.asus.embedded.champp.model.SameNameException;
 public class SettingsChampActivity extends ActionBarActivity {
     private View cupLay, leagueLay;
     private RadioButton turn,returno;
+    private RadioButton homeWin;
     String nameCp, modalCp;
     boolean indivCp, cupCp;
 
@@ -32,6 +33,8 @@ public class SettingsChampActivity extends ActionBarActivity {
 
         turn = (RadioButton) findViewById(R.id.radio_champ_turn);
         returno = (RadioButton) findViewById(R.id.radio_champ_return);
+
+        homeWin = (RadioButton) findViewById(R.id.cup_set_home_win);
 
         Intent intent = getIntent();
         nameCp = (String) intent.getSerializableExtra("NAMECP");
@@ -56,11 +59,18 @@ public class SettingsChampActivity extends ActionBarActivity {
 
     public void ReturnMyChamp(View view){
 
+        boolean isHomeWin = false;
+
+        if(cupCp) {
+            isHomeWin = homeWin.isChecked();
+        }
+
+
         if (nameCp.trim().equals("")) {
             Toast.makeText(this, R.string.champ_empty_name, Toast.LENGTH_LONG).show();
         } else {
             try {
-                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp);
+                ChampionshipController.getInstance(getApplicationContext()).createChampionship(nameCp, modalCp, indivCp, cupCp, isHomeWin);
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
             }catch (EmptyFieldException e) {

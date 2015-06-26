@@ -22,7 +22,7 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CHAMPP_BD";
-    private static final int DATABASE_VERSION = 23;
+    private static final int DATABASE_VERSION = 24;
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.d("BD", "oncreate");
         sqLiteDatabase.execSQL("CREATE TABLE CHAMPIONSHIP (NOME TEXT, MODAL TEXT, isCup INTEGER DEFAULT 0, isIndividual INTEGER DEFAULT 0, " +
-                "isStarted INTEGER DEFAULT 0, isChampion INTEGER DEFAULT 0, getChampion TEXT);");
+                "isStarted INTEGER DEFAULT 0, isChampion INTEGER DEFAULT 0, getChampion TEXT, isHomeWin INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE PARTICIPANT (NOME TEXT, CHAMP TEXT, PONTOS INTEGER DEFAULT 0,JOGOS INTEGER DEFAULT 0," +
                 "VITORIAS INTEGER DEFAULT 0, DERROTAS INTEGER DEFAULT 0, GOALSPRO INTEGER DEFAULT 0, GOALSCONTRA INTEGER DEFAULT 0, EMPATE INTEGER DEFAULT 0);");
         sqLiteDatabase.execSQL("CREATE TABLE MATCH (champName TEXT, HOME TEXT, VISITANT TEXT, ROUND TEXT, no INTEGER DEFAULT 0," +
@@ -66,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         content.put("isStarted", championship.isStarted() ? 1 : 0);
         content.put("isChampion", championship.isChampion() ? 1 : 0);
         content.put("getChampion", "");
+        content.put("isHomeWin", championship.isHomeWin() ? 1 : 0);
         sqlLite.insert("CHAMPIONSHIP", null, content);
         sqlLite.close();
     }
@@ -255,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Championship championship = Championship.createFromBD(cursor.getString(0), cursor.getString(1), (cursor.getInt(cursor.getColumnIndex("isCup")) == 1), (cursor.getInt(cursor.getColumnIndex("isIndividual")) == 1),
                             getAllParticipants(cursor.getString(0)), (cursor.getInt(cursor.getColumnIndex("isStarted")) == 1),
                             (cursor.getInt(cursor.getColumnIndex("isChampion")) == 1), matches,
-                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("getChampion")),0, new ArrayList<Integrant>(),0,0,0,0,0,0));
+                            Participant.createFromBD(cursor.getString(cursor.getColumnIndex("getChampion")),0, new ArrayList<Integrant>(),0,0,0,0,0,0), (cursor.getInt(cursor.getColumnIndex("isHomeWin")) == 1));
                     champList.add(championship);
                 } catch (Exception ex) {
                     Log.d("BD", ex.getMessage());
