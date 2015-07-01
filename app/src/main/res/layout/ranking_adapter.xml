@@ -66,7 +66,7 @@
             android:id="@+id/tv_number_defeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/defeats_tv"
+            android:text="@string/losses_tv"
             android:layout_gravity="center"
             android:layout_span="4" />
 
@@ -82,7 +82,7 @@
             android:id="@+id/tv_goals_pro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/gols_pro_tv"
+            android:text="@string/gols_for_tv"
             android:layout_gravity="center"
             android:layout_span="4" />
 

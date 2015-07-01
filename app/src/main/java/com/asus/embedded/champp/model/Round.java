@@ -9,7 +9,6 @@ public class Round implements Serializable {
     private int number;
     private List<Match> matches;
 
-
     public Round(int number) {
         this.number = number;
         this.matches = new ArrayList<>();
@@ -22,5 +21,4 @@ public class Round implements Serializable {
     public int getNumber() {
         return number;
     }
-
 }

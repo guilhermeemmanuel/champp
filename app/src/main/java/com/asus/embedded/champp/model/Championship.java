@@ -31,10 +31,12 @@ public class Championship implements Serializable {
 
     private boolean isHomeWin;
 
+    private boolean isDoubleRobin;
+
     //BOOLEAN DE CONTROLE
     private boolean nextRoundCreated = false;
 
-    public Championship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin) throws EmptyFieldException, ExceededCharacterException {
+    public Championship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin, boolean isDoubleRobin) throws EmptyFieldException, ExceededCharacterException {
         if (name.isEmpty() || modal.isEmpty()) {
             throw new EmptyFieldException();
         }
@@ -48,6 +50,7 @@ public class Championship implements Serializable {
         this.participants = new ArrayList<Participant>();
         this.rounds = new ArrayList<Round>();
         this.isHomeWin = isHomeWin;
+        this.isDoubleRobin = isDoubleRobin;
 
     }
 
@@ -81,6 +84,10 @@ public class Championship implements Serializable {
 
     public boolean isStarted() {
         return isStarted;
+    }
+
+    public boolean isDoubleRobin() {
+        return isDoubleRobin;
     }
 
     @Override
@@ -163,10 +170,9 @@ public class Championship implements Serializable {
 
                     //Teste para ajustar o mando de campo
                     if (j % 2 == 1 || i % 2 == 1 && j == 0) {
-                        r.getMatches().add(new Match(participants.get(t - j - 1), participants.get(j), "round " + i, number));
-                    }
-                    else {
-                        r.getMatches().add(new Match(participants.get(j), participants.get(t - j - 1), "round " + i, number));
+                        r.getMatches().add(new Match(participants.get(t - j - 1), participants.get(j), "round " + (i+1), number+1));
+                    } else {
+                        r.getMatches().add(new Match(participants.get(j), participants.get(t - j - 1), "round " + (i+1), number+1));
                     }
                     number++;
                 }
@@ -175,6 +181,33 @@ public class Championship implements Serializable {
                 //Gira os clubes no sentido horário, mantendo o primeiro no lugar
                 participants.add(1, participants.remove(participants.size() - 1));
             }
+
+            if (isDoubleRobin) {
+                //returno
+                int number1 = number+1;
+                int roundNum = this.rounds.size() + 1;
+                int t1 = participants.size();
+                int m1 = participants.size() / 2;
+                for (int i = 0; i < t1 - 1; i++) {
+                    Round r1 = new Round(i);
+                    for (int j = 0; j < m1; j++) {
+                        if (participants.get(j).getName().isEmpty())
+                            continue;
+                        if (j % 2 == 1 || i % 2 == 1 && j == 0) {
+                            r1.getMatches().add(new Match(participants.get(j), participants.get(t - j - 1), "round " + roundNum, number1));
+                        } else {
+                            r1.getMatches().add(new Match(participants.get(t - j - 1), participants.get(j), "round " + roundNum, number1));
+                        }
+                        number1++;
+                    }
+                    this.rounds.add(r1);
+                    roundNum++;
+                    participants.add(1, participants.remove(participants.size() - 1));
+
+                }
+            }
+
+
         }
         deleteNilParticipant();
     }
@@ -308,7 +341,7 @@ public class Championship implements Serializable {
     }
 
     private Championship(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isChampion,
-            List<Match> matches, Participant champion, boolean isHomeWin) {
+            List<Match> matches, Participant champion, boolean isHomeWin, boolean isDoubleRobin) {
         Log.d("BD",name);
         this.name = name;
         this.modal = modal;
@@ -319,6 +352,7 @@ public class Championship implements Serializable {
         this.isChampion = isChampion;
         this.champion = champion;
         this.isHomeWin = isHomeWin;
+        this.isDoubleRobin = isDoubleRobin;
         this.rounds = new ArrayList<>();
         for (Match match : matches) {
             match.setHome(getParticipant(match.getHome().getName()));
@@ -365,8 +399,8 @@ public class Championship implements Serializable {
 
 
     public static Championship createFromBD(String name, String modal, boolean isCup, boolean isIndividual, List<Participant> participants, boolean isStarted, boolean isCampeao
-            , List<Match> matches, Participant campeao, boolean isHomeWin) {
-        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches, campeao, isHomeWin);
+            , List<Match> matches, Participant campeao, boolean isHomeWin, boolean isDoubleRobin) {
+        return new Championship(name, modal, isCup, isIndividual, participants, isStarted, isCampeao, matches, campeao, isHomeWin, isDoubleRobin);
     }
 
 }

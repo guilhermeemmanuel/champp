@@ -5,15 +5,18 @@
     <string name="new_champ">Novo Campeonato</string>
     <string name="action_settings">Configurações</string>
     <string name="title_activity_new_champ">Novo Campeonato</string>
-    <string name="name">Nome</string>
-    <string name="modal">Modalidade</string>
+    <string name="name">Nome: </string>
+    <string name="modal">Modalidade: </string>
     <string name="champ_individual">Individual</string>
     <string name="champ_group">Grupo</string>
     <string name="champ_cup">Copa</string>
     <string name="champ_league">Liga</string>
     <string name="ok">Ok</string>
+    <string name="participant_empty_name">Participante com nome vazio</string>
+    <string name="integrant_empty_name">Integrante com nome vazio</string>
     <string name="type_modality">Tipo da modalidade:</string>
     <string name="type_of_competition">Tipo de competição:</string>
+
     <string name="bt_myChamps">Meus Campeonatos</string>
     <string name="no_champs">Sem Campeonatos</string>
     <string name="same_champ">Campeonato com o mesmo nome já existe</string>
@@ -68,20 +71,10 @@
     <string name="tennis">Tênis</string>
     <string name="volley">Vôlei</string>
 
-    <string name="participant_empty_name">Participante com nome vazio</string>
-    <string name="integrant_empty_name">Integrante com nome vazio</string>
+
     <string name="facebook_app_id"></string>
 
     <string name="title_activity_logo">logoActivity</string>
-
-
-    <string-array name="modal_array">
-        <item>Futebol</item>
-        <item>Vôlei</item>
-        <item>Tênis</item>
-        <item>Futsal</item>
-        <item>Outro</item>
-    </string-array>
 
     <string name="title_activity_login">LoginActivity</string>
 
@@ -101,9 +94,9 @@
     <string name="points_tv">| P|</string>
     <string name="games_tv">| J|</string>
     <string name="wins_tv">| W|</string>
-    <string name="defeats_tv">| D|</string>
+    <string name="losses_tv">| D|</string>
     <string name="draw_tv">|DW|</string>
-    <string name="gols_pro_tv">|GP|</string>
+    <string name="gols_for_tv">|GP|</string>
     <string name="gols_against_tv">|GA|</string>
     <string name="balance_tv">| B|</string>
 

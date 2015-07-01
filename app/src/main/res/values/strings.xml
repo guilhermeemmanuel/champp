@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_new_champ">New Championship</string>
     <string name="name">Name: </string>
-    <string name="modal">Modal</string>
+    <string name="modal">Modal: </string>
     <string name="champ_individual">Individual</string>
     <string name="champ_group">Group</string>
     <string name="champ_cup">Cup</string>
@@ -15,7 +15,6 @@
     <string name="integrant_empty_name">Integrant Empty Name </string>
     <string name="type_modality">Type of the Modality:</string>
     <string name="type_of_competition">Type of Competition:</string>
-
     <string name="title_activity_champ_characteristics">Champ Characteristics</string>
     <string name="no_champs">No championships</string>
     <string name="same_champ">Championship with same name already exists</string>
@@ -46,7 +45,7 @@
     <string name="set_score_dialog">Are you sure want to change the score? You can no longer change it.</string>
     <string name="set_score_dialog_title">Change Score</string>
     <string name="title_activity_campeao">Champion</string>
-     <string name="title_activity_ranking">Ranking</string>
+    <string name="title_activity_ranking">Ranking</string>
     <string name="title_activity_logo">logoActivity</string>
 
     <string name="title_activity_modal">Modalities</string>
@@ -77,10 +76,10 @@
     <string name="points_tv">| P </string>
     <string name="games_tv">| G </string>
     <string name="wins_tv">| W </string>
-    <string name="defeats_tv">| D </string>
-    <string name="draw_tv">|DW </string>
-    <string name="gols_pro_tv">|GP </string>
-    <string name="gols_against_tv">|GA </string>
+    <string name="losses_tv">| L </string>
+    <string name="draw_tv">| D </string>
+    <string name="gols_for_tv">| F </string>
+    <string name="gols_against_tv">| A </string>
     <string name="balance_tv">| B </string>
 
 

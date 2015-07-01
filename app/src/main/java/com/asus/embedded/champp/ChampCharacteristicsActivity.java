@@ -89,7 +89,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         }
         invalidateOptionsMenu();
-        if(c.isCup()){
+        if(c.isCup() || !c.isStarted()){
             showRankingBt.setVisibility(View.GONE);
         }
 
