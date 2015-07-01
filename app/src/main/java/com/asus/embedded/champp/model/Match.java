@@ -14,7 +14,6 @@ public class Match implements Serializable {
     private int visitantScore;
     private int homeScore;
 
-    //TODO salvar no banco
     private int homePenalty;
     private int visPenalty;
     private boolean isHomeWin;
@@ -79,7 +78,6 @@ public class Match implements Serializable {
         return number;
     }
 
-    //FIXME cuidado com as condicoes para score invalido
     public void setScore(int home, int visitant, int homePenalty, int visPenalty, boolean homeWin, boolean isCup) throws InvalidScoreException {
         if (home < 0 || visitant < 0){
             throw new InvalidScoreException();
