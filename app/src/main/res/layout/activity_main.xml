@@ -23,7 +23,6 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:onClick="newChamp"
-        android:layout_marginBottom="@dimen/txt_18sp"
        />
 
     <ListView
