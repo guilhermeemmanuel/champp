@@ -80,8 +80,11 @@ public class Match implements Serializable {
     }
 
     //FIXME cuidado com as condicoes para score invalido
-    public void setScore(int home, int visitant, int homePenalty, int visPenalty, boolean homeWin) throws InvalidScoreException {
+    public void setScore(int home, int visitant, int homePenalty, int visPenalty, boolean homeWin, boolean isCup) throws InvalidScoreException {
         if (home < 0 || visitant < 0){
+            throw new InvalidScoreException();
+        }
+        if(isCup && !homeWin && home == visitant  && homePenalty == visPenalty) {
             throw new InvalidScoreException();
         }
         if(!finished) {

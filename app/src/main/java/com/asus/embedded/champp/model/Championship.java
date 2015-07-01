@@ -200,7 +200,7 @@ public class Championship implements Serializable {
             for (Match match : getMatches()) {
                 if (match.equals(new Match(number))) {
                     Log.i("mudei", match.getHome().getName() + " " + home + " X " + match.getVisitant().getName() + " " + visitant);
-                    match.setScore(home, visitant, homePenalty, visPenalty, isHomeWin);
+                    match.setScore(home, visitant, homePenalty, visPenalty, isHomeWin, isCup);
                     match.sumPoints();
                     if (isProximosConfrontos()){
                         if(!isCup()) {
