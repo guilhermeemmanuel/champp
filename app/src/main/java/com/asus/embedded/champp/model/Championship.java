@@ -203,10 +203,10 @@ public class Championship implements Serializable {
                     match.setScore(home, visitant, homePenalty, visPenalty, isHomeWin, isCup);
                     match.sumPoints();
                     if (isProximosConfrontos()){
+                        nextConfrontations();
                         if(!isCup()) {
                             isChampion = true;
                         }
-                        nextConfrontations();
                     }
 
                     Log.i("mudei", "" + home);
@@ -245,16 +245,24 @@ public class Championship implements Serializable {
         ArrayList<Participant> wins = new ArrayList<Participant>();
         Log.i("gerar" , "proximox");
 
-        int quantWins = 0;
-
-        for (Match match : rounds.get(rounds.size() - 1).getMatches()) {
-                  wins.add(match.winParticipant());
-                   quantWins++;
+        Round last = rounds.get(rounds.size() - 1);
+        if(last.getNumber() == -1) {
+            for (Participant p : participants) {
+                wins.add(p);
+            }
+            for (Match match : last.getMatches()) {
+                wins.remove(match.loseParticipant());
+            }
+        }
+        else {
+            for (Match match : last.getMatches()) {
+                wins.add(match.winParticipant());
+            }
         }
 
 
 
-        if(quantWins == 1 && isCup()){
+        if(wins.size() == 1 && isCup()){
             nextRoundCreated = false;
             isChampion = true;
             champion = wins.get(wins.size() -1);

@@ -133,6 +133,16 @@ public class Match implements Serializable {
         return null;
     }
 
+    public Participant loseParticipant() {
+        Participant win = winParticipant();
+        if(home.equals(win)) {
+            return visitant;
+        }
+        return home;
+    }
+
+
+
     public void setHome(Participant participant) {
         this.home = participant;
     }
