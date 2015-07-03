@@ -148,7 +148,33 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         Toast.makeText(this,R.string.participant_deleted,Toast.LENGTH_LONG).show();
     }
 
-    public void initChamp(View v){
+
+    public void initChamp(View view) {
+
+
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        builder.setMessage("Tem certeza que deseja iniciar este campeonato?")
+                .setTitle("Iniciar Campeonato");
+        // 3. Add the buttons
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                sureInitChamp();
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+
+        builder.show();
+
+    }
+
+    public void sureInitChamp(){
         if(!c.isStarted()){
             if(c.getParticipants().size() < 2){
                 Toast.makeText(this,R.string.champ_unstarted,Toast.LENGTH_LONG).show();
