@@ -14,6 +14,8 @@ import com.asus.embedded.champp.model.EmptyFieldException;
 import com.asus.embedded.champp.model.ExceededCharacterException;
 import com.asus.embedded.champp.model.SameNameException;
 
+import java.util.Set;
+
 
 public class SettingsChampActivity extends ActionBarActivity {
     private View cupLay, leagueLay;

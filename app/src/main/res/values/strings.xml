@@ -26,7 +26,6 @@
     <string name="cancel">Cancel</string>
     <string name="delete_champs_dialog">Are you sure you want to delete this league?</string>
     <string name="delete_participante_dialog">Are you sure want to delete the participant?</string>
-
     <string name="title_activity_participant_characteristcs">Participant Characteristcs</string>
     <string name="name_participant" />
     <string name="init_champ">Start Championship</string>
@@ -41,13 +40,11 @@
     <string name="champ_unstarted">Add at least 2 participants</string>
     <string name="table">Table</string>
     <string name="title_activity_add_integrant">Add Integrant</string>
-
     <string name="set_score_dialog">Are you sure want to change the score? You can no longer change it.</string>
     <string name="set_score_dialog_title">Change Score</string>
     <string name="title_activity_campeao">Champion</string>
     <string name="title_activity_ranking">Ranking</string>
     <string name="title_activity_logo">logoActivity</string>
-
     <string name="title_activity_modal">Modalities</string>
     <string name="select_modal_tv">Select The Championship Modality</string>
     <string name="basketball">Basketball</string>
@@ -56,21 +53,19 @@
     <string name="handball">Handball</string>
     <string name="tennis">Tennis</string>
     <string name="volley">Volleyball</string>
-
     <string name="congrat">Congratulations </string>
     <string name="you_win"> You are the new champion of </string>
     <string name="invalid_field">Enter valid values in the result fields</string>
     <string name="char_exceeded">Character Limit Exceeded</string>
     <string name="champion">CHAMPION!</string>
     <string name="title_activity_settings_champ">Settings Champ</string>
-
     <string name="league_settings_tv">Choose the type of league</string>
     <string name="champ_round_robin">Round-Robin</string>
     <string name="champ_double_round_robin">Double Round-Robin</string>
     <string name="select_competition">Select one of the options</string>
     <string name="champ_empty_name">Championship Empty Name</string>
     <string name="cup_settings_tv">Choose tiebreaker</string>
-    <string name="cup_penalities">Penalities</string>
+    <string name="cup_penalities">Add Tiebreaker Result</string>
     <string name="cup_home_win">Home Win</string>
     <string name="show_ranking">Show Ranking</string>
     <string name="points_tv">| P </string>
@@ -80,7 +75,5 @@
     <string name="draw_tv">| D </string>
     <string name="gols_for_tv">| F </string>
     <string name="gols_against_tv">| A </string>
-    <string name="balance_tv">| B </string>
-
-
+    <string name="balance_tv">| B    </string>
 </resources>

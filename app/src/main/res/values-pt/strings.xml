@@ -1,104 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Campeonato</string>
-    <string name="welcome">Bem-vindo ao Champ App Manager!</string>
+    <string name="app_name">My Champp</string>
+    <string name="welcome">Bem Vindo ao My Champ!</string>
     <string name="new_champ">Novo Campeonato</string>
     <string name="action_settings">Configurações</string>
     <string name="title_activity_new_champ">Novo Campeonato</string>
-    <string name="name">Nome: </string>
-    <string name="modal">Modalidade: </string>
+    <string name="name">Nome:</string>
+    <string name="modal">Modalidade:</string>
     <string name="champ_individual">Individual</string>
     <string name="champ_group">Grupo</string>
     <string name="champ_cup">Copa</string>
     <string name="champ_league">Liga</string>
     <string name="ok">Ok</string>
-    <string name="participant_empty_name">Participante com nome vazio</string>
-    <string name="integrant_empty_name">Integrante com nome vazio</string>
-    <string name="type_modality">Tipo da modalidade:</string>
-    <string name="type_of_competition">Tipo de competição:</string>
-
-    <string name="bt_myChamps">Meus Campeonatos</string>
+    <string name="participant_empty_name">Participante Com Nome Vazio</string>
+    <string name="integrant_empty_name">Integrante Com Nome Vazio</string>
+    <string name="type_modality">Tipo da Modalidade: </string>
+    <string name="type_of_competition">Tipo da Competição:</string>
+    <string name="title_activity_champ_characteristics">Características do Campeonato</string>
     <string name="no_champs">Sem Campeonatos</string>
-    <string name="same_champ">Campeonato com o mesmo nome já existe</string>
-    <string name="champ_deleted">Campeonato Deletado com Sucesso</string>
-    <string name="participant_deleted">Participante deletado com Sucesso</string>
-    <string name="field_empty">Preencha todos os campos</string>
-    <string name="delete_button">Deletar</string>
+    <string name="same_champ">Campeonato Com Mesmo Nome Existente</string>
+    <string name="champ_deleted">Campeonato Deletado Com Sucesso</string>
+    <string name="participant_deleted">Participante Deletado Com Sucesso</string>
+    <string name="field_empty">Complete Todos os Campos</string>
+    <string name="delete_button">Delete</string>
+    <string name="title_activity_add_participant">Adicionar Participante</string>
     <string name="cancel">Cancelar</string>
-    <string name="delete_champs_dialog">Você tem certeza que deseja deletar esse campeonato?</string>
-
-    <string name="delete_participante_dialog">Você tem certeza que deseja deletar o participante?</string>
-
+    <string name="delete_champs_dialog">Você tem certeza de que quer deletar esta liga?</string>
+    <string name="delete_participante_dialog">Você tem certeza de que quer deletar este participante?</string>
+    <string name="title_activity_participant_characteristcs">Características do Participante</string>
     <string name="name_participant" />
     <string name="init_champ">Iniciar Campeonato</string>
+    <string name="title_activity_championship">ChampionshipActivity</string>
     <string name="show_table">Visualizar Tabela</string>
-    <string name="champ_started">Esse campeonato já foi iniciado</string>
-    <string name="participant_created">Participante criado</string>
-    <string name="same_name">Já existe um participante com mesmo nome</string>
-    <string name="champ_unstarted">Adicione pelo menos 2 participantes</string>
-    <string name="table">Tabela</string>
-    <string name="action_example">Exemplo de ação</string>
-    <string name="hello_blank_fragment">Olá fragment blank</string>
-    <string name="hello_world">Olá Mundo</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="title_activity_add_integrant">Adicionar Integrante</string>
-    <string name="title_activity_add_participant">Adicionar Participante</string>
-    <string name="title_activity_champ_characteristics">Características de Campeonato</string>
     <string name="title_activity_cup">Copa</string>
     <string name="title_activity_league">Liga</string>
-    <string name="title_activity_my_champ">Meu Campeonato</string>
-    <string name="title_activity_my_champs">Meus Campeonatos</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_activity_participant_characteristcs">Características de Participante</string>
-
-    <string name="set_score_dialog">Você tem certeza que deseja mudar o placar? Você nao poderá mais alterar ele.</string>
-    <string name="set_score_dialog_title">Modificar Placar</string>
-    <string name="congrat">Parabéns </string>
-    <string name="you_win"> Você é o novo campeão do(a) </string>
-    <string name="invalid_field">Insira valores válidos nos campos de resultado</string>
-    <string name="char_exceeded">Limite de caracteres excedido</string>
-    <string name="title_activity_ranking">Ranking</string>
-    <string name="title_activity_championship">Campeonato</string>
+    <string name="champ_started">O Campeonato Já Iniciou</string>
+    <string name="participant_created">Participante Criado</string>
+    <string name="integrant_created">Integrante Criado</string>
+    <string name="same_name">Já Existe Participante Com o Mesmo Nome</string>
+    <string name="champ_unstarted">Adicione Ao Menos 2 Participantes</string>
+    <string name="table">Tabela</string>
+    <string name="title_activity_add_integrant">Adicionar Integrante</string>
+    <string name="set_score_dialog">Você tem certeza de que quer alterar o resultado? Você não pode mudar isto.</string>
+    <string name="set_score_dialog_title">Mudar Resultado</string>
     <string name="title_activity_campeao">Campeão</string>
-    <string name="select_modal_tv">Selecione a modalidade do campeonato</string>
+    <string name="title_activity_ranking">Ranking</string>
+    <string name="title_activity_logo">logoActivity</string>
+    <string name="title_activity_modal">Modalidades</string>
+    <string name="select_modal_tv">Selecione a Modalidade do Campeonato</string>
     <string name="basketball">Basquete</string>
     <string name="football">Futebol</string>
     <string name="futsal">Futsal</string>
     <string name="handball">Handebol</string>
     <string name="tennis">Tênis</string>
     <string name="volley">Vôlei</string>
-
-
-    <string name="facebook_app_id"></string>
-
-    <string name="title_activity_logo">logoActivity</string>
-
-    <string name="title_activity_login">LoginActivity</string>
-
-    <string name="integrant_created">Integrante criado</string>
+    <string name="congrat">Parabéns</string>
+    <string name="you_win">Você é o novo campeão do(a)</string>
+    <string name="invalid_field">Insira Valores Válidos nos Campos </string>
+    <string name="char_exceeded">Limite de Caractéres Excedido</string>
     <string name="champion">CAMPEÃO!</string>
-    <string name="title_activity_settings_champ">Configurações de Campeonato</string>
-
-    <string name="league_settings_tv">Escolha o tipo de competição</string>
+    <string name="title_activity_settings_champ">Configurações</string>
+    <string name="league_settings_tv">Escolha o Tipo da Liga</string>
     <string name="champ_round_robin">Turno</string>
     <string name="champ_double_round_robin">Returno</string>
-    <string name="select_competition">Marque uma das opções</string>
-    <string name="champ_empty_name">Campeonato com nome vazio</string>
-    <string name="cup_settings_tv">Choose tiebreaker</string>
-    <string name="cup_penalities">Penalities</string>
-    <string name="cup_home_win">Home Win</string>
-    <string name="show_ranking">Show Ranking</string>
-    <string name="points_tv">| P|</string>
-    <string name="games_tv">| J|</string>
-    <string name="wins_tv">| W|</string>
-    <string name="losses_tv">| D|</string>
-    <string name="draw_tv">|DW|</string>
-    <string name="gols_for_tv">|GP|</string>
-    <string name="gols_against_tv">|GA|</string>
-    <string name="balance_tv">| B|</string>
-
-
+    <string name="select_competition">Selecione Uma Das Opções</string>
+    <string name="champ_empty_name">Campeonato Com Nome Vazio</string>
+    <string name="cup_settings_tv">Escolha o Tiebreaker</string>
+    <string name="cup_home_win">Casa Vence</string>
+    <string name="show_ranking">Visualizar Ranking</string>
+    <string name="points_tv">| P</string>
+    <string name="games_tv">| J</string>
+    <string name="wins_tv">| V</string>
+    <string name="losses_tv">| D</string>
+    <string name="draw_tv">| E</string>
+    <string name="gols_for_tv">| F</string>
+    <string name="gols_against_tv">| C</string>
+    <string name="balance_tv">| S    </string>
+    <string name="cup_penalities">Adicionar Resultado ao Tiebreaker</string>
 </resources>

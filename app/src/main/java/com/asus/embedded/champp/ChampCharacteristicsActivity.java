@@ -89,13 +89,15 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         }
         invalidateOptionsMenu();
-        if(c.isCup() || !c.isStarted()){
-            showRankingBt.setVisibility(View.GONE);
-        }
+
+        showRankingBt.setVisibility(View.GONE);
 
         if(c.isStarted()){
             startBt.setVisibility(View.GONE);
             showTableBt.setVisibility(View.VISIBLE);
+            if(!c.isCup()){
+                showRankingBt.setVisibility(View.VISIBLE);
+            }
         }else {
             startBt.setVisibility(View.VISIBLE);
             showTableBt.setVisibility(View.GONE);
