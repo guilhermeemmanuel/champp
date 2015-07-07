@@ -110,4 +110,9 @@ public class MainActivity extends ActionBarActivity {
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

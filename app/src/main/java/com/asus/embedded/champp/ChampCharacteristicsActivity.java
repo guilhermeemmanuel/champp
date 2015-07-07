@@ -255,8 +255,10 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 intent.putExtra("CHAMP", c);
                 startActivityForResult(intent, 1);
                 return true;
-            case R.id.action_settings:
-                  return true;
+            case R.id.action_list_champs:
+                Intent i = new Intent(ChampCharacteristicsActivity.this, MainActivity.class);
+                startActivity(i);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
