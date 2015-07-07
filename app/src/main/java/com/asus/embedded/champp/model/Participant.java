@@ -83,7 +83,24 @@ public class Participant implements Serializable, Comparable<Participant> {
 
     @Override
     public int compareTo(Participant participant) {
-        return (participant.getScore() - getScore());
+        int scoreComp = participant.getScore() - getScore();
+        int winsComp = participant.getNumberWins() - getNumberWins();
+        int balanceComp = participant.getBalance() - getBalance();
+        int proComp = participant.getGoalsPro() - getGoalsPro();
+
+        if(scoreComp != 0) {
+            return scoreComp;
+        }
+        if(winsComp != 0) {
+            return winsComp;
+        }
+        if(balanceComp != 0) {
+            return balanceComp;
+        }
+        if(proComp != 0) {
+            return  proComp;
+        }
+        return 0;
     }
 
     private Participant(String name, int score, List<Integrant> integrants,int jogos,int vitorias, int derrotas, int goalsPro, int goalsContra, int empate) {
