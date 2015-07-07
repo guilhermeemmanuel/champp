@@ -58,9 +58,10 @@
         android:layout_marginTop="10dp" />
 
     <ListView
+        android:layout_marginTop="@dimen/pad_10dp"
         android:id="@+id/participants_list_view"
         android:layout_width="wrap_content"
-        android:layout_height="277dp"
+        android:layout_height="match_parent"
         android:divider="@color/green"
         android:dividerHeight="2dp" />
 
