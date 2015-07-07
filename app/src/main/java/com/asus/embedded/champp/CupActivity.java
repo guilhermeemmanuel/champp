@@ -198,7 +198,7 @@ public class CupActivity extends ActionBarActivity {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.dialog_champion_trophy, null));
         // 2. Chain together various setter methods to set the dialog characteristics
-        builder.setMessage(congratSt + champion.getName() + youWinSt + c.getName() + " !")
+        builder.setMessage(congratSt + " " + champion.getName() + ", " + youWinSt + " " + c.getName() + "!!!")
                 .setIcon(R.mipmap.champion)
                 .setTitle(championSt);
         // 3. Add the buttons

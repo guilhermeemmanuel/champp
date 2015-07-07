@@ -77,4 +77,6 @@
     <string name="gols_against_tv">| C</string>
     <string name="balance_tv">| S    </string>
     <string name="cup_penalities">Adicionar Resultado ao Tiebreaker</string>
+    <string name="sure_start_champ">Tem certeza que deseja iniciar este campeonato?</string>
+
 </resources>

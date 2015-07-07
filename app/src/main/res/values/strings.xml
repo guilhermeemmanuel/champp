@@ -75,5 +75,8 @@
     <string name="draw_tv">| D </string>
     <string name="gols_for_tv">| F </string>
     <string name="gols_against_tv">| A </string>
-    <string name="balance_tv">| B    </string>
+    <string name="balance_tv">| B </string>
+
+    <string name="sure_start_champ">Are You sure to start this Championship?</string>
+
 </resources>
