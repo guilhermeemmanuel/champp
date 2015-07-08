@@ -81,7 +81,7 @@ public class LeagueActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ranking, menu);
+        getMenuInflater().inflate(R.menu.menu_league, menu);
         return true;
     }
 
@@ -99,7 +99,9 @@ public class LeagueActivity extends ActionBarActivity {
                 intent.putExtra("CHAMP", c);
                 startActivity(intent);
                 return true;
-            case R.id.action_settings:
+            case R.id.action_list_champs:
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

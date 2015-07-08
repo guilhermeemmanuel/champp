@@ -90,7 +90,9 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
                 intent.putExtra("PARTICIPANT", pt);
                 startActivityForResult(intent, 1);
                 return true;
-            case R.id.action_settings:
+            case R.id.action_list_champs:
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

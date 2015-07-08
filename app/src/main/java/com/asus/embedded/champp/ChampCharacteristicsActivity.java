@@ -256,7 +256,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
                 startActivityForResult(intent, 1);
                 return true;
             case R.id.action_list_champs:
-                Intent i = new Intent(ChampCharacteristicsActivity.this, MainActivity.class);
+                Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
                 return true;
             default:
