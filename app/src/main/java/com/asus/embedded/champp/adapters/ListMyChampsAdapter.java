@@ -63,14 +63,14 @@ public class ListMyChampsAdapter extends BaseAdapter {
         //ao item e definimos as informações.
         ((TextView) view.findViewById(R.id.champ_name)).setText(item.getName());
 
-        ((ImageView) view.findViewById(R.id.icon_champ)).setImageResource(getIdImage(item));
+        ((ImageView) view.findViewById(R.id.icon_champ)).setImageResource(getIdIconImage(item));
 
         ((Button) view.findViewById(R.id.delete_champ_bt)).setTag(position);
 
         return view;
     }
 
-    private int getIdImage(Championship item){
+    public int getIdIconImage(Championship item){
         final String BASKETBALL = myContext.getResources().getString(R.string.basketball);
         final String FOOTBALL = myContext.getResources().getString(R.string.football);
         final String FUTSAL = myContext.getResources().getString(R.string.futsal);
@@ -90,6 +90,30 @@ public class ListMyChampsAdapter extends BaseAdapter {
             return R.mipmap.ltennis;
         }else if(item.getModal().equals(VOLLEY)){
             return R.mipmap.lvolley;
+        }
+        return -1;
+    }
+
+    public int getIdImage(Championship item){
+        final String BASKETBALL = myContext.getResources().getString(R.string.basketball);
+        final String FOOTBALL = myContext.getResources().getString(R.string.football);
+        final String FUTSAL = myContext.getResources().getString(R.string.futsal);
+        final String HANDBALL = myContext.getResources().getString(R.string.handball);
+        final String TENNIS = myContext.getResources().getString(R.string.tennis);
+        final String VOLLEY = myContext.getResources().getString(R.string.volley);
+
+        if(item.getModal().equals(BASKETBALL)){
+            return R.mipmap.basketball;
+        }else if(item.getModal().equals(FOOTBALL)){
+            return R.mipmap.football;
+        }else if(item.getModal().equals(FUTSAL)){
+            return R.mipmap.football;
+        }else if(item.getModal().equals(HANDBALL)){
+            return R.mipmap.handball;
+        }else if(item.getModal().equals(TENNIS)){
+            return R.mipmap.tennis;
+        }else if(item.getModal().equals(VOLLEY)){
+            return R.mipmap.volley;
         }
         return -1;
     }

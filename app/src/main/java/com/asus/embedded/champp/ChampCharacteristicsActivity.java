@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 
 
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +32,13 @@ import java.util.List;
 
 public class ChampCharacteristicsActivity extends ActionBarActivity {
 
-    private TextView nameTv;
+    //private TextView nameTv;
     private Championship c;
     private ListView participantsLv;
     private ParticipantsAdapter adapter;
     private Button startBt, showTableBt, showRankingBt;
     private TextView modalTv;
+    private ImageView iconChamp;
 
 
     @Override
@@ -44,7 +46,9 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_champ_characteristics);
 
-        nameTv = (TextView) findViewById(R.id.championship_name_tv);
+        iconChamp = (ImageView) findViewById(R.id.icon_champ);
+
+        //nameTv = (TextView) findViewById(R.id.championship_name_tv);
         modalTv = (TextView) findViewById(R.id.modal_championship_tv);
 
         startBt = (Button) findViewById(R.id.init_champ_bt);
@@ -68,8 +72,10 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
         Intent i = getIntent();
 
         c = (Championship) i.getSerializableExtra("CHAMP");
+        int icon = (int) i.getSerializableExtra("ICON");
 
-        nameTv.setText(c.getName());
+        iconChamp.setImageResource(icon);
+        //nameTv.setText(c.getName());
         modalTv.setText(c.getModal());
 
         getSupportActionBar().setLogo(R.mipmap.ic_launcher);

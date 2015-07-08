@@ -7,55 +7,93 @@
     tools:context="com.asus.embedded.champp.ChampCharacteristicsActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:text="@string/name"
-        android:textColor="@color/primary_material_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/championship_name_tv"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/championship_name_tv"
-        android:textColor="@color/primary_material_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/icon_champ" />
+
+            <TextView
+                android:id="@+id/modal_championship_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp">
+
+            <Button
+                style="@style/btn_white_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/init_champ"
+                android:id="@+id/init_champ_bt"
+                android:onClick="initChamp"/>
+
+            <Button
+                style="@style/btn_white_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/show_table"
+                android:id="@+id/show_table_bt"
+                android:onClick="showTable"/>
+
+            <Button
+                style="@style/btn_white_large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/show_ranking"
+                android:id="@+id/ranking_bt"
+                android:onClick="showRanking"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+        <!--
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:text="@string/name"
+                        android:textColor="@color/primary_material_dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/championship_name_tv"/>
+
+                    <TextView
+                        android:id="@+id/championship_name_tv"
+                        android:textColor="@color/primary_material_dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout> -->
+    </LinearLayout>
+
+    <!--
     <TextView
         android:text="@string/modal"
         android:textColor="@color/primary_material_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/championship_name_tv"/>
-
-    <TextView
-        android:id="@+id/modal_championship_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        style="@style/btn_white_large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/init_champ"
-        android:id="@+id/init_champ_bt"
-        android:onClick="initChamp"/>
-
-    <Button
-        style="@style/btn_white_large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/show_table"
-        android:id="@+id/show_table_bt"
-        android:onClick="showTable"/>
-
-    <Button
-        style="@style/btn_white_large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/show_ranking"
-        android:id="@+id/ranking_bt"
-        android:onClick="showRanking"
-        android:layout_marginTop="10dp" />
+-->
 
     <ListView
         android:layout_marginTop="@dimen/pad_10dp"

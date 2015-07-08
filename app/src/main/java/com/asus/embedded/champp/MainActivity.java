@@ -34,8 +34,10 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Championship item = adapter.getItem(position);
+                int icon = adapter.getIdImage(item);
                 Intent intent = new Intent(MainActivity.this, ChampCharacteristicsActivity.class);
                 intent.putExtra("CHAMP", item);
+                intent.putExtra("ICON", icon);
                 startActivity(intent);
             }
         });
