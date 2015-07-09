@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context="com.asus.embedded.champp.CupActivity">
 
+    <!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,11 +15,12 @@
         android:id="@+id/cup_champion_bt"
         android:layout_gravity="center_horizontal"
         android:onClick="showChampion"/>
-
+-->
     <TextView
         android:id="@+id/cup_champ_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <ListView
         android:id="@+id/matches_cup_lv"

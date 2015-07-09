@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Champp</string>
+    <string name="app_name">My Champ</string>
     <string name="welcome">Bem Vindo ao My Champ!</string>
     <string name="new_champ">Novo Campeonato</string>
     <string name="action_settings">Configurações</string>

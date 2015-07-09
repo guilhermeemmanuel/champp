@@ -35,14 +35,14 @@ public class CupActivity extends ActionBarActivity {
     private TextView champNameTv;
     private Championship c;
     private MatchesAdapter adapter;
-    private Button championBt;
+    //private Button championBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cup);
 
-        championBt = (Button) findViewById(R.id.cup_champion_bt);
+        //championBt = (Button) findViewById(R.id.cup_champion_bt);
 
         champNameTv = (TextView) findViewById(R.id.cup_champ_tv);
 
@@ -110,7 +110,7 @@ public class CupActivity extends ActionBarActivity {
 
         //}
         //else {
-            championBt.setVisibility(View.GONE);
+            //championBt.setVisibility(View.GONE);
         //}
 
         super.onStart();

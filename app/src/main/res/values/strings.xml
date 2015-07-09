@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Champp</string>
+    <string name="app_name">My Champ</string>
     <string name="welcome">Welcome to the Champ Manager App!</string>
     <string name="new_champ">New Championship</string>
     <string name="action_settings">Settings</string>

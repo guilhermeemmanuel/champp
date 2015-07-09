@@ -23,11 +23,9 @@ public class ChampionshipController {
     }
 
     //DB OK
-    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin, boolean isDoubleRobin) throws EmptyFieldException, SameNameException, ExceededCharacterException {
-        for (Championship champ : getChamps()) {
-            if(champ.equals(new Championship(name))){
-                throw new SameNameException();
-            }
+    public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin, boolean isDoubleRobin) throws ExceededCharacterException, EmptyFieldException, SameNameException {
+        if(isDuplicated(name)){
+            throw new SameNameException();
         }
         Championship c = new Championship(name, modal, isIndividual, isCup, isHomeWin, isDoubleRobin);
         dbHelper.insertChampionship(c);
@@ -139,6 +137,17 @@ public class ChampionshipController {
         participant.deleteIntegrant(integrant);
         dbHelper.deleteIntegrant(champName, participant.getName(), integrant);
         return participant;
+    }
+
+    public boolean isDuplicated(String name) throws ExceededCharacterException, EmptyFieldException {
+        boolean duplicated = false;
+        for (Championship champ : getChamps()) {
+            if(champ.equals(new Championship(name))){
+                duplicated = true;
+            }
+        }
+
+        return duplicated;
     }
 
 }

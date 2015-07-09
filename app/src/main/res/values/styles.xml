@@ -18,6 +18,14 @@
         <item name="android:height">8sp</item>
     </style>
 
+    <style name="btn_white_small" parent="btn" >
+        <item name="android:background">@mipmap/green_btn</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:width">6sp</item>
+        <item name="android:height">4sp</item>
+    </style>
+
     <style name="btn_green_white_bg" parent="@style/btn">
         <item name="android:background">@color/white</item>
         <item name="android:paddingBottom">@dimen/pad_10dp</item>

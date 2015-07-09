@@ -142,12 +142,23 @@ public class NewChampActivity extends ActionBarActivity {
         boolean indivCp = individualRb.isChecked();
         boolean cupCp = cupRb.isChecked();
 
-        Intent i = new Intent(this, SettingsChampActivity.class);
-        i.putExtra("NAMECP", nameCp);
-        i.putExtra("MODALCP", modalCp);
-        i.putExtra("INDIVCP", indivCp);
-        i.putExtra("CUPCP", cupCp);
-        startActivity(i);
+
+        try {
+            if (ChampionshipController.getInstance(getApplicationContext()).isDuplicated(nameCp)){
+                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
+            }else{
+                Intent i = new Intent(this, SettingsChampActivity.class);
+                i.putExtra("NAMECP", nameCp);
+                i.putExtra("MODALCP", modalCp);
+                i.putExtra("INDIVCP", indivCp);
+                i.putExtra("CUPCP", cupCp);
+                startActivity(i);
+            }
+        } catch (ExceededCharacterException e) {
+            Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
+        } catch (EmptyFieldException e) {
+            Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
+        }
     }
 
 

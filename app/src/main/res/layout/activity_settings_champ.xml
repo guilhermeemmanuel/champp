@@ -9,10 +9,11 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cup_settings_layout"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
 
         <RadioGroup
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/cup_set_penalities"
@@ -41,10 +42,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/league_settings_layout"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,6 +80,8 @@
         android:text="@string/ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ReturnMyChamp"/>
+        android:onClick="ReturnMyChamp"
+        style="@style/btn_white_small"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
