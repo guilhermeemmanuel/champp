@@ -37,7 +37,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
     private ListView participantsLv;
     private ParticipantsAdapter adapter;
     private Button startBt, showTableBt, showRankingBt;
-    private TextView modalTv;
+    private TextView modalTv, participantsTv;
     private ImageView iconChamp;
 
 
@@ -50,6 +50,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
         //nameTv = (TextView) findViewById(R.id.championship_name_tv);
         modalTv = (TextView) findViewById(R.id.modal_championship_tv);
+        participantsTv = (TextView) findViewById(R.id.participants_tv);
 
         startBt = (Button) findViewById(R.id.init_champ_bt);
         showTableBt = (Button) findViewById(R.id.show_table_bt);
@@ -113,6 +114,11 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
 
 
         List<Participant> participants = c.getParticipants();
+        if(participants.isEmpty()){
+            participantsTv.setVisibility(View.GONE);
+        }else{
+            participantsTv.setVisibility(View.VISIBLE);
+        }
         adapter = new ParticipantsAdapter(this, participants, c.isStarted());
         participantsLv.setAdapter(adapter);
 

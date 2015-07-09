@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp">
 
@@ -95,8 +95,16 @@
         android:layout_toLeftOf="@+id/championship_name_tv"/>
 -->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/participants_tv"
+        android:id="@+id/participants_tv"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center|bottom"
+        android:layout_marginTop="10dp"/>
+
     <ListView
-        android:layout_marginTop="@dimen/pad_10dp"
         android:id="@+id/participants_list_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

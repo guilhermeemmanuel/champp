@@ -78,5 +78,8 @@
     <string name="balance_tv">| S    </string>
     <string name="cup_penalities">Adicionar Resultado ao Tiebreaker</string>
     <string name="sure_start_champ">Tem certeza que deseja iniciar este campeonato?</string>
+    <string name="participants_tv">Participantes</string>
+    <string name="integrants_tv">Integrantes</string>
+    <string name="no_integrants_tv">Sem Integrantes</string>
 
 </resources>

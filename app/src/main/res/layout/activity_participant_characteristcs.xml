@@ -7,11 +7,20 @@
     android:orientation="vertical"
     tools:context="com.asus.embedded.champp.ParticipantCharacteristcsActivity">
 
+    <!--
     <TextView
         android:id="@+id/participant_name_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_material_dark"/>
+-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/integrants_tv"
+        android:id="@+id/integrants_tv"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center|bottom"/>
 
     <ListView
         android:id="@+id/integrants_list_view"

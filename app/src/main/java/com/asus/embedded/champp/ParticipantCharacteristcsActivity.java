@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.IntegrantsAdapter;
@@ -29,11 +30,14 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
     private Championship c;
     private ListView integrantsLv;
     private IntegrantsAdapter adapter;
+    private TextView integrantsTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_participant_characteristcs);
+
+        integrantsTv = (TextView) findViewById(R.id.integrants_tv);
 
         Intent i = getIntent();
 
@@ -54,6 +58,13 @@ public class ParticipantCharacteristcsActivity extends ActionBarActivity {
         invalidateOptionsMenu();
 
         List<Integrant> integrants = pt.getIntegrants();
+
+        if(integrants.isEmpty()){
+            integrantsTv.setText(getString(R.string.no_integrants_tv));
+        }else{
+            integrantsTv.setText(getString(R.string.integrants_tv));
+        }
+
         adapter = new IntegrantsAdapter(this, integrants);
         integrantsLv.setAdapter(adapter);
 

@@ -78,5 +78,8 @@
     <string name="balance_tv">| B </string>
 
     <string name="sure_start_champ">Are You sure to start this Championship?</string>
+    <string name="participants_tv">Participants</string>
+    <string name="integrants_tv">Integrants</string>
+    <string name="no_integrants_tv">No Integrants</string>
 
 </resources>
