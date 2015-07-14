@@ -144,20 +144,19 @@ public class NewChampActivity extends ActionBarActivity {
 
 
         try {
-            if (ChampionshipController.getInstance(getApplicationContext()).isDuplicated(nameCp)){
-                Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
-            }else{
-                Intent i = new Intent(this, SettingsChampActivity.class);
-                i.putExtra("NAMECP", nameCp);
-                i.putExtra("MODALCP", modalCp);
-                i.putExtra("INDIVCP", indivCp);
-                i.putExtra("CUPCP", cupCp);
-                startActivity(i);
-            }
+            ChampionshipController.getInstance(getApplicationContext()).validateName(nameCp);
+            Intent i = new Intent(this, SettingsChampActivity.class);
+            i.putExtra("NAMECP", nameCp);
+            i.putExtra("MODALCP", modalCp);
+            i.putExtra("INDIVCP", indivCp);
+            i.putExtra("CUPCP", cupCp);
+            startActivity(i);
         } catch (ExceededCharacterException e) {
             Toast.makeText(this,R.string.char_exceeded,Toast.LENGTH_LONG).show();
         } catch (EmptyFieldException e) {
             Toast.makeText(this,R.string.field_empty, Toast.LENGTH_LONG).show();
+        } catch (SameNameException e) {
+            Toast.makeText(this,R.string.same_champ, Toast.LENGTH_LONG).show();
         }
     }
 

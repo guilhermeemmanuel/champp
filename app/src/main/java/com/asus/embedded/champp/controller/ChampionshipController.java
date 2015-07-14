@@ -24,9 +24,6 @@ public class ChampionshipController {
 
     //DB OK
     public void createChampionship(String name, String modal, boolean isIndividual, boolean isCup, boolean isHomeWin, boolean isDoubleRobin) throws ExceededCharacterException, EmptyFieldException, SameNameException {
-        if(isDuplicated(name)){
-            throw new SameNameException();
-        }
         Championship c = new Championship(name, modal, isIndividual, isCup, isHomeWin, isDoubleRobin);
         dbHelper.insertChampionship(c);
     }
@@ -139,15 +136,16 @@ public class ChampionshipController {
         return participant;
     }
 
-    public boolean isDuplicated(String name) throws ExceededCharacterException, EmptyFieldException {
-        boolean duplicated = false;
-        for (Championship champ : getChamps()) {
-            if(champ.equals(new Championship(name))){
-                duplicated = true;
+    public void validateName(String name) throws ExceededCharacterException, EmptyFieldException, SameNameException {
+        if(name.isEmpty()){
+            throw new EmptyFieldException();
+        }else{
+            for (Championship champ : getChamps()) {
+                if(champ.equals(new Championship(name))){
+                    throw new SameNameException();
+                }
             }
         }
-
-        return duplicated;
     }
 
 }
