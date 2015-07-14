@@ -18,7 +18,6 @@ import com.asus.embedded.champp.adapters.ListMyChampsAdapter;
 
 import java.util.List;
 
-
 public class MainActivity extends ActionBarActivity {
     private ListView champLv;
     private ListMyChampsAdapter adapter;

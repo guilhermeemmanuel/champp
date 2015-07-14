@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-
 public class ModalActivity extends ActionBarActivity {
     private final int BASKETBALL = R.string.basketball;
     private final int FOOTBALL = R.string.football;

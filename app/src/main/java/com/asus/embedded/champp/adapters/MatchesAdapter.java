@@ -67,7 +67,6 @@ public class MatchesAdapter extends BaseAdapter {
         //Pega o item de acordo com a posção.
         final Match item = items.get(position);
 
-//        Log.i("Array", Arrays.asList(items).toString());
         //infla o layout para podermos preencher os dados
         view = mInflater.inflate(R.layout.matches_layout, null);
 
@@ -88,7 +87,6 @@ public class MatchesAdapter extends BaseAdapter {
 
         holder.set = ((ImageButton) view.findViewById(R.id.set_score_bt));
 
-        //bt.setTag(position);
         holder.set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,13 +125,6 @@ public class MatchesAdapter extends BaseAdapter {
             ((ImageButton) view.findViewById(R.id.set_score_bt)).setVisibility(View.INVISIBLE);
 
         }
-
-
-
-
-        //((TextView) view.findViewById(R.id.match_tv)).setText(item.toString());
-
-
         return view;
     }
 

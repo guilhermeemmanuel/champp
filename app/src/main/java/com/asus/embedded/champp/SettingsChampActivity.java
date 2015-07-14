@@ -16,7 +16,6 @@ import com.asus.embedded.champp.model.SameNameException;
 
 import java.util.Set;
 
-
 public class SettingsChampActivity extends ActionBarActivity {
     private View cupLay, leagueLay;
     private RadioButton turnBt, returnBt;

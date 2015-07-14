@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Champ</string>
+    <string name="app_name">My Champp</string>
     <string name="welcome">Welcome to the Champ Manager App!</string>
     <string name="new_champ">New Championship</string>
     <string name="action_settings">Settings</string>
@@ -81,5 +81,13 @@
     <string name="participants_tv">Participants</string>
     <string name="integrants_tv">Integrants</string>
     <string name="no_integrants_tv">No Integrants</string>
+    <string name="p_toast">Points</string>
+    <string name="g_toast">Games</string>
+    <string name="w_toast">Wins</string>
+    <string name="l_toast">Losses</string>
+    <string name="d_toast">Draws</string>
+    <string name="f_toast">(Goals, Sets, ...) For</string>
+    <string name="a_toast">(Goals, Sets, ...) Against</string>
+    <string name="b_toast">Balance</string>
 
 </resources>
