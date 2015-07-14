@@ -137,7 +137,7 @@ public class ChampionshipController {
     }
 
     public void validateName(String name) throws ExceededCharacterException, EmptyFieldException, SameNameException {
-        if(name.isEmpty()){
+        if(name.isEmpty() || name.trim().equals("")){
             throw new EmptyFieldException();
         }else{
             for (Championship champ : getChamps()) {
