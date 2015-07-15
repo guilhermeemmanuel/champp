@@ -24,8 +24,9 @@
     <string name="delete_button">Delete</string>
     <string name="title_activity_add_participant">Add Participant</string>
     <string name="cancel">Cancel</string>
-    <string name="delete_champs_dialog">Are you sure you want to delete this league?</string>
-    <string name="delete_participante_dialog">Are you sure want to delete the participant?</string>
+    <string name="delete_champs_dialog">Are you sure you want to delete this championship?</string>
+    <string name="delete_participant_dialog">Are you sure want to delete the participant?</string>
+    <string name="delete_integrant_dialog">Are you sure want to delete the participant integrant?</string>
     <string name="title_activity_participant_characteristcs">Participant Characteristcs</string>
     <string name="name_participant" />
     <string name="init_champ">Start Championship</string>

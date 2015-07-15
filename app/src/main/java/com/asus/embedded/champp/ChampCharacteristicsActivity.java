@@ -132,7 +132,7 @@ public class ChampCharacteristicsActivity extends ActionBarActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setMessage(R.string.delete_participante_dialog)
+            builder.setMessage(R.string.delete_participant_dialog)
                     .setTitle(R.string.delete_button);
             // 3. Add the buttons
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
