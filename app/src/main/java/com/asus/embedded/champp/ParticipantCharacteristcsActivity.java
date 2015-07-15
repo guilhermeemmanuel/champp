@@ -24,7 +24,6 @@ import com.asus.embedded.champp.model.SameNameException;
 
 import java.util.List;
 
-
 public class ParticipantCharacteristcsActivity extends ActionBarActivity {
     private Participant pt;
     private Championship c;

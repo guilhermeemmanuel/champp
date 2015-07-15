@@ -59,7 +59,6 @@ public class RankingAdapter extends BaseAdapter {
 
         TextView tvParticipantName = (TextView) view.findViewById(R.id.tv_team_name);
         TextView tvParticipantScore = (TextView) view.findViewById(R.id.tv_team_score);
-        //inicio sprint 5
         TextView tvParticipantGames = (TextView) view.findViewById(R.id.tv_number_games);
         TextView tvParticipantNumberWin = (TextView) view.findViewById(R.id.tv_number_win);
         TextView tvParticipantNumberDefeats = (TextView) view.findViewById(R.id.tv_number_defeats);

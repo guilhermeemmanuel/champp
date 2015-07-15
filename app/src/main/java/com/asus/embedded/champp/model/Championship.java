@@ -162,7 +162,6 @@ public class Championship implements Serializable {
             int m = participants.size() / 2;
             for (int i = 0; i < t - 1; i++) {
                 Round r = new Round(i);
-                //System.out.print((i + 1) + "a rodada: ");
                 for (int j = 0; j < m; j++) {
                     //Clube está de fora nessa rodada?
                     if (participants.get(j).getName().isEmpty())
@@ -177,7 +176,6 @@ public class Championship implements Serializable {
                     number++;
                 }
                 this.rounds.add(r);
-                //System.out.println();
                 //Gira os clubes no sentido horário, mantendo o primeiro no lugar
                 participants.add(1, participants.remove(participants.size() - 1));
             }
@@ -316,16 +314,6 @@ public class Championship implements Serializable {
             this.rounds.add(r);
 
             }
-            //else {
-                //sera necessario um round preliminar
-              //  int dif = wins.size() - org;
-
-                //for (int i = 0; i < dif; i++) {
-                    //getMatches().add(new Match(wins.get(i * 2), wins.get(i * 2 + 1), "preliminars ", i));
-                //}
-
-
-            //}
         }
 
     }

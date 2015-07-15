@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Champ</string>
-    <string name="welcome">Bem Vindo ao My Champ!</string>
+    <string name="app_name">My Champp</string>
+    <string name="welcome">Bem Vindo ao My Champp!</string>
     <string name="new_champ">Novo Campeonato</string>
     <string name="action_settings">Configurações</string>
     <string name="title_activity_new_champ">Novo Campeonato</string>
@@ -81,5 +81,13 @@
     <string name="participants_tv">Participantes</string>
     <string name="integrants_tv">Integrantes</string>
     <string name="no_integrants_tv">Sem Integrantes</string>
+    <string name="p_toast">Pontos</string>
+    <string name="g_toast">Jogos</string>
+    <string name="w_toast">Vitórias</string>
+    <string name="l_toast">Derrotas</string>
+    <string name="d_toast">Empates</string>
+    <string name="f_toast">(Gols, Sets, ...) à Favor</string>
+    <string name="a_toast">(Gols, Sets, ...) Contra</string>
+    <string name="b_toast">Saldo</string>
 
 </resources>

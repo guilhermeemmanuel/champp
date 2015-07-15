@@ -5,11 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
 
 public class SplashActivity extends ActionBarActivity{
     private static int SPLASH_TIME_OUT = 3000;

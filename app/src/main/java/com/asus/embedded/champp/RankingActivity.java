@@ -1,6 +1,5 @@
 package com.asus.embedded.champp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,9 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.asus.embedded.champp.adapters.RankingAdapter;
 import com.asus.embedded.champp.controller.ChampionshipController;
@@ -133,5 +132,34 @@ public class RankingActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showTitle(View view){
+        switch (view.getId()){
+            case R.id.tv_team_score:
+                Toast.makeText(this, R.string.p_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_number_games:
+                Toast.makeText(this, R.string.g_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_number_win:
+                Toast.makeText(this, R.string.w_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_number_defeats:
+                Toast.makeText(this, R.string.l_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_draw:
+                Toast.makeText(this, R.string.d_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_goals_pro:
+                Toast.makeText(this, R.string.f_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_goals_against:
+                Toast.makeText(this, R.string.a_toast, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_balance:
+                Toast.makeText(this, R.string.b_toast, Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

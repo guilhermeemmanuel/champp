@@ -57,13 +57,6 @@ public class NewChampActivity extends ActionBarActivity {
         modalIcon = (ImageView) findViewById(R.id.modal_icon);
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                              int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-    }
-
-
     @Override
     protected void onStart() {
         super.onStart();

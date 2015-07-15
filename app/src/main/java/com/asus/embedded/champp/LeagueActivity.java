@@ -22,7 +22,6 @@ import com.asus.embedded.champp.model.Match;
 
 import java.util.List;
 
-
 public class LeagueActivity extends ActionBarActivity {
 
     private ListView matchesLv;

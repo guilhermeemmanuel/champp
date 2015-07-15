@@ -44,7 +44,9 @@
             android:layout_height="wrap_content"
             android:text="@string/points_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_number_games"
@@ -52,7 +54,9 @@
             android:layout_height="wrap_content"
             android:text="@string/games_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_number_win"
@@ -60,7 +64,9 @@
             android:layout_height="wrap_content"
             android:text="@string/wins_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_number_defeats"
@@ -68,7 +74,9 @@
             android:layout_height="wrap_content"
             android:text="@string/losses_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_draw"
@@ -76,7 +84,9 @@
             android:layout_height="wrap_content"
             android:text="@string/draw_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_goals_pro"
@@ -84,7 +94,9 @@
             android:layout_height="wrap_content"
             android:text="@string/gols_for_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_goals_against"
@@ -92,7 +104,9 @@
             android:layout_height="wrap_content"
             android:text="@string/gols_against_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
         <TextView
             android:id="@+id/tv_balance"
@@ -100,7 +114,9 @@
             android:layout_height="wrap_content"
             android:text="@string/balance_tv"
             android:layout_gravity="center"
-            android:layout_span="4" />
+            android:layout_span="4"
+            android:clickable="true"
+            android:onClick="showTitle"/>
 
 
     </TableRow>
