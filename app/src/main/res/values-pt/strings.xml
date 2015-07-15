@@ -90,4 +90,7 @@
     <string name="a_toast">(Gols, Sets, ...) Contra</string>
     <string name="b_toast">Saldo</string>
 
+    <string name="champ_list">Lista de Campeonatos</string>
+
+
 </resources>

@@ -90,4 +90,7 @@
     <string name="a_toast">(Goals, Sets, ...) Against</string>
     <string name="b_toast">Balance</string>
 
+    <string name="champ_list">Championship List</string>
+
+
 </resources>

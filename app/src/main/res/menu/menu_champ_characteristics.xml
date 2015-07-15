@@ -5,7 +5,7 @@
 
 
     <item android:id="@+id/action_list_champs"
-        android:title="Lista de Campeonatos"
+        android:title="@string/champ_list"
         android:orderInCategory="100"
         app:showAsAction="never" />
 
