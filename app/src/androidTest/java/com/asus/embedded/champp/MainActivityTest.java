@@ -43,7 +43,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         mDevice.pressHome();
         mAppTrayButton = mDevice.findObject(new UiSelector().description("Apps"));
         mAppTrayButton.clickAndWaitForNewWindow();
-        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champ"));
+        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champp"));
         mMyChampApp.clickAndWaitForNewWindow();
         sleep(1000);
 
@@ -54,7 +54,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         mDevice.pressBack();
         mDevice.pressHome();
         mAppTrayButton.clickAndWaitForNewWindow();
-        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champ"));
+        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champp"));
         mMyChampApp.clickAndWaitForNewWindow();
         sleep(1000);
 
@@ -66,7 +66,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         mDevice.pressHome();
         mAppTrayButton = mDevice.findObject(new UiSelector().description("Apps"));
         mAppTrayButton.clickAndWaitForNewWindow();
-        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champ"));
+        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champp"));
         mMyChampApp.clickAndWaitForNewWindow();
         sleep(1000);
 
@@ -126,7 +126,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         mDevice.pressHome();
         mAppTrayButton = mDevice.findObject(new UiSelector().description("Apps"));
         mAppTrayButton.clickAndWaitForNewWindow();
-        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champ"));
+        mMyChampApp = mDevice.findObject(new UiSelector().description("My Champp"));
         mMyChampApp.clickAndWaitForNewWindow();
         sleep(1000);
 
